@@ -20,6 +20,7 @@ gem 'bugsnag'
 gem 'gds-sso'
 gem 'govuk_admin_template'
 gem 'plek'
+gem 'uk_postcode'
 
 
 group :development, :test do
