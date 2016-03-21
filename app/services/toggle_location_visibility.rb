@@ -15,7 +15,7 @@ class ToggleLocationVisibility
       params.merge(
         'state' => 'current',
         'hidden' => !location.hidden,
-        'version' => location.version + 1,
+        'version' => location.version + 1
       )
     )
   end

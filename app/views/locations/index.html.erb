@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <%- @locations.each do |location| %>
+      <div class="row location" id="location-<%= location.uid %>">
+        <div class="col-md-6 details">
+          <h2><%= location.title %></h2>
+          <table class="table location-details_table">
+            <tr>
+              <td>Address:</td>
+              <td class="address"><%= location.address.to_a.join('<br>').html_safe %></td>
+            </tr>
+            <tr>
+              <td>Booking hours:</td>
+              <td class="booking_hours"><%= location.hours %></td>
+            </tr>
+            <tr>
+              <td>Telephone number:</td>
+              <td class="telephone_number"><%= location.phone %></td>
+            </tr>
+            <tr>
+              <td>Status:</td>
+              <td class="status"><%= location.hidden ? 'Hidden' : 'Active' %></td>
+            </tr>
+            <tr>
+              <td>Last updated:</td>
+              <td><%= location.created_at %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-md-3 map">
+        </div>
+        <div class="col-md-3 external">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

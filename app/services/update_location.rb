@@ -10,30 +10,24 @@ class UpdateLocation
   end
 
   def update!(params)
-    if location.nil?
-      Location.create!(
-        params.merge(
-          uid: uid,
-          state: 'current',
-          version: 1
-        )
-      )
-    elsif matches(params)
-      # no update required
-      location
-    else
-      location.update_attributes!(state: 'old')
-      Location.create!(
-        params.merge(
-          uid: uid,
-          state: 'current',
-          version: location.version + 1
-        )
-      )
-    end
+    return create!(params) if location.nil?
+    return location if matches(params)
+
+    location.update_attributes!(state: 'old')
+    create!(params, location.version + 1)
   end
 
   private
+
+  def create!(params, version = 1)
+    Location.create!(
+      params.merge(
+        uid: uid,
+        state: 'current',
+        version: version
+      )
+    )
+  end
 
   def matches(params)
     params.all? do |key, value|
