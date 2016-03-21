@@ -20,8 +20,8 @@ gem 'bugsnag'
 gem 'gds-sso'
 gem 'govuk_admin_template'
 gem 'plek'
+gem 'pundit'
 gem 'uk_postcode'
-
 
 group :development, :test do
   gem 'dotenv-rails'

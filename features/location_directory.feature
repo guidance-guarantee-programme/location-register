@@ -8,7 +8,6 @@ Feature: Location Directory
     When I visit the location directory
     Then I can see locations for my organisation
 
-  @wip
   Scenario: Viewing locations for my organisation
     Given locations exist for other organisations
     When I visit the location directory

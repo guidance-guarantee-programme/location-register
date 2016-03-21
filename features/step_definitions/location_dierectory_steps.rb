@@ -31,5 +31,5 @@ end
 Then(/^I can not see locations for other organisation$/) do
   expect(@page.locations.size).to eq(1)
 
-  expect(@page.locatsions[0].title.text).to eq(@nicab_location.title)
+  expect(@page.locations[0].location_title.text).to eq(@nicab_location.title)
 end

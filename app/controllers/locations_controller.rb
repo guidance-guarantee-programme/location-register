@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
   def index
-    @locations = Location.where(state: 'current', hidden: false).order(:title)
+    authorize Location
+    scope = Location.where(state: 'current', hidden: false).order(:title)
+    @locations = policy_scope(scope)
   end
 end
