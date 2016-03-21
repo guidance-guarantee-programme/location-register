@@ -33,3 +33,18 @@ Then(/^I can not see locations for other organisation$/) do
 
   expect(@page.locations[0].location_title.text).to eq(@nicab_location.title)
 end
+
+Given(/^that a locations exists called "([^"]*)" and "([^"]*)"$/) do |location1, location2|
+  FactoryGirl.create(:user, :project_manager, :nicab)
+  FactoryGirl.create(:location, :nicab, title: location1)
+  FactoryGirl.create(:location, :nicab, title: location2)
+end
+
+When(/^I naviagte to the "([^"]*)" page$/) do |letter|
+  @page.navigate_to(letter)
+end
+
+Then(/^I should see the "([^"]*)" location$/) do |title|
+  expect(@page.locations.count).to eq(1)
+  expect(@page.locations[0].location_title.text).to eq(title)
+end

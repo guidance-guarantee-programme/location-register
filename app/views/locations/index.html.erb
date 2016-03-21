@@ -1,5 +1,10 @@
 <div class="row">
   <div class="col-md-12">
+    <%= alphabetical_paginate(@sorting_params) %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <%- @locations.each do |location| %>
       <div class="row location" id="location-<%= location.uid %>">
         <div class="col-md-6 details">

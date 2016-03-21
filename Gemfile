@@ -16,6 +16,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foreman'
 gem 'puma'
 
+gem 'alphabetical_paginate'
 gem 'bugsnag'
 gem 'gds-sso'
 gem 'govuk_admin_template'

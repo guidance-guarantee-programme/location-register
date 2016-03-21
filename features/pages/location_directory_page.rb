@@ -8,4 +8,10 @@ class LocationDirectoryPage < SitePrism::Page
     element :telephone_number, '.telephone_number'
     element :status, '.status'
   end
+
+  elements :pagination, '.pagination li a'
+
+  def navigate_to(letter)
+    pagination.detect { |p| p.text == letter }.click
+  end
 end

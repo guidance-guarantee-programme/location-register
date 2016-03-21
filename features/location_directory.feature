@@ -12,3 +12,9 @@ Feature: Location Directory
     Given locations exist for other organisations
     When I visit the location directory
     Then I can not see locations for other organisation
+
+  Scenario:
+    Given that a locations exists called "Apples" and "Bamboo"
+    When I visit the location directory
+    And I naviagte to the "B" page
+    Then I should see the "Bamboo" location
