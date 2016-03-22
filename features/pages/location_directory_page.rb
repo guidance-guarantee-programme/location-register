@@ -1,12 +1,12 @@
 class LocationDirectoryPage < SitePrism::Page
   set_url '/locations'
 
-  sections :locations, '.location' do
-    element :location_title, 'h2'
-    element :address, '.address'
-    element :booking_hours, '.booking_hours'
-    element :telephone_number, '.telephone_number'
-    element :status, '.status'
+  sections :locations, '.t-location' do
+    element :location_title, '.t-location-title'
+    element :address, '.t-address'
+    element :booking_hours, '.t-booking_hours'
+    element :telephone_number, '.t-telephone_number'
+    element :status, '.t-status'
   end
 
   elements :pagination, '.pagination li a'
