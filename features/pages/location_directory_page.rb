@@ -9,10 +9,10 @@ class LocationDirectoryPage < SitePrism::Page
     element :status, '.t-status'
   end
 
-  elements :pagination, '.pagination__letter'
-  element :filter_submit, '.filter__submit'
+  elements :pagination, '.t-pagination__letter'
+  element :filter_submit, '.t-filter-submit'
 
-  element :notice, '.no-content'
+  element :notice, '.t-notice'
 
   def navigate_to(letter)
     if javascript_enabled?
