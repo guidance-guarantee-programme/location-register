@@ -3,10 +3,7 @@ class UpdateLocation
 
   def initialize(uid:)
     @uid = uid
-    @location = Location.find_by(
-      uid: uid,
-      state: 'current'
-    )
+    @location = Location.current.find_by(uid: uid)
   end
 
   def update!(params)

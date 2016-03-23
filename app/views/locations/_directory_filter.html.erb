@@ -1,0 +1,49 @@
+<%= form_tag locations_path, method: 'get' do %>
+  <ul class="pagination">
+    <% (?A..?Z).each do |letter| %>
+      <li class="pagination__letter">
+        <%=
+          radio_button_tag(
+              :letter,
+              letter,
+              letter == @sorting_params[:currentField],
+              disabled: letter != @sorting_params[:currentField] &&
+                        !@sorting_params[:availableLetters].include?(letter),
+              class: 'pagination__checkbox'
+          )
+        %>
+        <%= label_tag :"letter_#{letter}", letter, class: 'pagination__label' %>
+      </li>
+    <% end %>
+  </ul>
+
+  <br>
+  Display:
+
+  <%= hidden_field_tag :display_active, '' %>
+  <%= label_tag do %>
+    <%=
+      check_box_tag(
+          :display_active,
+          '1',
+          params.fetch(:display_active, true).present?,
+          class: 'display-locations__display-active'
+      )
+    %>
+    Active Locations
+  <% end %>
+
+  <%= hidden_field_tag :display_hidden, '' %>
+  <%= label_tag do %>
+    <%=
+      check_box_tag(:display_hidden,
+          '1',
+          params.fetch(:display_hidden, false).present?,
+          class: 'display-locations__display-hidden'
+      )
+    %>
+    Hidden Locations
+  <% end %>
+
+  <%= submit_tag 'Update', class: 'btn btn-default filter__submit' %>
+<% end %>
