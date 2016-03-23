@@ -5,25 +5,14 @@ require 'pathname'
 APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
 
 Dir.chdir APP_ROOT do
-  # This script is a starting point to setup your application.
-  # Add necessary setup steps to this file:
+  puts "\n== Installing Ruby dependencies =="
+  system('gem install bundler --conservative 2>&1') || fail("'gem install bundler --conservative' failed!")
+  system('bundle check 2>&1 || bundle install 2>&1') || fail("'bundle check || bundle install' failed!")
 
-  puts "== Installing dependencies =="
-  system "gem install bundler --conservative"
-  system "bundle check || bundle install"
+  puts "\n== Truncating all *.log files in log/ to zero bytes =="
+  system('bin/rake log:clear 2>&1') || fail("'bin/rake log:clear' failed!")
 
-  # puts "\n== Copying sample files =="
-  # unless File.exist?("config/database.yml")
-  #   system "cp config/database.yml.sample config/database.yml"
-  # end
+  puts "\n== Clearing session, cache, and socket files from tmp/ =="
+  system('bin/rake tmp:clear 2>&1') || fail("'bin/rake tmp:clear' failed!")
 
-  puts "\n== Preparing database =="
-  system "bin/rake db:setup"
-
-  puts "\n== Removing old logs and tempfiles =="
-  system "rm -f log/*"
-  system "rm -rf tmp/cache"
-
-  puts "\n== Restarting application server =="
-  system "touch tmp/restart.txt"
 end

@@ -1,0 +1,29 @@
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'vendor/**/*'
+  TargetRubyVersion: 2.3
+
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+Lint/HandleExceptions:
+  Exclude:
+    - Rakefile
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'app/models/countries.rb'
+
+Style/RescueModifier:
+  Enabled: false

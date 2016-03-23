@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>LocationRegister</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag 'application' %>
+<% end %>
 
-<%= yield %>
+<% content_for :navbar_right do %>
+  <%= link_to current_user.name, Plek.current.find('signon') %>
+  &bull; <%= link_to 'Sign out', gds_sign_out_path %>
+<% end %>
 
-</body>
-</html>
+<%= content_for :app_title do %>
+  CAB Locator
+<% end %>
+
+<%= content_for :navbar_items do %>
+  <li>
+    <a href="/add" class="disabled">Add</a>
+  </li>
+  <li>
+    <a href="/search" class="disabled">Search</a></li>
+  <li>
+    <a href="/locations">Directory</a>
+  </li>
+<% end %>
+
+<%= render template: 'layouts/govuk_admin_template' %>
