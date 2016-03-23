@@ -1,5 +1,7 @@
-$(function(){
-  $('.display-locations__display-hidden, .display-locations__display-active, .pagination__checkbox').change(
-    function() { $(this).parents('form').submit() }
+$(function() {
+  'use strict';
+
+  $('.js-submit-form').change(
+    function() { $(this).parents('form').submit(); }
   );
 });
