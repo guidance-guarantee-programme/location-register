@@ -48,3 +48,33 @@ Then(/^I should see the "([^"]*)" location$/) do |title|
   expect(@page.locations.count).to eq(1)
   expect(@page.locations[0].location_title.text).to eq(title)
 end
+
+Given(/^that a hidden location exists$/) do
+  FactoryGirl.create(:user, :project_manager, :nicab)
+  FactoryGirl.create(:location, :nicab, hidden: true)
+end
+
+Then(/^I should see not see the hidden location$/) do
+  expect(@page.locations.count).to eq(0)
+end
+
+When(/^toggle the display hidden locations flag$/) do
+  @page.display_hidden_locations
+end
+
+Then(/^I should see see the hidden location$/) do
+  expect(@page.locations.count).to eq(1)
+  expect(@page.locations[0].status.text).to eq('Hidden')
+end
+
+When(/^toggle the display active locations flag$/) do
+  @page.hide_active_locations
+end
+
+Then(/^I should not see see the active location$/) do
+  expect(@page.locations.count).to eq(0)
+end
+
+Then(/^I should see the no locations available notice$/) do
+  expect(@page).to have_notice
+end
