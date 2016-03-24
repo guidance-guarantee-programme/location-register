@@ -1,0 +1,8 @@
+{
+  "name": "location_register",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.2",
+    "bootstrap": "~3.3.6"
+  }
+}

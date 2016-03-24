@@ -2,6 +2,11 @@ sudo: false
 language: ruby
 cache:
   bundler: true
+  directories:
+  - node_modules
+  - vendor/assets/bower_components
+node_js:
+- '0.10'
 rvm:
 - 2.3.0
 notifications:
@@ -14,3 +19,4 @@ addons:
   postgresql: 9.4
 before_script:
 - "./bin/rake db:setup RAILS_ENV=test"
+- npm install
