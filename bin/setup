@@ -9,10 +9,12 @@ Dir.chdir APP_ROOT do
   system('gem install bundler --conservative 2>&1') || fail("'gem install bundler --conservative' failed!")
   system('bundle check 2>&1 || bundle install 2>&1') || fail("'bundle check || bundle install' failed!")
 
+  puts "\n== Installing Node.js dependencies =="
+  system 'npm install'
+
   puts "\n== Truncating all *.log files in log/ to zero bytes =="
   system('bin/rake log:clear 2>&1') || fail("'bin/rake log:clear' failed!")
 
   puts "\n== Clearing session, cache, and socket files from tmp/ =="
   system('bin/rake tmp:clear 2>&1') || fail("'bin/rake tmp:clear' failed!")
-
 end

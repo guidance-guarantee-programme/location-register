@@ -1,0 +1,17 @@
+{
+  "name": "location_register",
+  "dependencies": {
+    "bower": "*"
+  },
+  "devDependencies": {
+    "jscs": "latest",
+    "jshint": "latest",
+    "phantomjs-prebuilt": ">= 1.9.16"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "js": "npm run jshint && npm run jscs",
+    "jshint": "jshint app/assets/javascripts/**.js",
+    "jscs": "jscs app/assets/javascripts/**.js"
+  }
+}

@@ -7,20 +7,20 @@ Rails.application.load_tasks
 
 begin
   require 'cucumber/rake/task'
-  Cucumber::Rake::Task.new
+  Cucumber::Rake::Task.new(:default)
 rescue LoadError
 end
 
 begin
   require 'rubocop/rake_task'
-  RuboCop::RakeTask.new
+  RuboCop::RakeTask.new(:default)
 rescue LoadError
 end
 
 begin
   require 'scss_lint/rake_task'
-  SCSSLint::RakeTask.new
+  SCSSLint::RakeTask.new(:default)
 rescue LoadError
 end
 
-task default: %i(spec cucumber rubocop)
+task default: %i(analyse_javascript)
