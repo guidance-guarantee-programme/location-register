@@ -1,5 +1,6 @@
 .pagination-atoz {
-  overflow: hidden;
+  @extend %contain-floats;
+
   padding-left: 1px;
   margin: 20px 0;
 }

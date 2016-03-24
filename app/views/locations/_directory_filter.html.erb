@@ -17,33 +17,32 @@
     <% end %>
   </ul>
 
-  <div>
-    Display:
-    <%= hidden_field_tag :display_active, '' %>
-    <%= label_tag nil, class: 'l-filter-form__checkbox-label' do %>
-      <%=
-        check_box_tag(
-            :display_active,
-            '1',
-            params.fetch(:display_active, true).present?,
-            class: 'js-submit-form'
-        )
-      %>
-      Active Locations
-    <% end %>
+  <label class="l-filter-form__display-label">Display:</label>
 
-    <%= hidden_field_tag :display_hidden, '' %>
-    <%= label_tag nil, class: 'l-filter-form__checkbox-label' do %>
-      <%=
-        check_box_tag(:display_hidden,
-            '1',
-            params.fetch(:display_hidden, false).present?,
-            class: 'js-submit-form'
-        )
-      %>
-      Hidden Locations
-    <% end %>
+  <%= hidden_field_tag :display_active, '' %>
+  <%= label_tag nil, class: 'l-filter-form__checkbox-label' do %>
+    <%=
+      check_box_tag(
+          :display_active,
+          '1',
+          params.fetch(:display_active, true).present?,
+          class: 'js-submit-form'
+      )
+    %>
+    Active Locations
+  <% end %>
 
-    <%= submit_tag 'Update', class: 'btn btn-default l-filter-form__submit t-filter-submit' %>
-  </div>
+  <%= hidden_field_tag :display_hidden, '' %>
+  <%= label_tag nil, class: 'l-filter-form__checkbox-label' do %>
+    <%=
+      check_box_tag(:display_hidden,
+          '1',
+          params.fetch(:display_hidden, false).present?,
+          class: 'js-submit-form'
+      )
+    %>
+    Hidden Locations
+  <% end %>
+
+  <%= submit_tag 'Update', class: 'btn btn-default l-filter-form__submit t-filter-submit' %>
 <% end %>
