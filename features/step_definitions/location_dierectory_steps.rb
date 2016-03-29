@@ -34,7 +34,7 @@ Then(/^I can not see locations for other organisation$/) do
   expect(@page.locations[0].location_title.text).to eq(@nicab_location.title)
 end
 
-Given(/^that a locations exists called "([^"]*)" and "([^"]*)"$/) do |location1, location2|
+Given(/^two locations exist called "([^"]*)" and "([^"]*)"$/) do |location1, location2|
   FactoryGirl.create(:user, :project_manager, :nicab)
   FactoryGirl.create(:location, :nicab, title: location1)
   FactoryGirl.create(:location, :nicab, title: location2)
@@ -49,7 +49,7 @@ Then(/^I should see the "([^"]*)" location$/) do |title|
   expect(@page.locations[0].location_title.text).to eq(title)
 end
 
-Given(/^that a hidden location exists$/) do
+Given(/^a hidden location exists$/) do
   FactoryGirl.create(:user, :project_manager, :nicab)
   FactoryGirl.create(:location, :nicab, hidden: true)
 end
@@ -58,13 +58,13 @@ Then(/^I should see not see the hidden location$/) do
   expect(@page.locations.count).to eq(0)
 end
 
-When(/^toggle the display hidden locations flag$/) do
+When(/^I toggle the display hidden locations flag$/) do
   @page.display_hidden_locations
 end
 
 Then(/^I should see see the hidden location$/) do
   expect(@page.locations.count).to eq(1)
-  expect(@page.locations[0].status.text).to eq('Hidden')
+  expect(@page.locations[0].checked_status.text).to eq('Hidden')
 end
 
 When(/^toggle the display active locations flag$/) do
@@ -77,4 +77,25 @@ end
 
 Then(/^I should see the no locations available notice$/) do
   expect(@page).to have_notice
+end
+
+Given(/^a active location exists$/) do
+  FactoryGirl.create(:user, :project_manager, :nicab)
+  FactoryGirl.create(:location, :nicab)
+end
+
+When(/^I hide the active location$/) do
+  @page.hide_first_location
+end
+
+Then(/^my locations should be hidden$/) do
+  expect(Location.first).to be_hidden
+end
+
+When(/^I activate the hidden location$/) do
+  @page.activate_first_location
+end
+
+Then(/^my location should be active$/) do
+  expect(Location.first).not_to be_hidden
 end

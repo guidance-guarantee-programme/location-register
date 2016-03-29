@@ -8,6 +8,19 @@ Rails.application.load_tasks
 begin
   require 'cucumber/rake/task'
   Cucumber::Rake::Task.new(:default)
+
+  namespace :cucumber do
+    desc 'Run cucumber features tagged with @javascript rack_test driver'
+    task :javascript_disabled do
+      puts '*' * 50
+      puts 'Running cucumber features with JS disabled...'
+      puts '*' * 50
+      system('WITHOUT_JS=true cucumber --tags @noscript')
+    end
+  end
+
+  task default: 'cucumber:javascript_disabled'
+
 rescue LoadError
 end
 

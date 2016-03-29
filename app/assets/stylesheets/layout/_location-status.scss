@@ -1,0 +1,11 @@
+.js .l-location-status__submit {
+  display: none;
+}
+
+.l-location-status__checkbox + .l-location-status__label {
+  color: $location-status-not-selected;
+}
+
+.l-location-status__checkbox:checked + .l-location-status__label {
+  color: $location-status-selected;
+}

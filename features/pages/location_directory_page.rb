@@ -7,11 +7,12 @@ class LocationDirectoryPage < SitePrism::Page
     element :booking_hours, '.t-booking_hours'
     element :telephone_number, '.t-telephone_number'
     element :status, '.t-status'
+    element :checked_status, '.t-location-status[checked] + .t-location-status-label'
+    element :status_update, '.t-location-status-submit'
   end
 
   elements :pagination, '.t-pagination__letter'
   element :filter_submit, '.t-filter-submit'
-
   element :notice, '.t-notice'
 
   def navigate_to(letter)
@@ -33,6 +34,20 @@ class LocationDirectoryPage < SitePrism::Page
     uncheck('Active Locations')
     filter_submit.click unless javascript_enabled?
   end
+
+  def hide_first_location
+    location_to_be_hidden = locations[0]
+    location_to_be_hidden.status.choose('Hidden')
+    location_to_be_hidden.status_update.click unless javascript_enabled?
+  end
+
+  def activate_first_location
+    location_to_be_hidden = locations[0]
+    location_to_be_hidden.status.choose('Active')
+    location_to_be_hidden.status_update.click unless javascript_enabled?
+  end
+
+  private
 
   def javascript_enabled?
     !has_filter_submit?
