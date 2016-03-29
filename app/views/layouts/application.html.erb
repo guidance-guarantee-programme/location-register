@@ -1,6 +1,5 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag "application", media: "all" %>
-  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
 <% end %>
 
 <% content_for :navbar_right do %>
@@ -21,6 +20,10 @@
   <li>
     <a href="/locations">Directory</a>
   </li>
+<% end %>
+
+<% content_for :body_end do %>
+  <%= javascript_include_tag 'application' %>
 <% end %>
 
 <%= render template: 'layouts/govuk_admin_template' %>

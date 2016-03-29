@@ -1,1 +1,34 @@
+// hex colours (http://chir.ag/projects/name-that-color/)
+$color-black: #0b0c0c;
+$color-grey-rolling-stone: #6f777b;
+$color-grey-silver-sand: #bfc1c3;
+$color-grey-mercury: #e2e2e2;
+$color-grey-porcelain: #e9ebec;
+$color-grey-alabaster: #f8f8f8;
+$color-grey-black-haze: #f4f5f5;
+$color-white: #fff;
+
+$color-blue-biscay: #17375f;
+$color-blue-endeavour: #005ea5;
+$color-blue-curious: #2b8cc4;
+$color-blue-picton: #5bc8f1;
+$color-orange-pizazz: #fa9600;
+$color-green-atlantis: #97c81e;
+$color-green-jungle: #00385d;
+
+$color-medium-red-violet: #b0348b;
+$color-razmatazz: #e50050;
+
+//color for pagination
+$active-letter-background: $color-white;
+$active-letter-background--hover: $color-grey-mercury;
+$active-letter-border: $color-grey-silver-sand;
+$active-letter-color: $color-blue-endeavour;
+
+$disabled-letter-background: $color-white;
+$disabled-letter-text: $color-grey-silver-sand;
+
+$selected-letter-background: $color-blue-endeavour;
+$selected-letter-text: $color-white;
+
 $fixed-width-for-telephone-number: 140px;

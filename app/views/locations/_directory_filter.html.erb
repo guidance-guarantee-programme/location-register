@@ -1,0 +1,48 @@
+<%= form_tag locations_path, method: 'get', class: 'l-filter-form' do %>
+  <ul class="pagination-atoz">
+    <% (?A..?Z).each do |letter| %>
+      <li class="pagination-atoz__letter t-pagination__letter">
+        <%=
+          radio_button_tag(
+              :letter,
+              letter,
+              letter == @sorting_params[:currentField],
+              disabled: letter != @sorting_params[:currentField] &&
+                        !@sorting_params[:availableLetters].include?(letter),
+              class: 'pagination-atoz__checkbox js-submit-form'
+          )
+        %>
+        <%= label_tag :"letter_#{letter}", letter, class: 'pagination-atoz__label' %>
+      </li>
+    <% end %>
+  </ul>
+
+  <label class="l-filter-form__display-label">Display:</label>
+
+  <%= hidden_field_tag :display_active, '' %>
+  <%= label_tag nil, class: 'l-filter-form__checkbox-label' do %>
+    <%=
+      check_box_tag(
+          :display_active,
+          '1',
+          params.fetch(:display_active, true).present?,
+          class: 'js-submit-form'
+      )
+    %>
+    Active Locations
+  <% end %>
+
+  <%= hidden_field_tag :display_hidden, '' %>
+  <%= label_tag nil, class: 'l-filter-form__checkbox-label' do %>
+    <%=
+      check_box_tag(:display_hidden,
+          '1',
+          params.fetch(:display_hidden, false).present?,
+          class: 'js-submit-form'
+      )
+    %>
+    Hidden Locations
+  <% end %>
+
+  <%= submit_tag 'Update', class: 'btn btn-default l-filter-form__submit t-filter-submit' %>
+<% end %>

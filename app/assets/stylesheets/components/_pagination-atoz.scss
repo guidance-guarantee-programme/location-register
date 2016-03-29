@@ -1,0 +1,53 @@
+.pagination-atoz {
+  @extend %contain-floats;
+
+  padding-left: 1px;
+  margin: 20px 0;
+}
+
+.pagination-atoz__letter {
+  display: inline;
+
+  &:first-child .pagination-atoz__label {
+    border-radius: 4px 0 0 4px;
+  }
+
+  &:last-child .pagination-atoz__label {
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.pagination-atoz__label {
+  background-color: $active-letter-background;
+  border: 1px solid $active-letter-border;
+  box-sizing: border-box;
+  color: $active-letter-color;
+  display: inline;
+  float: left;
+  font-weight: normal;
+  margin-left: -1px;
+  line-height: 20px;
+  padding: 6px 12px;
+}
+
+.pagination-atoz__label:hover {
+  background-color: $active-letter-background--hover;
+}
+
+.pagination-atoz__checkbox:disabled + .pagination-atoz__label {
+  cursor: not-allowed;
+  color: $disabled-letter-text;
+  background-color: $disabled-letter-background;
+
+}
+
+.pagination-atoz__checkbox:checked + .pagination-atoz__label {
+  cursor: default;
+  color: $selected-letter-text;
+  border-color: $selected-letter-background;
+  background-color: $selected-letter-background;
+}
+
+.pagination-atoz__checkbox {
+  display: none;
+}

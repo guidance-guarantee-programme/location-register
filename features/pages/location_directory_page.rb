@@ -9,9 +9,32 @@ class LocationDirectoryPage < SitePrism::Page
     element :status, '.t-status'
   end
 
-  elements :pagination, '.pagination li a'
+  elements :pagination, '.t-pagination__letter'
+  element :filter_submit, '.t-filter-submit'
+
+  element :notice, '.t-notice'
 
   def navigate_to(letter)
-    pagination.detect { |p| p.text == letter }.click
+    if javascript_enabled?
+      # choose does not work in poltergeist as checkbox is hidden
+      find('label', text: letter).click
+    else
+      choose(letter)
+    end
+    filter_submit.click unless javascript_enabled?
+  end
+
+  def display_hidden_locations
+    check('Hidden Locations')
+    filter_submit.click unless javascript_enabled?
+  end
+
+  def hide_active_locations
+    uncheck('Active Locations')
+    filter_submit.click unless javascript_enabled?
+  end
+
+  def javascript_enabled?
+    !has_filter_submit?
   end
 end

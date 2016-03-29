@@ -11,8 +11,9 @@ Address.delete_all
 Location.delete_all
 
 File.open(Rails.root.join('db/seeds/locations.json')) do |f|
-  while (line = f.readline).present? do
+  while !f.eof? do
     print '.'
+    line = f.readline
     location_params = JSON.parse(line)
     address_params = location_params.delete('address')
 
@@ -20,9 +21,8 @@ File.open(Rails.root.join('db/seeds/locations.json')) do |f|
       Address.create!(address_params)
 
     # as some of the historical data does not meet new validation requirements
-    Location.new(location_params.merge(address: address))
-      .save(validate: location_params['state'] == 'current')
-    break if f.eof?
+    location = Location.new(location_params.merge(address: address))
+    location.save!(validate: location_params['state'] == 'current')
   end
 end
 puts ''
