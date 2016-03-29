@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby IO.read('.ruby-version').strip
 
 gem 'rails', '4.2.5.1'
 gem 'pg', '~> 0.15'
