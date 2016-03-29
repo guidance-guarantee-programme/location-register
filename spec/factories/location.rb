@@ -10,16 +10,16 @@ FactoryGirl.define do
     hours 'MON-FRI 9am-5pm'
     booking_location nil
 
-    trait :nicab do
-      organisation 'nicab'
+    trait :cas do
+      organisation 'cas'
     end
 
     trait :citi do
       organisation 'citi'
     end
 
-    trait :cas do
-      organisation 'cas'
+    trait :nicab do
+      organisation 'nicab'
     end
   end
 end

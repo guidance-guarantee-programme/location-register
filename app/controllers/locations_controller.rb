@@ -10,7 +10,26 @@ class LocationsController < ApplicationController
     )
   end
 
+  def update
+    location = Location.find(params[:id])
+    authorize location
+    if location.update_attributes(permitted_attributes(location))
+      flash[:notice] = "Successfully updated #{location.title}"
+    else
+      flash[:error] = "Error updating #{location.title}"
+    end
+    redirect_to_locations_directory(location)
+  end
+
   private
+
+  def redirect_to_locations_directory(location)
+    redirect_to locations_path(
+      letter: location.title[0],
+      display_hidden: params[:display_hidden],
+      display_active: params[:display_active]
+    )
+  end
 
   def hidden_flags
     flags = []

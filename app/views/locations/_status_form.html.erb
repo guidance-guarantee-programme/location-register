@@ -1,0 +1,9 @@
+<%= form_for location do |f| %>
+  <%= hidden_field_tag :display_hidden, params[:display_hidden] %>
+  <%= hidden_field_tag :display_active, params[:display_active] %>
+  <%= f.radio_button :hidden, false, class: 'l-location-status__checkbox js-submit-form t-location-status', id: "location_hidden_false_#{location.id}" %>
+  <%= f.label "hidden_false_#{location.id}", 'Active', class: 'l-location-status__label t-location-status-label' %>
+  <%= f.radio_button :hidden, true, class: 'l-location-status__checkbox js-submit-form t-location-status', id: "location_hidden_true_#{location.id}" %>
+  <%= f.label "hidden_true_#{location.id}", 'Hidden', class: 'l-location-status__label t-location-status-label' %>
+  <%= submit_tag 'Update', class: 'btn btn-default l-location-status__submit t-location-status-submit' %>
+<% end %>

@@ -9,12 +9,16 @@ FactoryGirl.define do
     remotely_signed_out false
     disabled false
 
-    trait :project_manager do
-      permissions { ['signin', 'project-manager'] }
+    trait :cas do
+      organisation_slug 'cas'
     end
 
     trait :nicab do
       organisation_slug 'nicab'
+    end
+
+    trait :project_manager do
+      permissions { %w(signin project_manager) }
     end
   end
 end
