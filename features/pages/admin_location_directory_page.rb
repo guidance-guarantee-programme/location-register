@@ -1,5 +1,5 @@
-class LocationDirectoryPage < SitePrism::Page
-  set_url '/locations'
+class AdminLocationDirectoryPage < SitePrism::Page
+  set_url '/admin/locations'
 
   sections :locations, '.t-location' do
     element :location_title, '.t-location-title'
