@@ -4,8 +4,8 @@ Given(/^locations exist for my organisation$/) do
   FactoryGirl.create(:location, :nicab)
 end
 
-When(/^I visit the location directory$/) do
-  @page = LocationDirectoryPage.new
+When(/^I visit the locations admin directory$/) do
+  @page = AdminLocationDirectoryPage.new
   @page.load
 end
 

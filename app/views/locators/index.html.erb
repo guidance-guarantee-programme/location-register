@@ -1,0 +1,10 @@
+<div class="google-maps__panel">
+  <input id="address" type="textbox" value="Enniskillen">
+  <input type="button" value="Search" onclick="window.lookupAddress()">
+</div>
+<div class="google-maps__canvas"></div>
+
+
+<% content_for :body_end do %>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?region=GB&libraries=geometry"></script>
+<% end %>

@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :locations, only: [:index, :update]
+  resources :locators, only: :index
+  resources :locations, only: :index
 
-  root 'locations#index'
+  namespace :admin do
+    resources :locations, only: [:index, :update]
+    root 'locations#index'
+  end
+
+  root 'locators#index'
 
   mount GovukAdminTemplate::Engine, at: '/style-guide'
 end
