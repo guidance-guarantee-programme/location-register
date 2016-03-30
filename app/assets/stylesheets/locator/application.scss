@@ -1,0 +1,34 @@
+@import "govuk_admin_template";
+
+$map-background: #fff;
+$map-border: #999;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.google-maps__canvas {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  // scss-lint:disable ImportantRule
+  position: absolute !important;
+  // scss-lint:enable ImportantRule
+  top: 0;
+  left: 0;
+}
+
+.google-maps__panel {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  margin-left: -180px;
+  left: 50%;
+  z-index: 5;
+  background-color: $map-background;
+  padding: 5px;
+  border: 1px solid $map-border;
+}

@@ -13,4 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require ./locations-directory.js
+//= require ./locations-directory

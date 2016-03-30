@@ -1,0 +1,30 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'locator/application', media: 'all' %>
+<% end %>
+
+<%= content_for :app_title do %>
+  Delivery Location Locator
+<% end %>
+
+
+<% content_for :body_end do %>
+  <!-- Google Tag Manager -->
+  <noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WGH36M"
+            height="0" width="0" style="display:none;visibility:hidden">
+    </iframe>
+  </noscript>
+
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WGH36M');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <%= javascript_include_tag 'locator/application' %>
+<% end %>
+
+<%= render template: 'layouts/govuk_admin_template' %>

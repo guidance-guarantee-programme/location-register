@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     root 'locations#index'
   end
 
-  root 'admin/locations#index'
+  root 'locators#index'
 
   mount GovukAdminTemplate::Engine, at: '/style-guide'
 end
