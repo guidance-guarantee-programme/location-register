@@ -17,6 +17,10 @@ FactoryGirl.define do
       organisation_slug 'nicab'
     end
 
+    trait :pensionwise_admin do
+      permissions { %w(signin pensionwise_admin) }
+    end
+
     trait :project_manager do
       permissions { %w(signin project_manager) }
     end

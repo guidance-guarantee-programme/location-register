@@ -10,11 +10,20 @@ RSpec.describe LocationPolicy do
   end
 
   permissions :update? do
-    let(:cas_location) { Location.new(organisation: 'cas') }
-    let(:nicab_location) { Location.new(organisation: 'nicab') }
+    let(:cas_location) { FactoryGirl.build(:location, :cas) }
+    let(:nicab_location) { FactoryGirl.build(:location, :nicab) }
+
+    context 'when user is an admin' do
+      let(:user) { FactoryGirl.build(:user, :cas, :pensionwise_admin) }
+
+      it 'grants access to locations from all organisations' do
+        expect(subject).to permit(user, cas_location)
+        expect(subject).to permit(user, nicab_location)
+      end
+    end
 
     context 'when user is a project_manager' do
-      let(:user) { User.new(organisation_slug: 'cas', permissions: ['project_manager']) }
+      let(:user) { FactoryGirl.build(:user, :cas, :project_manager) }
 
       it 'grants access if locations organisation matches users organisation_slug' do
         expect(subject).to permit(user, cas_location)
@@ -25,8 +34,8 @@ RSpec.describe LocationPolicy do
       end
     end
 
-    context 'when user is not a project_manager' do
-      let(:user) { User.new(organisation_slug: 'cas', permissions: []) }
+    context 'when user does not have any specified permissions/roles' do
+      let(:user) { FactoryGirl.build(:user, :cas) }
 
       it 'deny access to everyone' do
         expect(subject).not_to permit(user, cas_location)
@@ -38,9 +47,17 @@ end
 
 RSpec.describe LocationPolicy::Scope do
   subject { described_class.new(user, Location) }
+  let!(:cas_location) { FactoryGirl.create(:location, :cas) }
+  let!(:nicab_location) { FactoryGirl.create(:location, :nicab) }
 
-  let(:cas_location) { FactoryGirl.create(:location, :cas) }
-  let(:nicab_location) { FactoryGirl.create(:location, :nicab) }
+  context 'when user is an pensionwise_admin' do
+    let(:user) { FactoryGirl.create(:user, :cas, :pensionwise_admin) }
+
+    it 'users can see locations for all organisations' do
+      expect(subject.resolve).to include(cas_location)
+      expect(subject.resolve).to include(nicab_location)
+    end
+  end
 
   context 'when user is a project manager' do
     let(:user) { FactoryGirl.create(:user, :cas, :project_manager) }
@@ -54,7 +71,7 @@ RSpec.describe LocationPolicy::Scope do
     end
   end
 
-  context 'when user is not a project manager' do
+  context 'when user does not have any specified permissions/roles' do
     let(:user) { FactoryGirl.create(:user, :cas) }
 
     it 'user can not see any locations' do

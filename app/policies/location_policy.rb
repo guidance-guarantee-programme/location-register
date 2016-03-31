@@ -1,7 +1,9 @@
 class LocationPolicy < ApplicationPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if user.project_manager?
+      if user.pensionwise_admin?
+        scope.all
+      elsif user.project_manager?
         scope.where(organisation: user.organisation_slug)
       else
         scope.none
@@ -10,7 +12,7 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def update?
-    user.project_manager? && record.organisation == user.organisation_slug
+    user.pensionwise_admin? || project_manager_user_and_organisation?
   end
 
   def index?
@@ -19,5 +21,11 @@ class LocationPolicy < ApplicationPolicy
 
   def permitted_attributes
     [:hidden]
+  end
+
+  private
+
+  def project_manager_user_and_organisation?
+    (user.project_manager? && user.organisation_slug == record.organisation)
   end
 end
