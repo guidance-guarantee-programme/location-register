@@ -13,12 +13,7 @@
 
 <%= content_for :navbar_items do %>
   <li>
-    <a href="/add" class="disabled">Add</a>
-  </li>
-  <li>
-    <a href="/search" class="disabled">Search</a></li>
-  <li>
-    <a href="/locations">Directory</a>
+    <%= link_to 'Directory', admin_locations_path %>
   </li>
 <% end %>
 
