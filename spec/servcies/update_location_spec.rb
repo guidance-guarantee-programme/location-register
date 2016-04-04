@@ -18,16 +18,8 @@ RSpec.describe UpdateLocation do
     end
 
     context 'when an existing location does not exist' do
-      it 'create a new location with the params' do
-        expect { subject.update!(params) }.to change { Location.count }.by(1)
-      end
-
-      it 'set the new locations state to current' do
-        expect(subject.update!(params).state).to eq('current')
-      end
-
-      it 'set the new locations version to 1' do
-        expect(subject.update!(params).version).to eq(1)
+      it 'raise ActiveRecord Not Found error' do
+        expect { subject.update!(params) }.to raise_error(StandardError)
       end
     end
 
@@ -42,21 +34,17 @@ RSpec.describe UpdateLocation do
         )
       end
 
-      it 'create does not create new location' do
+      it 'does not create new location version' do
         expect { subject.update!(params) }.not_to change { Location.count }
       end
 
-      it 'ignores difference in created at field' do
+      it 'ignores difference in versioning fields' do
         params[:created_at] = 10.days.ago
-        expect { subject.update!(params) }.not_to change { Location.count }
-      end
-
-      it 'ignores difference in created at field' do
         params[:updated_at] = 10.days.ago
         expect { subject.update!(params) }.not_to change { Location.count }
       end
 
-      it 'does not distinguish between nil and empty string' do
+      it 'maps empty string to nil' do
         params[:booking_location] = ''
         expect { subject.update!(params) }.not_to change { Location.count }
       end
@@ -93,6 +81,27 @@ RSpec.describe UpdateLocation do
 
       it 'set the new locations version to one greater than the existing location' do
         expect(subject.update!(params).version).to eq(location.version + 1)
+      end
+    end
+
+    context 'missing params passed to update method' do
+      let!(:location) do
+        Location.create(
+          params.merge(
+            uid: uid,
+            state: 'current',
+            version: 1
+          )
+        )
+      end
+      let(:update_params) { { hidden: true } }
+
+      it 'create a new location with the params' do
+        expect { subject.update!(update_params) }.to change { Location.count }.by(1)
+      end
+      it 'uses values from old record' do
+        location = subject.update!(update_params)
+        expect(location.title).to eq(params[:title])
       end
     end
   end
