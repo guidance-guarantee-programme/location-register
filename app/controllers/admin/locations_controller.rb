@@ -14,11 +14,13 @@ module Admin
     def update
       location = Location.find(params[:id])
       authorize location
-      if location.update_attributes(permitted_attributes(location))
-        flash[:notice] = "Successfully updated #{location.title}"
-      else
-        flash[:error] = "Error updating #{location.title}"
-      end
+
+      updater = UpdateLocation.new(uid: location.uid)
+      updater.update!(permitted_attributes(location))
+      flash[:notice] = "Successfully updated #{location.title}"
+      redirect_to_locations_directory(location)
+    rescue
+      flash[:error] = "Error updating #{location.title}"
       redirect_to_locations_directory(location)
     end
 

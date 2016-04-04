@@ -79,7 +79,7 @@ Then(/^I should see the no locations available notice$/) do
   expect(@page).to have_notice
 end
 
-Given(/^a active location exists$/) do
+Given(/^an active location exists$/) do
   FactoryGirl.create(:user, :project_manager, :nicab)
   FactoryGirl.create(:location, :nicab)
 end
@@ -89,7 +89,8 @@ When(/^I hide the active location$/) do
 end
 
 Then(/^my locations should be hidden$/) do
-  expect(Location.first).to be_hidden
+  expect(Location.count).to eq(2)
+  expect(Location.current.first).to be_hidden
 end
 
 When(/^I activate the hidden location$/) do
@@ -97,5 +98,10 @@ When(/^I activate the hidden location$/) do
 end
 
 Then(/^my location should be active$/) do
-  expect(Location.first).not_to be_hidden
+  expect(Location.count).to eq(2)
+  expect(Location.current.first).not_to be_hidden
+end
+
+Then(/^I see that the location has a newer version$/) do
+  expect(Location.where(version: 2)).to exist
 end

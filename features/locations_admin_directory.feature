@@ -42,7 +42,7 @@ Feature: Admin - Location Directory
 
   @javascript @noscript
   Scenario: an active location can be hidden in the location directory
-    Given a active location exists
+    Given an active location exists
     When I visit the locations admin directory
     And I hide the active location
     Then my locations should be hidden
@@ -54,3 +54,9 @@ Feature: Admin - Location Directory
     And I toggle the display hidden locations flag
     And I activate the hidden location
     Then my location should be active
+
+  Scenario: A new location version is created when the location is edited
+    Given an active location exists
+    When I visit the locations admin directory
+    And I hide the active location
+    Then I see that the location has a newer version

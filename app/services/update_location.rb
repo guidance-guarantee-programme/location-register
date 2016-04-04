@@ -1,36 +1,47 @@
 class UpdateLocation
+  VERSIONING_ATTRIBUTES = %w(id created_at state version updated_at).freeze
   attr_reader :uid, :location
 
   def initialize(uid:)
     @uid = uid
-    @location = Location.current.find_by(uid: uid)
+    @location = Location.current.find_by!(uid: uid)
   end
 
   def update!(params)
-    return create!(params) if location.nil?
-    return location if matches(params)
+    return location if no_changes?(params)
 
     location.update_attributes!(state: 'old')
-    create!(params, location.version + 1)
+    create_new_version!(params)
   end
 
   private
 
-  def create!(params, version = 1)
-    Location.create!(
-      params.merge(
-        uid: uid,
-        state: 'current',
-        version: version
-      )
-    )
+  def create_new_version!(params)
+    attributes = [
+      previous_version_attributes,
+      params,
+      version_attributes
+    ].inject(:merge)
+
+    Location.create!(attributes)
   end
 
-  def matches(params)
+  def previous_version_attributes
+    location.attributes.except(*VERSIONING_ATTRIBUTES)
+  end
+
+  def version_attributes
+    {
+      state: 'current',
+      version: location.version + 1
+    }
+  end
+
+  def no_changes?(params)
     params.all? do |key, value|
-      [:created_at, :updated_at].include?(key.to_sym) ||
-        (@location[key].blank? && value.blank?) ||
-        @location[key] == value
+      VERSIONING_ATTRIBUTES.include?(key.to_s) ||
+        location[key] == value ||
+        (location[key].blank? && value.blank?)
     end
   end
 end
