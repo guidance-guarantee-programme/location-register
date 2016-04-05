@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe UpdateLocation do
-  let(:uid) { SecureRandom.uuid }
-  subject { described_class.new(uid: uid) }
+  let(:user) { FactoryGirl.create(:user) }
+  subject { described_class.new(location: location, user: user) }
   let(:address) { FactoryGirl.create(:address) }
 
   describe '#update' do
@@ -17,17 +17,10 @@ RSpec.describe UpdateLocation do
       }
     end
 
-    context 'when an existing location does not exist' do
-      it 'raise ActiveRecord Not Found error' do
-        expect { subject.update!(params) }.to raise_error(StandardError)
-      end
-    end
-
     context 'when an existing location would be unchanged by the update' do
-      before do
+      let!(:location) do
         Location.create(
           params.merge(
-            uid: uid,
             state: 'current',
             version: 1
           )
@@ -51,13 +44,14 @@ RSpec.describe UpdateLocation do
     end
 
     context 'when an existing location would be changed by the update' do
+      let(:other_user) { FactoryGirl.create(:user) }
       let!(:location) do
         Location.create(
           params.merge(
             title: 'Old Town',
-            uid: uid,
             state: 'current',
-            version: 1
+            version: 1,
+            editor: other_user
           )
         )
       end
@@ -71,6 +65,10 @@ RSpec.describe UpdateLocation do
         expect(location.reload.state).to eq('old')
       end
 
+      it 'sets the editor to the passed in user' do
+        expect(subject.update!(params).editor).to eq(user)
+      end
+
       it 'create a new location with the params' do
         expect { subject.update!(params) }.to change { Location.count }.by(1)
       end
@@ -82,26 +80,29 @@ RSpec.describe UpdateLocation do
       it 'set the new locations version to one greater than the existing location' do
         expect(subject.update!(params).version).to eq(location.version + 1)
       end
-    end
 
-    context 'missing params passed to update method' do
-      let!(:location) do
-        Location.create(
-          params.merge(
-            uid: uid,
-            state: 'current',
-            version: 1
-          )
-        )
-      end
-      let(:update_params) { { hidden: true } }
+      context 'when an error occurs during the creation of the new record' do
+        before do
+          allow(Location).to receive(:create!).and_raise(ActiveRecord::RecordInvalid)
+        end
 
-      it 'create a new location with the params' do
-        expect { subject.update!(update_params) }.to change { Location.count }.by(1)
+        it 'does not update the existing locations state' do
+          subject.update!(params) rescue nil
+          expect(location.reload.state).to eq('current')
+        end
       end
-      it 'uses values from old record' do
-        location = subject.update!(update_params)
-        expect(location.title).to eq(params[:title])
+
+      context 'update only receives a subset of parameters' do
+        let(:update_params) { { hidden: true } }
+
+        it 'create a new location with the params' do
+          expect { subject.update!(update_params) }.to change { Location.count }.by(1)
+        end
+
+        it 'uses copies un-modified attributes from the previous version' do
+          location = subject.update!(update_params)
+          expect(location.title).to eq('Old Town')
+        end
       end
     end
   end
