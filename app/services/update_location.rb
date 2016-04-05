@@ -1,5 +1,7 @@
 class UpdateLocation
   VERSIONING_ATTRIBUTES = %w(id created_at state version updated_at).freeze
+  OLD_CURIE__ATTRIBUTES = %w(address booking_location).freeze
+
   attr_reader :uid, :location
 
   def initialize(uid:)
@@ -28,6 +30,7 @@ class UpdateLocation
 
   def previous_version_attributes
     location.attributes.except(*VERSIONING_ATTRIBUTES)
+            .except(*OLD_CURIE__ATTRIBUTES)
   end
 
   def version_attributes
