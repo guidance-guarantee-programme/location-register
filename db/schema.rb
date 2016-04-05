@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316145108) do
+ActiveRecord::Schema.define(version: 20160405090141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,20 @@ ActiveRecord::Schema.define(version: 20160316145108) do
     t.string   "title"
     t.string   "address"
     t.string   "phone"
-    t.string   "hours",            limit: 500
+    t.string   "hours",                limit: 500
     t.string   "booking_location"
-    t.string   "state",                        default: "pending"
+    t.string   "state",                            default: "pending"
     t.datetime "closed_at"
     t.integer  "version"
     t.jsonb    "raw"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
-    t.boolean  "hidden",                       default: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.boolean  "hidden",                           default: false
+    t.integer  "address_id"
+    t.string   "booking_location_uid"
   end
+
+  add_index "locations", ["booking_location_uid"], name: "index_locations_on_booking_location_uid", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
