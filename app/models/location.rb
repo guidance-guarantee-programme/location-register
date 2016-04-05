@@ -1,7 +1,9 @@
 class Location < ActiveRecord::Base
-  include CurieLookup
-
-  curie_lookup :address, :booking_location
+  belongs_to :address
+  belongs_to :booking_location, -> { current },
+             foreign_key: :booking_location_uid,
+             primary_key: :uid,
+             class_name: 'Location'
 
   validates :uid, presence: true
   validates :organisation, presence: true
