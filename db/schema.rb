@@ -35,10 +35,8 @@ ActiveRecord::Schema.define(version: 20160405090141) do
     t.string   "uid"
     t.string   "organisation"
     t.string   "title"
-    t.string   "address"
     t.string   "phone"
     t.string   "hours",                limit: 500
-    t.string   "booking_location"
     t.string   "state",                            default: "pending"
     t.datetime "closed_at"
     t.integer  "version"
