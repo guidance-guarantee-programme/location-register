@@ -10,10 +10,10 @@ RSpec.describe UpdateLocation do
       {
         organisation: 'CAS',
         title: 'Test Vile',
-        address: "[address:#{address.uid}]",
         phone: '01111111111',
         hours: 'MON-FRI 9am-5pm',
-        booking_location: nil
+        booking_location_uid: nil,
+        address_id: address.id
       }
     end
 
