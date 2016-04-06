@@ -15,7 +15,7 @@ module Admin
       location = Location.find(params[:id])
       authorize location
 
-      updater = UpdateLocation.new(uid: location.uid)
+      updater = UpdateLocation.new(location: location, user: current_user)
       updater.update!(permitted_attributes(location))
       flash[:notice] = "Successfully updated #{location.title}"
       redirect_to_locations_directory(location)

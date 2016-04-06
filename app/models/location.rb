@@ -4,6 +4,7 @@ class Location < ActiveRecord::Base
              foreign_key: :booking_location_uid,
              primary_key: :uid,
              class_name: 'Location'
+  belongs_to :editor, class_name: 'User'
 
   validates :uid, presence: true
   validates :organisation, presence: true
