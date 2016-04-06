@@ -1,6 +1,4 @@
 class UpdateLocation
-  VERSIONING_ATTRIBUTES = %w(id created_at state version updated_at).freeze
-
   attr_reader :location, :user
 
   def initialize(location:, user:)
@@ -9,7 +7,11 @@ class UpdateLocation
   end
 
   def update!(params)
-    return location if no_changes?(params)
+    params = params.with_indifferent_access
+    if params['address']
+      params['address_id'] = Address.find_or_create_from_params(params.delete('address')).id
+    end
+    return location unless location.changed_edit_fields?(params)
 
     Location.transaction do
       location.update_attributes!(state: 'old')
@@ -26,11 +28,11 @@ class UpdateLocation
       version_attributes
     ].inject(:merge)
 
-    Location.create!(attributes)
+    @location = Location.create!(attributes)
   end
 
   def previous_version_attributes
-    location.attributes.except(*VERSIONING_ATTRIBUTES)
+    location.attributes.slice(*Location::EDIT_FIELDS)
   end
 
   def version_attributes
@@ -39,13 +41,5 @@ class UpdateLocation
       version: location.version + 1,
       editor: user
     }
-  end
-
-  def no_changes?(params)
-    params.all? do |key, value|
-      VERSIONING_ATTRIBUTES.include?(key.to_s) ||
-        location[key] == value ||
-        (location[key].blank? && value.blank?)
-    end
   end
 end

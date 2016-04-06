@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :locations, only: [:index, :update]
+    resources :edited_locations, only: [:index]
     root 'locations#index'
   end
 
