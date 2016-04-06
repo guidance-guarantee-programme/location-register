@@ -9,7 +9,7 @@ class AddUsersToLocations < ActiveRecord::Migration
     Location.where(['created_at < ?', initial_deploy_date]).update_all(editor_id: user.id)
 
     Location.where(['created_at >= ?', initial_deploy_date]).each do |location|
-      location.editor = User.find_by!(organisation_slug: location.organisation)
+      location.editor_id = User.find_by!(organisation_slug: location.organisation).id
       location.save!
     end
   end
