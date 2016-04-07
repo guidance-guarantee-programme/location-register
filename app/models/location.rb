@@ -25,9 +25,9 @@ class Location < ActiveRecord::Base
     self.uid ||= SecureRandom.uuid
   end
 
-  def changed_edit_fields?(other)
-    EDIT_FIELDS.any? do |field_name|
-      other.key?(field_name) && other[field_name] != self[field_name]
+  def matches_params?(params)
+    EDIT_FIELDS.all? do |field_name|
+      !params.key?(field_name) || params[field_name].to_s == self[field_name].to_s
     end
   end
 end

@@ -1,0 +1,74 @@
+<%= form_for location, url: admin_location_path do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'input-md-3 form-control t-location-title' %>
+  </div>
+
+  <%= f.fields_for(:address, location.address) do |a| %>
+    <div class="form-group">
+      <%= a.label :address_line_1, 'Address' %>
+      <%= a.text_field :address_line_1, class: 'input-md-3 form-control t-address-line-1' %>
+    </div>
+
+    <div class="form-group">
+      <%= a.text_field :address_line_2, class: 'input-md-3 form-control t-address-line-2' %>
+    </div>
+
+    <div class="form-group">
+      <%= a.text_field :address_line_3, class: 'input-md-3 form-control t-address-line-3' %>
+    </div>
+
+    <div class="form-group">
+      <%= a.label :town %>
+      <%= a.text_field :town, class: 'input-md-3 form-control t-town' %>
+    </div>
+
+    <div class="form-group">
+      <%= a.label :county %>
+      <%= a.text_field :county, class: 'input-md-3 form-control t-county' %>
+    </div>
+
+    <div class="form-group">
+      <%= a.label :postcode %>
+      <%= a.text_field :postcode, class: 'input-md-2 form-control t-postcode' %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :hours, 'Booking hours' %>
+    <%= f.text_area :hours, class: 'input-md-3 form-control t-booking-hours' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :booking_location_uid, 'Booking location:' %>
+    <%= f.collection_select(
+          :booking_location_uid,
+          @booking_locations,
+          :uid,
+          :title,
+          { include_blank: true },
+          class: 'input-md-3 form-control t-booking-location'
+        )
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone, 'Telephone number' %>
+    <%= f.text_field :phone, class: 'input-md-3 form-control', disabled: true %>
+  </div>
+
+  <div class="form-group t-visibility">
+    <%= f.label :hidden, 'Visibility', class: 'block' %><br/>
+    <%= hidden_field_tag :display_hidden, params[:display_hidden] %>
+    <%= hidden_field_tag :display_active, params[:display_active] %>
+    <%= f.radio_button :hidden, false, class: 'l-location-status__checkbox', id: "location_hidden_false_#{location.id}" %>
+    <%= f.label "hidden_false_#{location.id}", 'Active', class: 'l-location-status__label' %>
+    <%= f.radio_button :hidden, true, class: 'l-location-status__checkbox', id: "location_hidden_true_#{location.id}" %>
+    <%= f.label "hidden_true_#{location.id}", 'Hidden', class: 'l-location-status__label' %>
+  </div>
+
+  <div class="form-group">
+    <%= link_to 'Cancel', admin_location_path(location.uid), class: 'btn btn-default t-cancel-button' %>
+    <%= f.submit 'Save', class: 'btn btn-success t-save-button' %>
+  </div>
+<% end %>

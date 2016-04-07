@@ -1,0 +1,42 @@
+<table class="table">
+  <tr>
+    <td class="location-details-table__fixed-width-column">Address:</td>
+    <td class="t-address">
+      <%- location.address.to_a.each do |address_line| %>
+        <%= address_line %><br/>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Booking hours:</td>
+    <td class="t-booking_hours">
+      <%- location.hours.split("\n").each do |hours_line| %>
+        <%= hours_line %><br/>
+      <% end %>
+    </td>
+  </tr>
+  <%- if location.booking_location %>
+    <tr>
+      <td>Booking location:</td>
+      <td class="t-booking-location"><%= location.booking_location.title %></td>
+    </tr>
+  <% else %>
+    <tr>
+      <td>Telephone number:</td>
+      <td class="t-telephone_number"><%= location.phone %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Status:</td>
+    <td class="t-status">
+      <%= render 'status_form', location: location %>
+    </td>
+  </tr>
+  <tr>
+    <td>Last updated:</td>
+    <td>
+      <%= location.editor.name %> at
+      <%= location.created_at.localtime.to_s(:govuk_date_short) %>
+    </td>
+  </tr>
+</table>

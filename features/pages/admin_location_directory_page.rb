@@ -47,6 +47,11 @@ class AdminLocationDirectoryPage < SitePrism::Page
     location_to_be_hidden.status_update.click unless javascript_enabled?
   end
 
+  def click_on_first_location
+    location = locations[0]
+    location.location_title.click
+  end
+
   private
 
   def javascript_enabled?

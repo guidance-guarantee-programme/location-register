@@ -105,3 +105,12 @@ end
 Then(/^I see that the location has a newer version$/) do
   expect(Location.where(version: 2)).to exist
 end
+
+When(/^I click on the location$/) do
+  @page.click_on_first_location
+end
+
+Then(/^I am on the locations page$/) do
+  location_page = AdminLocationPage.new
+  expect(location_page).to be_displayed
+end

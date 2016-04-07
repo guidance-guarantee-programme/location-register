@@ -1,4 +1,4 @@
-<%= form_for location, url: admin_location_path(location) do |f| %>
+<%= form_for location, url: admin_location_path(location), class: 't-visibility' do |f| %>
   <%= hidden_field_tag :display_hidden, params[:display_hidden] %>
   <%= hidden_field_tag :display_active, params[:display_active] %>
   <%= f.radio_button :hidden, false, class: 'l-location-status__checkbox js-submit-form t-location-status', id: "location_hidden_false_#{location.id}" %>

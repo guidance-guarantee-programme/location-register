@@ -16,31 +16,15 @@
     <%- @locations.each do |location| %>
       <div class="row t-location" id="location-<%= location.uid %>">
         <div class="col-md-6">
-          <h2 class="t-location-title"><%= location.title %></h2>
-          <table class="table">
-            <tr>
-              <td class="location-details-table__fixed-width-column">Address:</td>
-              <td class="t-address"><%= location.address.to_a.join('<br>').html_safe %></td>
-            </tr>
-            <tr>
-              <td>Booking hours:</td>
-              <td class="t-booking_hours"><%= location.hours %></td>
-            </tr>
-            <tr>
-              <td>Telephone number:</td>
-              <td class="t-telephone_number"><%= location.phone %></td>
-            </tr>
-            <tr>
-              <td>Status:</td>
-              <td class="t-status">
-                <%= render 'status_form', location: location %>
-              </td>
-            </tr>
-            <tr>
-              <td>Last updated:</td>
-              <td><%= location.created_at %></td>
-            </tr>
-          </table>
+          <h2 class="inline-block">
+            <%= link_to location.title, admin_location_path(location.uid), class: 't-location-title' %>
+          </h2>
+          <%- if location.booking_location %>
+            <span class="label label-primary label--inline">Child location</span>
+          <% else %>
+            <span class="label label-danger label--inline">Booking location</span>
+          <% end %>
+          <%= render location %>
         </div>
       </div>
     <% end %>

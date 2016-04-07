@@ -1,9 +1,9 @@
 class BookingLocationFieldDecorator < SimpleDelegator
-  def from
+  def old_value
     wrap(super)
   end
 
-  def to
+  def new_value
     wrap(super)
   end
 

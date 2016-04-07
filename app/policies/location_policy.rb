@@ -11,21 +11,35 @@ class LocationPolicy < ApplicationPolicy
     end
   end
 
-  def update?
-    user.pensionwise_admin? || project_manager_user_and_organisation?
+  def edit?
+    admin_or_organisations_project_manager?
   end
 
   def index?
     true
   end
 
+  def show?
+    admin_or_organisations_project_manager?
+  end
+
+  def update?
+    admin_or_organisations_project_manager?
+  end
+
   def permitted_attributes
-    [:hidden]
+    [
+      :booking_location_uid,
+      :hidden,
+      :title,
+      :hours,
+      address: [:address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode]
+    ]
   end
 
   private
 
-  def project_manager_user_and_organisation?
-    (user.project_manager? && user.organisation_slug == record.organisation)
+  def admin_or_organisations_project_manager?
+    user.pensionwise_admin? || (user.project_manager? && user.organisation_slug == record.organisation)
   end
 end

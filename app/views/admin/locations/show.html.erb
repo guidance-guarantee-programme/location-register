@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="t-location-title inline-block">Location - <%= @location.title %></h1>
+    <%- if @location.booking_location %>
+      <span class="label label-primary label--inline">Child location</span>
+    <% else %>
+      <span class="label label-danger label--inline">Booking location</span>
+    <% end %>  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%= render @location %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%= link_to 'Edit', edit_admin_location_path(@location.uid), class: 'btn btn-default t-edit-button' %>
+  </div>
+</div>
