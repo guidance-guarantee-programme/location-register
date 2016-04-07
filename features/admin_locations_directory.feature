@@ -8,7 +8,7 @@ Feature: Admin - Location Directory
     When I visit the locations admin directory
     Then I can see locations for my organisation
 
-  Scenario: Viewing locations for my organisation
+  Scenario: Locations for other organisation should not be visible
     Given locations exist for other organisations
     When I visit the locations admin directory
     Then I can not see locations for other organisation
