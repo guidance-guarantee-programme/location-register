@@ -15,4 +15,8 @@ FactoryGirl.define do
       }.to_json
     end
   end
+
+  factory :one_line_address, class: Address do
+    address_line_1 'One line address'
+  end
 end
