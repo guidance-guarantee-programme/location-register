@@ -18,6 +18,7 @@ gem 'puma'
 
 gem 'alphabetical_paginate'
 gem 'bugsnag'
+gem 'gaffe'
 gem 'gds-sso'
 gem 'govuk_admin_template'
 gem 'plek'
