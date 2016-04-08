@@ -10,7 +10,7 @@
   <tr>
     <td>Booking hours:</td>
     <td class="t-booking_hours">
-      <%- location.hours.split("\n").each do |hours_line| %>
+      <%- location.hours && location.hours.split("\n").each do |hours_line| %>
         <%= hours_line %><br/>
       <% end %>
     </td>

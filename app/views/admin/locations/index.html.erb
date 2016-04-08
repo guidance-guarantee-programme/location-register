@@ -19,11 +19,7 @@
           <h2 class="inline-block">
             <%= link_to location.title, admin_location_path(location.uid), class: 't-location-title' %>
           </h2>
-          <%- if location.booking_location %>
-            <span class="label label-primary label--inline">Child location</span>
-          <% else %>
-            <span class="label label-danger label--inline">Booking location</span>
-          <% end %>
+          <%= render 'admin/locations/labels', location: location %>
           <%= render location %>
         </div>
       </div>
