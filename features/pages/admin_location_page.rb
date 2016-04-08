@@ -5,7 +5,7 @@ class AdminLocationPage < SitePrism::Page
   element :address, '.t-address'
   element :booking_hours, '.t-booking_hours'
   element :telephone_number, '.t-telephone_number'
-  element :status, '.t-status'
+  element :visibility, '.t-visibility'
   element :checked_status, '.t-location-status[checked] + .t-location-status-label'
   element :status_update, '.t-location-status-submit'
 

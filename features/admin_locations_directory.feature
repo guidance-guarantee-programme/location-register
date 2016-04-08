@@ -40,27 +40,6 @@ Feature: Admin - Location Directory
     Then I should not see see the active location
     And I should see the no locations available notice
 
-  @javascript @noscript
-  Scenario: an active location can be hidden in the location directory
-    Given an active location exists
-    When I visit the locations admin directory
-    And I hide the active location
-    Then my locations should be hidden
-
-  @javascript @noscript
-  Scenario: a hidden location can be activated in the location directory
-    Given a hidden location exists
-    When I visit the locations admin directory
-    And I toggle the display hidden locations flag
-    And I activate the hidden location
-    Then my location should be active
-
-  Scenario: A new location version is created when the location is edited
-    Given an active location exists
-    When I visit the locations admin directory
-    And I hide the active location
-    Then I see that the location has a newer version
-
   Scenario: Navigating to a specific locations page
     Given an active location exists
     When I visit the locations admin directory

@@ -13,7 +13,7 @@ Then(/^I can see the locations details$/) do
   expect(@page).to have_address
   expect(@page).to have_booking_hours
   expect(@page).to have_telephone_number
-  expect(@page).to have_status
+  expect(@page).to have_visibility
 end
 
 Given(/^a location exist for another organisations$/) do

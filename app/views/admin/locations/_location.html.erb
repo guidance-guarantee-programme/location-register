@@ -28,9 +28,7 @@
   <% end %>
   <tr>
     <td>Status:</td>
-    <td class="t-status">
-      <%= render 'status_form', location: location %>
-    </td>
+    <td class="t-visibility"><%= location.hidden ? 'Hidden' : 'Active' %></td>
   </tr>
   <tr>
     <td>Last updated:</td>

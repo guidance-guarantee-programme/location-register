@@ -6,9 +6,7 @@ class AdminLocationDirectoryPage < SitePrism::Page
     element :address, '.t-address'
     element :booking_hours, '.t-booking_hours'
     element :telephone_number, '.t-telephone_number'
-    element :status, '.t-status'
-    element :checked_status, '.t-location-status[checked] + .t-location-status-label'
-    element :status_update, '.t-location-status-submit'
+    element :visibility, '.t-visibility'
   end
 
   elements :pagination, '.t-pagination__letter'
@@ -33,18 +31,6 @@ class AdminLocationDirectoryPage < SitePrism::Page
   def hide_active_locations
     uncheck('Active Locations')
     filter_submit.click unless javascript_enabled?
-  end
-
-  def hide_first_location
-    location_to_be_hidden = locations[0]
-    location_to_be_hidden.status.choose('Hidden')
-    location_to_be_hidden.status_update.click unless javascript_enabled?
-  end
-
-  def activate_first_location
-    location_to_be_hidden = locations[0]
-    location_to_be_hidden.status.choose('Active')
-    location_to_be_hidden.status_update.click unless javascript_enabled?
   end
 
   def click_on_first_location
