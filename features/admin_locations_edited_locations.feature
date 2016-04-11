@@ -32,3 +32,9 @@ Feature: Admin - List of edited locations
     Then I should see a location with the following edits:
       | Field      | Old value        | New value      |
       | Address    | One line address | My New Address |
+
+  Scenario: Navigating to a specific locations page
+    Given a location exists that with a address edit
+    When I view the edited locations page
+    And I click on the location
+    Then I am on the locations page

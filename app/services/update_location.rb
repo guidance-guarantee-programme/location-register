@@ -11,7 +11,8 @@ class UpdateLocation
     if params['address']
       params['address_id'] = Address.find_or_create_from_params(params.delete('address')).id
     end
-    return location unless location.changed_edit_fields?(params)
+
+    return location if location.matches_params?(params)
 
     Location.transaction do
       location.update_attributes!(state: 'old')
@@ -28,7 +29,7 @@ class UpdateLocation
       version_attributes
     ].inject(:merge)
 
-    @location = Location.create!(attributes)
+    @location = Location.create!(clean(attributes))
   end
 
   def previous_version_attributes
@@ -41,5 +42,11 @@ class UpdateLocation
       version: location.version + 1,
       editor: user
     }
+  end
+
+  def clean(attributes)
+    attributes.each do |key, value|
+      attributes[key] = nil if value.is_a?(String) && value.blank?
+    end
   end
 end

@@ -3,11 +3,11 @@ class VisibilityFieldDecorator < SimpleDelegator
     'visibility'
   end
 
-  def from
+  def old_value
     wrap(super)
   end
 
-  def to
+  def new_value
     wrap(super)
   end
 

@@ -29,16 +29,16 @@ RSpec.describe VisibilityFieldDecorator do
     end
   end
 
-  describe '#from' do
-    subject { described_class.new(object).from }
-    let(:object) { double(from: value) }
+  describe '#old_value' do
+    subject { described_class.new(object).old_value }
+    let(:object) { double(old_value: value) }
 
     it_behaves_like 'a visibility display field'
   end
 
-  describe '#to' do
-    subject { described_class.new(object).to }
-    let(:object) { double(to: value) }
+  describe '#new_value' do
+    subject { described_class.new(object).new_value }
+    let(:object) { double(new_value: value) }
 
     it_behaves_like 'a visibility display field'
   end

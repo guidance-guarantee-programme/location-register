@@ -21,16 +21,16 @@ RSpec.describe BookingLocationFieldDecorator do
     end
   end
 
-  describe '#from' do
-    subject { described_class.new(object).from }
-    let(:object) { double(from: booking_location) }
+  describe '#old_value' do
+    subject { described_class.new(object).old_value }
+    let(:object) { double(old_value: booking_location) }
 
     it_behaves_like 'a booking location display field'
   end
 
-  describe '#to' do
-    subject { described_class.new(object).to }
-    let(:object) { double(to: booking_location) }
+  describe '#new_value' do
+    subject { described_class.new(object).new_value }
+    let(:object) { double(new_value: booking_location) }
 
     it_behaves_like 'a booking location display field'
   end

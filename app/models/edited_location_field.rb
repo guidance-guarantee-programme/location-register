@@ -28,17 +28,17 @@ class EditedLocationField
     end
   end
 
-  attr_reader :created_at, :editor, :field, :from, :to
+  attr_reader :created_at, :editor, :field, :old_value, :new_value
 
   def initialize(field, location, previous_location)
     @field = field
-    @from = previous_location&.send(field)
-    @to = location.send(field)
+    @old_value = previous_location&.send(field)
+    @new_value = location.send(field)
     @created_at = location.created_at.localtime
     @editor = location.editor
   end
 
   def changed?
-    from != to
+    old_value != new_value
   end
 end

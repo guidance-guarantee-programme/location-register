@@ -17,7 +17,7 @@ Then(/^I can see locations for my organisation$/) do
     expect(location).to have_address
     expect(location).to have_booking_hours
     expect(location).to have_telephone_number
-    expect(location).to have_status
+    expect(location).to have_visibility
   end
 end
 
@@ -34,10 +34,15 @@ Then(/^I can not see locations for other organisation$/) do
   expect(@page.locations[0].location_title.text).to eq(@nicab_location.title)
 end
 
-Given(/^two locations exist called "([^"]*)" and "([^"]*)"$/) do |location1, location2|
+Given(/^two locations exist called "([^"]*)" and "([^"]*)"$/) do |title1, title2|
   FactoryGirl.create(:user, :project_manager, :nicab)
-  FactoryGirl.create(:location, :nicab, title: location1)
-  FactoryGirl.create(:location, :nicab, title: location2)
+  FactoryGirl.create(:location, :nicab, title: title1)
+  FactoryGirl.create(:location, :nicab, title: title2)
+end
+
+Given(/^a location exists called "([^"]*)"$/) do |title|
+  FactoryGirl.create(:user, :project_manager, :nicab)
+  FactoryGirl.create(:location, :nicab, title: title)
 end
 
 When(/^I naviagte to the "([^"]*)" page$/) do |letter|
@@ -64,7 +69,7 @@ end
 
 Then(/^I should see see the hidden location$/) do
   expect(@page.locations.count).to eq(1)
-  expect(@page.locations[0].checked_status.text).to eq('Hidden')
+  expect(@page.locations[0].visibility.text).to eq('Hidden')
 end
 
 When(/^toggle the display active locations flag$/) do
@@ -84,17 +89,9 @@ Given(/^an active location exists$/) do
   FactoryGirl.create(:location, :nicab)
 end
 
-When(/^I hide the active location$/) do
-  @page.hide_first_location
-end
-
 Then(/^my locations should be hidden$/) do
   expect(Location.count).to eq(2)
   expect(Location.current.first).to be_hidden
-end
-
-When(/^I activate the hidden location$/) do
-  @page.activate_first_location
 end
 
 Then(/^my location should be active$/) do
@@ -104,4 +101,13 @@ end
 
 Then(/^I see that the location has a newer version$/) do
   expect(Location.where(version: 2)).to exist
+end
+
+When(/^I click on the location$/) do
+  @page.click_on_first_location
+end
+
+Then(/^I am on the locations page$/) do
+  location_page = AdminLocationPage.new
+  expect(location_page).to be_displayed
 end

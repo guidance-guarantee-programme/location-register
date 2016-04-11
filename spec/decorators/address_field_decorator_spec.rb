@@ -21,16 +21,16 @@ RSpec.describe AddressFieldDecorator do
     end
   end
 
-  describe '#from' do
-    subject { described_class.new(object).from }
-    let(:object) { double(from: address) }
+  describe '#old_value' do
+    subject { described_class.new(object).old_value }
+    let(:object) { double(old_value: address) }
 
     it_behaves_like 'an address display field'
   end
 
-  describe '#to' do
-    subject { described_class.new(object).to }
-    let(:object) { double(to: address) }
+  describe '#new_value' do
+    subject { described_class.new(object).new_value }
+    let(:object) { double(new_value: address) }
 
     it_behaves_like 'an address display field'
   end

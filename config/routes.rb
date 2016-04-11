@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :locations, only: :index
 
   namespace :admin do
-    resources :locations, only: [:index, :update]
+    resources :locations, only: [:index, :update, :show, :edit]
     resources :edited_locations, only: [:index]
     root 'locations#index'
   end

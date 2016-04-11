@@ -21,12 +21,12 @@ RSpec.describe EditedLocationField do
 
         it 'for the old value' do
           results = subject.all(current, previous)
-          expect(results[0].from).to eq('Alpha')
+          expect(results[0].old_value).to eq('Alpha')
         end
 
         it 'for the new value' do
           results = subject.all(current, previous)
-          expect(results[0].to).to eq('Beta')
+          expect(results[0].new_value).to eq('Beta')
         end
 
         it 'for the creation time' do
@@ -45,7 +45,7 @@ RSpec.describe EditedLocationField do
 
         it 'set the old value to nil' do
           results = subject.all(current, previous)
-          expect(results[0].from).to be_nil
+          expect(results[0].old_value).to be_nil
         end
       end
 

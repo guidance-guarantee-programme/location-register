@@ -14,4 +14,9 @@ class AdminEditedLocationsPage < SitePrism::Page
       element :edited_by, '.t-edited-by'
     end
   end
+
+  def click_on_first_location
+    location = locations[0]
+    location.location_title.click
+  end
 end
