@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=UB9%204LH&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 12 Apr 2016 10:22:25 GMT
+      Expires:
+      - Wed, 13 Apr 2016 10:22:25 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '501'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "UB9 4LH",
+                       "short_name" : "UB9 4LH",
+                       "types" : [ "postal_code" ]
+                    },
+                    {
+                       "long_name" : "Denham",
+                       "short_name" : "Denham",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Uxbridge",
+                       "short_name" : "Uxbridge",
+                       "types" : [ "postal_town" ]
+                    },
+                    {
+                       "long_name" : "Buckinghamshire",
+                       "short_name" : "Buckinghamshire",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "United Kingdom",
+                       "short_name" : "GB",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Denham, Uxbridge, Buckinghamshire UB9 4LH, UK",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 51.5741771,
+                          "lng" : -0.5254809
+                       },
+                       "southwest" : {
+                          "lat" : 51.5734,
+                          "lng" : -0.5281973999999999
+                       }
+                    },
+                    "location" : {
+                       "lat" : 51.5736646,
+                       "lng" : -0.5271899
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 51.5751375302915,
+                          "lng" : -0.5254809
+                       },
+                       "southwest" : {
+                          "lat" : 51.57243956970851,
+                          "lng" : -0.5281973999999999
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJsew_GhlvdkgRHq3_zO7txTM",
+                 "types" : [ "postal_code" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Tue, 12 Apr 2016 10:22:25 GMT
+recorded_with: VCR 3.0.1

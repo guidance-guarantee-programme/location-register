@@ -7,7 +7,7 @@ FactoryGirl.define do
     address_line_3 'Test Avenue'
     town 'Test Vile'
     county 'Testy'
-    postcode 'TT11 35AA'
+    postcode 'UB9 4LH'
     point do
       {
         type: 'Point',
