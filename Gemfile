@@ -44,6 +44,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'poltergeist'
   gem 'site_prism'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :production do
