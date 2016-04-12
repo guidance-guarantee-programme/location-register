@@ -47,5 +47,5 @@ Given(/^a location exists that with a address edit$/) do
   user = FactoryGirl.create(:user, :pensionwise_admin)
   location = FactoryGirl.create(:location, :nicab, :one_line_address, created_at: 1.month.ago)
   updater = UpdateLocation.new(location: location, user: user)
-  updater.update!(address: { address_line_1: 'My New Address' })
+  updater.update!(address: { address_line_1: 'My New Address', postcode: 'UB9 4LH' })
 end

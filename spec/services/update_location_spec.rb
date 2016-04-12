@@ -92,7 +92,12 @@ RSpec.describe UpdateLocation do
       end
 
       context 'and the address field is changed' do
-        let(:update_params) { { address: { town: 'New town' } } }
+        let(:update_params) { { address: { town: 'New town', postcode: 'AA1 2BB', address_line_1: 'Hope' } } }
+        let(:geocode) { instance_double('PostcodeGeocoder', valid?: true, coordinates: [-2.000, 52.000]) }
+
+        before do
+          allow(PostcodeGeocoder).to receive(:new).and_return(geocode)
+        end
 
         it 'creates a new location entry in the database' do
           expect { subject.update!(update_params) }.to change { Location.count }.by(1)

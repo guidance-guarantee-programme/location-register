@@ -20,6 +20,7 @@ gem 'alphabetical_paginate'
 gem 'bugsnag'
 gem 'gaffe'
 gem 'gds-sso'
+gem 'geocoder'
 gem 'govuk_admin_template'
 gem 'plek'
 gem 'pundit'
@@ -44,6 +45,8 @@ group :test do
   gem 'factory_girl_rails'
   gem 'poltergeist'
   gem 'site_prism'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :production do

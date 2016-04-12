@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=PR1%202NJ&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 12 Apr 2016 10:22:25 GMT
+      Expires:
+      - Wed, 13 Apr 2016 10:22:25 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '520'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "PR1 2NJ",
+                       "short_name" : "PR1 2NJ",
+                       "types" : [ "postal_code" ]
+                    },
+                    {
+                       "long_name" : "Fishergate",
+                       "short_name" : "Fishergate",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Preston",
+                       "short_name" : "Preston",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Preston",
+                       "short_name" : "Preston",
+                       "types" : [ "postal_town" ]
+                    },
+                    {
+                       "long_name" : "Lancashire",
+                       "short_name" : "Lancashire",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "United Kingdom",
+                       "short_name" : "GB",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Fishergate, Preston, Lancashire PR1 2NJ, UK",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 53.7578719,
+                          "lng" : -2.7031858
+                       },
+                       "southwest" : {
+                          "lat" : 53.7575557,
+                          "lng" : -2.7048822
+                       }
+                    },
+                    "location" : {
+                       "lat" : 53.7577142,
+                       "lng" : -2.7046537
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 53.7590627802915,
+                          "lng" : -2.702685019708498
+                       },
+                       "southwest" : {
+                          "lat" : 53.7563648197085,
+                          "lng" : -2.705382980291501
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJ2Xaqrntye0gRZcsW8KTO7aw",
+                 "types" : [ "postal_code" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Tue, 12 Apr 2016 10:22:25 GMT
+recorded_with: VCR 3.0.1

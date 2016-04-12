@@ -26,6 +26,7 @@ Feature: Admin - List of edited locations
       | Field      | Old value | New value |
       | Visibility | Active    | Hidden    |
 
+  @wip
   Scenario: Location address is edited
     Given a location exists that with a address edit
     When I view the edited locations page
@@ -33,6 +34,7 @@ Feature: Admin - List of edited locations
       | Field      | Old value        | New value      |
       | Address    | One line address | My New Address |
 
+  @wip
   Scenario: Navigating to a specific locations page
     Given a location exists that with a address edit
     When I view the edited locations page

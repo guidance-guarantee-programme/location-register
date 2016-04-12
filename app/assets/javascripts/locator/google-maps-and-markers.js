@@ -30,13 +30,13 @@
 
   function showNearestMarker(latLng) {
     var closest,
-      closestDistance,
+      closestDistance = false,
       i, m;
 
     for (i in markers) {
       m = markers[i];
       var distance = google.maps.geometry.spherical.computeDistanceBetween(latLng, m.position);
-      if (!closestDistance || distance < closestDistance) {
+      if (closestDistance === false || distance < closestDistance) {
         closest = m;
         closestDistance = distance;
       }

@@ -21,7 +21,7 @@ RSpec.describe 'locations/index' do
           },
           'properties' => {
             'title' => 'Test location',
-            'address' => "Test flat 3\nTesting center\nTest Avenue\nTest Vile\nTesty\nTT11 35AA",
+            'address' => "Test flat 3\nTesting center\nTest Avenue\nTest Vile\nTesty\nUB9 4LH",
             'booking_location_id' => '',
             'phone' => '01111111111',
             'hours' => 'MON-FRI 9am-5pm'

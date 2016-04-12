@@ -26,6 +26,7 @@ Feature: Admin - Location Directory
     And I select the locations "booking_location" field to "Bamboo"
     Then the "Apples" location has a new version where "booking_location" has been set to "Bamboo"
 
+  @vcr
   Scenario Outline: Editing a locations address creates a new version with the updated values
     Given a location exists called "Apples"
     When I visit the "Apples" location
@@ -39,7 +40,7 @@ Feature: Admin - Location Directory
       | set    | address_line_2   | Back of beyond         |
       | set    | town             | Test vale              |
       | set    | county           | Testland               |
-      | set    | postcode         | AA1 2BB                |
+      | set    | postcode         | PR1 2NJ                |
 
   Scenario: A new location version is created when the location is edited
     Given a location exists called "Apples"
