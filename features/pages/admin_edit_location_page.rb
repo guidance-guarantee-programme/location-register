@@ -14,4 +14,10 @@ class AdminEditLocationPage < SitePrism::Page
   element :postcode, '.t-postcode'
 
   element :save_button, '.t-save-button'
+
+  elements :errors, '.t-error-message'
+
+  def error_messages
+    errors.map(&:text)
+  end
 end

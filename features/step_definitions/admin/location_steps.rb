@@ -53,6 +53,11 @@ Then(/^the "([^"]*)" location address has been updated to have "([^"]*)" set to 
   expect(edited_fields).to match_edits([{ field: 'address', new_value: value }])
 end
 
+Then(/^I should see an error message for "([^"]*)"$/) do |field|
+  edit_page = AdminEditLocationPage.new
+  expect(edit_page.error_messages.first).to match(field)
+end
+
 module LocationTestHelper
   FIELD_NAME_MAP = { 'location_title' => 'title', 'booking_hours' => 'hours' }.freeze
 

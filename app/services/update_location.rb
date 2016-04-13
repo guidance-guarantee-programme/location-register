@@ -6,30 +6,45 @@ class UpdateLocation
     @user = user
   end
 
-  def update!(params)
-    params = params.with_indifferent_access
-    if params['address']
-      params['address_id'] = Address.find_or_create_from_params(params.delete('address')).id
+  def update(params)
+    address = params.delete('address')
+    if address
+      address_params = build_address(address)
+      params.merge!(address_params)
     end
 
     return location if location.matches_params?(params)
 
     Location.transaction do
-      location.update_attributes!(state: 'old')
-      create_new_version!(params)
+      begin
+        location.update_attributes!(state: 'old')
+        create_new_version(params)
+      rescue ActiveRecord::RecordInvalid
+        raise ActiveRecord::Rollback
+      end
     end
+    @location
   end
 
   private
 
-  def create_new_version!(params)
+  def build_address(address_params)
+    address = Address.find_or_initialize_from_params(address_params)
+    params = {}
+    params['address_id'] = address.id
+    params['address'] = address if address.new_record?
+    params
+  end
+
+  def create_new_version(params)
     attributes = [
       previous_version_attributes,
       params,
       version_attributes
     ].inject(:merge)
 
-    @location = Location.create!(clean(attributes))
+    @location = Location.new(clean(attributes))
+    @location.save!
   end
 
   def previous_version_attributes

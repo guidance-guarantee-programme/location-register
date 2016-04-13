@@ -26,7 +26,7 @@ RSpec.describe Address do
 
       it 'does not save the record' do
         address = Address.create(postcode: 'AA1 2BB', address_line_1: 'line 1')
-        expect(address.errors.full_messages).to eq(['Point geocoder lookup failed'])
+        expect(address).to be_new_record
       end
     end
   end
@@ -71,18 +71,36 @@ RSpec.describe Address do
     end
 
     context 'when postcode is present' do
-      let(:params) { { postcode: 'AA1 2BB' } }
+      context 'and is a valid UK postcode' do
+        let(:params) { { postcode: 'AA1 2BB' } }
 
-      it 'raises a validation around geocoding' do
-        expect(subject.errors.full_messages).to include('Point geocoder lookup failed')
+        it 'raises a validation around geocoding' do
+          expect(subject.errors).to be_added(:postcode, :geocoding_error)
+        end
+      end
+
+      context 'and is not a valid UK postcode' do
+        let(:params) { { postcode: 'APPLES' } }
+
+        it 'raise a validation around postcode not being valid' do
+          expect(subject.errors).to be_added(:postcode, :non_uk)
+        end
+
+        it 'it does not raise a validation around geocoding' do
+          expect(subject.errors).not_to be_added(:postcode, :geocoding_error)
+        end
       end
     end
 
     context 'when postcode is not present' do
       let(:params) { { postcode: nil } }
 
+      it 'raise a validation around postcode is blank' do
+        expect(subject.errors).to be_added(:postcode, :blank)
+      end
+
       it 'it does not raise a validation around geocoding' do
-        expect(subject.errors.full_messages).not_to include('Point geocoder lookup failed')
+        expect(subject.errors).not_to be_added(:postcode, :geocoding_error)
       end
     end
   end

@@ -1,0 +1,26 @@
+.error-summary {
+
+  border: 4px solid $form-error-color;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 15px 10px;
+
+  .error-summary__heading {
+    margin-top: 0;
+  }
+
+  .error-summary__list {
+    padding-left: 0;
+  }
+
+  .error-summary__list-item {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+
+  .error-summary__link {
+    color: $form-error-color;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}

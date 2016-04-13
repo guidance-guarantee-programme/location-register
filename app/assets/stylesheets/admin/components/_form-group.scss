@@ -1,0 +1,17 @@
+.form-group--error {
+  border-left: 5px solid $form-error-color;
+  padding-left: 15px;
+
+  // scss-lint:disable SelectorFormat
+  .field_with_errors label { // override bootstrap style
+    color: $form-default-text-color;
+  }
+  // scss-lint:enable SelectorFormat
+
+  .form-group__error-message {
+    color: $form-error-color;
+    font-weight: bold;
+    padding: 5px 0 7px;
+    display: block;
+  }
+}
