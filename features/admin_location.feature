@@ -47,3 +47,9 @@ Feature: Admin - Location Directory
     When I visit the "Apples" location
     And I set the locations "location_title" field to "Green delicious"
     Then I see that the location has a newer version
+
+  Scenario: When an update fails
+    Given a location exists called "Apples"
+    When I visit the "Apples" location
+    And I set the locations "postcode" field to ""
+    Then I should see an error message for "postcode"

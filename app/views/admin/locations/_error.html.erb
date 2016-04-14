@@ -1,0 +1,3 @@
+<% if error_messages.any? %>
+  <%= simple_format error_messages.join("\n"), { class: 'form-group__error-message' }, wrapper_tag: 'span' %>
+<% end %>

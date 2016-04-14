@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   EDIT_FIELDS = %w(address_id booking_location_uid hidden hours organisation phone title uid).freeze
 
-  belongs_to :address
+  belongs_to :address, validate: true
   belongs_to :booking_location, -> { current },
              foreign_key: :booking_location_uid,
              primary_key: :uid,

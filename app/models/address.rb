@@ -1,6 +1,6 @@
 class Address < ActiveRecord::Base
-  def self.find_or_create_from_params(params)
-    find_or_create_by!(
+  def self.find_or_initialize_from_params(params)
+    find_or_initialize_by(
       address_line_1: params['address_line_1'].presence,
       address_line_2: params['address_line_2'].presence,
       address_line_3: params['address_line_3'].presence,
@@ -11,7 +11,7 @@ class Address < ActiveRecord::Base
   end
 
   validates :postcode, :address_line_1, presence: true
-  validates :point, presence: { message: 'geocoder lookup failed', if: ->(a) { a.postcode.present? } }
+  validate :valid_uk_postcode
   before_validation :set_point_from_postcode
 
   def initialize(*args)
@@ -31,6 +31,17 @@ class Address < ActiveRecord::Base
   end
 
   private
+
+  def valid_uk_postcode
+    if postcode.present?
+      uk_postcode = UKPostcode.parse(postcode)
+      if uk_postcode.full_valid?
+        errors.add(:postcode, :geocoding_error) unless point.present?
+      else
+        errors.add(:postcode, :non_uk)
+      end
+    end
+  end
 
   def set_point_from_postcode
     return if postcode.blank? || point.present?

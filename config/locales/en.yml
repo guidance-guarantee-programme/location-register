@@ -20,4 +20,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        location:
+          attributes:
+            title:
+              blank: Please enter the title
+        address:
+          attributes:
+            postcode:
+              blank: Please enter the postcode
+              non_uk: We were unable to find that postcode in the UK
+              geocoding_error: We were unable to find a point in the UK with that postcode
+            address_line_1:
+              blank: Please enter the first line of the address

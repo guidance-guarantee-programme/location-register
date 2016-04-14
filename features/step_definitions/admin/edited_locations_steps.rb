@@ -2,7 +2,8 @@ Given(/^a location exists that has been hidden$/) do
   user = FactoryGirl.create(:user, :pensionwise_admin)
   location = FactoryGirl.create(:location, :nicab, created_at: 1.month.ago)
   updater = UpdateLocation.new(location: location, user: user)
-  updater.update!(hidden: true)
+  params = { 'hidden' => 'true' }
+  updater.update(params)
 end
 
 When(/^I view the edited locations page$/) do
@@ -26,8 +27,10 @@ Given(/^a location exists that has been hidden and then made visible$/) do
   user = FactoryGirl.create(:user, :pensionwise_admin)
   location = FactoryGirl.create(:location, :nicab, created_at: 1.month.ago)
   updater = UpdateLocation.new(location: location, user: user)
-  updater.update!(hidden: true)
-  updater.update!(hidden: false)
+  params = { 'hidden' => 'true' }
+  updater.update(params)
+  params = { 'hidden' => 'false' }
+  updater.update(params)
 end
 
 Given(/^a location exists that was hidden yesterday$/) do
@@ -35,7 +38,8 @@ Given(/^a location exists that was hidden yesterday$/) do
   location = FactoryGirl.create(:location, :nicab, created_at: 1.month.ago)
   updater = UpdateLocation.new(location: location, user: user)
   travel_to(Time.zone.yesterday) do
-    updater.update!(hidden: true)
+    params = { hidden: true }.with_indifferent_access
+    updater.update(params)
   end
 end
 
@@ -47,5 +51,6 @@ Given(/^a location exists that with a address edit$/) do
   user = FactoryGirl.create(:user, :pensionwise_admin)
   location = FactoryGirl.create(:location, :nicab, :one_line_address, created_at: 1.month.ago)
   updater = UpdateLocation.new(location: location, user: user)
-  updater.update!(address: { address_line_1: 'My New Address', postcode: 'UB9 4LH' })
+  params = { address: { address_line_1: 'My New Address', postcode: 'UB9 4LH' } }.with_indifferent_access
+  updater.update(params)
 end

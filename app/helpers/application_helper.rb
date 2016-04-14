@@ -13,4 +13,12 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def error_messages_for(*objects)
+    object_names = objects.map { |object| object.class.to_s.underscore }
+    objects
+      .map { |object| object.errors.messages.reject { |attribute, _| object_names.include?(attribute.to_s) } }
+      .inject(&:merge)
+      .sort_by(&:first)
+  end
 end

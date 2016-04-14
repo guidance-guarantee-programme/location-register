@@ -22,12 +22,13 @@ module Admin
 
     def update
       updater = UpdateLocation.new(location: @location, user: current_user)
-      updater.update!(permitted_attributes(@location))
-      flash[:notice] = "Successfully updated #{@location.title}"
-      redirect_to admin_locations_path(location_params)
-    rescue
-      flash[:error] = "Error updating #{@location.title}"
-      redirect_to admin_locations_path(location_params)
+      @location = updater.update(permitted_attributes(@location))
+      if @location.new_record?
+        @booking_locations = policy_scope(Location.current.where(booking_location_uid: nil))
+        render :edit
+      else
+        redirect_to admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
+      end
     end
 
     private
@@ -35,14 +36,6 @@ module Admin
     def set_autherised_location
       @location ||= Location.current.find_by!(uid: params[:id])
       authorize @location
-    end
-
-    def location_params
-      {
-        letter: @location.title[0],
-        display_hidden: display_hidden?,
-        display_active: display_active?
-      }
     end
 
     def hidden_flags
