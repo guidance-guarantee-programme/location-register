@@ -4,7 +4,7 @@ module Admin
 
     def index
       authorize Location
-      scope = Location.current.where(hidden: hidden_flags)
+      scope = Location.with_visibility_flags(hidden_flags)
 
       @locations, @sorting_params = policy_scope(scope).alpha_paginate(
         params[:letter],
@@ -17,14 +17,14 @@ module Admin
     end
 
     def edit
-      @booking_locations = policy_scope(Location.current.where(booking_location_uid: nil))
+      @booking_locations = policy_scope(Location.booking_locations)
     end
 
     def update
       updater = UpdateLocation.new(location: @location, user: current_user)
       @location = updater.update(permitted_attributes(@location))
       if @location.new_record?
-        @booking_locations = policy_scope(Location.current.where(booking_location_uid: nil))
+        @booking_locations = policy_scope(Location.booking_locations)
         render :edit
       else
         redirect_to admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
