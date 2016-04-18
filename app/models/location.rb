@@ -19,6 +19,27 @@ class Location < ActiveRecord::Base
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }
+  scope :active, -> { where(hidden: false) }
+
+  class << self
+    def between(start_time, end_time)
+      where(created_at: start_time...end_time)
+    end
+
+    def booking_locations
+      current.active.where(booking_location_uid: nil)
+    end
+
+    def externally_visible(include_hidden_locations:)
+      scope = current.includes(:address, :booking_location)
+      scope = scope.active unless include_hidden_locations
+      scope
+    end
+
+    def with_visibility_flags(hidden_flags)
+      current.where(hidden: hidden_flags)
+    end
+  end
 
   def initialize(*args)
     super
