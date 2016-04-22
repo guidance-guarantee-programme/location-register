@@ -5,8 +5,8 @@ RSpec::Matchers.define :equal_edits do |expected_array|
     RSpecEditMatcher.match(actual_array, expected_array, 'equal')
   end
 
-  failure_message_for_should do |actual_array|
-    RSpecEditMatcher.failure_message_for_should(actual_array, expected_array, 'equal')
+  failure_message do |actual_array|
+    RSpecEditMatcher.failure_message(actual_array, expected_array, 'equal')
   end
 end
 
@@ -15,8 +15,8 @@ RSpec::Matchers.define :match_edits do |expected_array|
     RSpecEditMatcher.match(actual_array, expected_array, 'match')
   end
 
-  failure_message_for_should do |actual_array|
-    RSpecEditMatcher.failure_message_for_should(actual_array, expected_array, 'match')
+  failure_message do |actual_array|
+    RSpecEditMatcher.failure_message(actual_array, expected_array, 'match')
   end
 end
 
@@ -31,7 +31,7 @@ module RSpecEditMatcher
       actual_array.zip(expected_array).all? { |actual, expected| match_edit(actual, expected, match_type) }
   end
 
-  def failure_message_for_should(actual_array, expected_array, match_type = 'equal')
+  def failure_message(actual_array, expected_array, match_type = 'equal')
     if actual_array.count != expected_array.count
       "expected #{expected_array.count} edits but received #{actual_array.count} edits"
     else
