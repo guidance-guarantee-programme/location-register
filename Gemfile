@@ -18,6 +18,7 @@ gem 'puma'
 
 gem 'alphabetical_paginate'
 gem 'bugsnag'
+gem 'deprecated_columns'
 gem 'gaffe'
 gem 'gds-sso'
 gem 'geocoder'
