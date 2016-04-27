@@ -7,8 +7,6 @@ cache:
   - vendor/assets/bower_components
 node_js:
 - '0.10'
-rvm:
-- 2.3.0
 notifications:
   slack:
     secure: dbkW7tikYd7n+K8JgMmfowamyeYxWAFkEEJbtVwKtKaucxezrrfggdThKnrQSu5a9JDwl3Owfy8Cd8XICG/Sy92REM9i6MIMeiO95j4lHwVt4up9UvXrxWbcHczRcBFFNAPj0oxRNFYmkwyYVqNtNk9G/TBUUnVbGC3DcQ4IRoo=
