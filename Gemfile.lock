@@ -150,6 +150,7 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    newrelic_rpm (3.12.0.288)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oauth2 (1.1.0)
@@ -327,6 +328,7 @@ DEPENDENCIES
   govuk_admin_template
   jbuilder (~> 2.0)
   jquery-rails
+  newrelic_rpm
   pg (~> 0.15)
   plek
   poltergeist
@@ -349,5 +351,8 @@ DEPENDENCIES
   web-console (~> 2.0)
   webmock
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.12.3
