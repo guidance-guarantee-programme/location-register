@@ -111,3 +111,14 @@ Then(/^I am on the locations page$/) do
   location_page = AdminLocationPage.new
   expect(location_page).to be_displayed
 end
+
+When(/^I export the results to CSV$/) do
+  @page.export_csv.click
+end
+
+Then(/^I am prompted to download the CSV$/) do
+  expect(page.response_headers).to include(
+    'Content-Disposition' => 'attachment; filename=locations.csv',
+    'Content-Type'        => 'text/csv'
+  )
+end

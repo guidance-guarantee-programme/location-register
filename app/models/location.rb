@@ -37,7 +37,10 @@ class Location < ActiveRecord::Base
     end
 
     def with_visibility_flags(hidden_flags)
-      current.where(hidden: hidden_flags)
+      current
+        .where(hidden: hidden_flags)
+        .includes(:address, :editor, :booking_location)
+        .references(:address, :editor, :booking_location)
     end
   end
 

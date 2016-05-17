@@ -45,3 +45,9 @@ Feature: Admin - Location Directory
     When I visit the locations admin directory
     And I click on the location
     Then I am on the locations page
+
+  Scenario: Exporting locations in CSV format
+    Given an active location exists
+    When I visit the locations admin directory
+    And I export the results to CSV
+    Then I am prompted to download the CSV

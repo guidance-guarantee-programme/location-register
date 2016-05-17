@@ -6,11 +6,18 @@ module Admin
       authorize Location
       scope = Location.with_visibility_flags(hidden_flags)
 
-      @locations, @sorting_params = policy_scope(scope).alpha_paginate(
-        params[:letter],
-        ALPHABETICAL_PAGINATE_CONFIG.dup,
-        &:title
-      )
+      respond_to do |format|
+        format.html do
+          @locations, @sorting_params = policy_scope(scope).alpha_paginate(
+            params[:letter],
+            ALPHABETICAL_PAGINATE_CONFIG.dup,
+            &:title
+          )
+        end
+        format.csv do
+          render csv: LocationsCsv.new(policy_scope(scope))
+        end
+      end
     end
 
     def show
