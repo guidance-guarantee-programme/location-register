@@ -1,4 +1,4 @@
-<%= form_tag admin_locations_path, method: 'get', class: 'l-filter-form' do %>
+<%= form_tag admin_locations_path, method: 'get', class: 'inline l-filter-form' do %>
   <ul class="pagination-atoz">
     <% (?A..?Z).each do |letter| %>
       <li class="pagination-atoz__letter t-pagination__letter">
@@ -45,4 +45,9 @@
   <% end %>
 
   <%= submit_tag 'Update', class: 'btn btn-default l-filter-form__submit t-filter-submit' %>
+<% end %>
+<%= form_tag admin_locations_path(format: :csv), method: :get, class: 'inline' do |f| %>
+  <%= hidden_field_tag :display_active, params.fetch(:display_active, true).present? %>
+  <%= hidden_field_tag :display_hidden, params.fetch(:display_hidden, false).present? %>
+  <%= submit_tag 'Export CSV', class: 'btn btn-default t-export-csv' %>
 <% end %>

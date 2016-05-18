@@ -12,6 +12,7 @@ class AdminLocationDirectoryPage < SitePrism::Page
   elements :pagination, '.t-pagination__letter'
   element :filter_submit, '.t-filter-submit'
   element :notice, '.t-notice'
+  element :export_csv, '.t-export-csv'
 
   def navigate_to(letter)
     if javascript_enabled?
