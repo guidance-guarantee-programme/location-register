@@ -4,7 +4,7 @@ RSpec.describe 'locations/index' do
   it 'renders the locations as json' do
     assign(
       :locations,
-      [FactoryGirl.build(:location, uid: '25de9301-50b5-49ba-a5da-7f40a2fcfe29', title: 'Test location')]
+      [build(:location, uid: '25de9301-50b5-49ba-a5da-7f40a2fcfe29', title: 'Test location')]
     )
 
     render

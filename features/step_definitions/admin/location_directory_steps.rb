@@ -1,7 +1,7 @@
 Given(/^locations exist for my organisation$/) do
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  FactoryGirl.create(:location, :nicab)
-  FactoryGirl.create(:location, :nicab)
+  create(:user, :project_manager, :nicab)
+  create(:location, :nicab)
+  create(:location, :nicab)
 end
 
 When(/^I visit the locations admin directory$/) do
@@ -22,10 +22,10 @@ Then(/^I can see locations for my organisation$/) do
 end
 
 Given(/^locations exist for other organisations$/) do
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  FactoryGirl.create(:location, :cas)
-  FactoryGirl.create(:location, :citi)
-  @nicab_location = FactoryGirl.create(:location, :nicab)
+  create(:user, :project_manager, :nicab)
+  create(:location, :cas)
+  create(:location, :citi)
+  @nicab_location = create(:location, :nicab)
 end
 
 Then(/^I can not see locations for other organisation$/) do
@@ -35,14 +35,14 @@ Then(/^I can not see locations for other organisation$/) do
 end
 
 Given(/^two locations exist called "([^"]*)" and "([^"]*)"$/) do |title1, title2|
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  FactoryGirl.create(:location, :nicab, title: title1)
-  FactoryGirl.create(:location, :nicab, title: title2)
+  create(:user, :project_manager, :nicab)
+  create(:location, :nicab, title: title1)
+  create(:location, :nicab, title: title2)
 end
 
 Given(/^a location exists called "([^"]*)"$/) do |title|
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  FactoryGirl.create(:location, :nicab, title: title)
+  create(:user, :project_manager, :nicab)
+  create(:location, :nicab, title: title)
 end
 
 When(/^I naviagte to the "([^"]*)" page$/) do |letter|
@@ -55,8 +55,8 @@ Then(/^I should see the "([^"]*)" location$/) do |title|
 end
 
 Given(/^a hidden location exists$/) do
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  FactoryGirl.create(:location, :nicab, hidden: true)
+  create(:user, :project_manager, :nicab)
+  create(:location, :nicab, hidden: true)
 end
 
 Then(/^I should see not see the hidden location$/) do
@@ -85,8 +85,8 @@ Then(/^I should see the no locations available notice$/) do
 end
 
 Given(/^an active location exists$/) do
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  FactoryGirl.create(:location, :nicab)
+  create(:user, :project_manager, :nicab)
+  create(:location, :nicab)
 end
 
 Then(/^my locations should be hidden$/) do

@@ -63,12 +63,12 @@ RSpec.describe EditedLocationField do
         end
 
         it 'address field' do
-          results = subject.all(location, location(address: FactoryGirl.build(:address)))
+          results = subject.all(location, location(address: build(:address)))
           expect(results[0]).to be_a(AddressFieldDecorator)
         end
 
         it 'booking_location field' do
-          results = subject.all(location, location(booking_location: FactoryGirl.build(:location)))
+          results = subject.all(location, location(booking_location: build(:location)))
           expect(results[0]).to be_a(BookingLocationFieldDecorator)
         end
       end

@@ -14,7 +14,7 @@ RSpec.describe Address do
       end
 
       it 'does not corrupt an existing address uid' do
-        address_1 = FactoryGirl.create(:address, point: nil)
+        address_1 = create(:address, point: nil)
         address_2 = Address.find(address_1.id)
 
         expect(address_1.uid).to eq(address_2.uid)
@@ -33,7 +33,7 @@ RSpec.describe Address do
 
   describe '#to_a' do
     it 'returns an array of address components' do
-      address = FactoryGirl.build(:address)
+      address = build(:address)
       expect(address.to_a).to eq(
         [
           'Test flat 3',
