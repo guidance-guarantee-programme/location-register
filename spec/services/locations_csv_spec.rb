@@ -27,7 +27,7 @@ RSpec.describe LocationsCsv do
     end
 
     context 'data row are correct generated' do
-      let(:location) { FactoryGirl.create(:location) }
+      let(:location) { create(:location) }
 
       subject { described_class.new(location).call.lines }
 

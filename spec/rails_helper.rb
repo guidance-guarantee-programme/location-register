@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'pundit/rspec'
 
 RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!
 

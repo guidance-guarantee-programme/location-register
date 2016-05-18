@@ -9,7 +9,7 @@ FactoryGirl.define do
     phone '01111111111'
     hours 'MON-FRI 9am-5pm'
     booking_location nil
-    editor { FactoryGirl.build(:user) }
+    editor { build(:user) }
 
     trait :cas do
       organisation 'cas'
@@ -20,7 +20,7 @@ FactoryGirl.define do
     end
 
     trait :one_line_address do
-      address { FactoryGirl.build(:one_line_address) }
+      address { build(:one_line_address) }
     end
 
     trait :nicab do

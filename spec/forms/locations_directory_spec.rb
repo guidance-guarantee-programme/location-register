@@ -55,7 +55,7 @@ RSpec.describe LocationsDirectory do
     subject { described_class.new(user, params) }
 
     context 'when hidden location exists' do
-      let!(:location) { FactoryGirl.create(:location, hidden: true) }
+      let!(:location) { create(:location, hidden: true) }
 
       context 'when display_hidden is false' do
         let(:params) { { locations_directory: { display_hidden: false } } }
@@ -75,7 +75,7 @@ RSpec.describe LocationsDirectory do
     end
 
     context 'when active location exists' do
-      let!(:location) { FactoryGirl.create(:location) }
+      let!(:location) { create(:location) }
 
       context 'when display_active is false' do
         let(:params) { { locations_directory: { display_active: false } } }

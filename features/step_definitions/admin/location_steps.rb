@@ -1,6 +1,6 @@
 Given(/^a location exists for my organisation$/) do
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  @location = FactoryGirl.create(:location, :nicab)
+  create(:user, :project_manager, :nicab)
+  @location = create(:location, :nicab)
 end
 
 When(/^I visit the locations admin page$/) do
@@ -17,8 +17,8 @@ Then(/^I can see the locations details$/) do
 end
 
 Given(/^a location exist for another organisations$/) do
-  FactoryGirl.create(:user, :project_manager, :nicab)
-  @location = FactoryGirl.create(:location, :cas)
+  create(:user, :project_manager, :nicab)
+  @location = create(:location, :cas)
 end
 
 Then(/^no location exists to view$/) do

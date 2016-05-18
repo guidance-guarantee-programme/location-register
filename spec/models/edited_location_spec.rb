@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe EditedLocation do
   subject { described_class }
   let(:uid) { SecureRandom.uuid }
-  let(:location_1) { FactoryGirl.build(:location, uid: uid, created_at: 1.hour.ago, version: 1) }
-  let(:location_2) { FactoryGirl.build(:location, uid: uid, created_at: 1.minute.ago, version: 2) }
-  let(:location_3) { FactoryGirl.build(:location, created_at: 5.minutes.ago) }
+  let(:location_1) { build(:location, uid: uid, created_at: 1.hour.ago, version: 1) }
+  let(:location_2) { build(:location, uid: uid, created_at: 1.minute.ago, version: 2) }
+  let(:location_3) { build(:location, created_at: 5.minutes.ago) }
 
   describe '.all' do
     it 'return an array of Edit Location instances' do

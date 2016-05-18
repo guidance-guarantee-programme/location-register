@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe UpdateLocation do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
   subject { described_class.new(location: location, user: user) }
-  let(:address) { FactoryGirl.create(:address) }
+  let(:address) { create(:address) }
 
   describe '#update' do
     let!(:location) {  Location.create(params) }
-    let(:other_user) { FactoryGirl.create(:user) }
+    let(:other_user) { create(:user) }
     let(:params) do
       {
         organisation: 'CAS',
