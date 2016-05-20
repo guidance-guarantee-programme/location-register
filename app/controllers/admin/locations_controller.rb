@@ -1,6 +1,6 @@
 module Admin
   class LocationsController < Admin::BaseController
-    before_action :set_autherised_location, only: [:update, :show, :edit]
+    before_action :set_authorised_location, only: [:update, :show, :edit]
 
     def index
       authorize Location
@@ -31,7 +31,7 @@ module Admin
 
     private
 
-    def set_autherised_location
+    def set_authorised_location
       @location ||= Location.current.find_by!(uid: params[:id])
       authorize @location
     end
