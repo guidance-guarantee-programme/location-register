@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517154102) do
+ActiveRecord::Schema.define(version: 20160524123945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20160517154102) do
     t.string   "town"
     t.string   "county"
     t.string   "postcode"
+  end
+
+  create_table "call_centres", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "purpose"
+    t.string   "twilio_number"
+    t.string   "phone"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "locations", force: :cascade do |t|
