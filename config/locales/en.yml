@@ -25,8 +25,13 @@ en:
       models:
         location:
           attributes:
+            phone:
+              invalid: Please use the format +44XXXXXXXXXX
             title:
               blank: Please enter the title
+            twilio_number:
+              invalid: Please use the format +44XXXXXXXXXX
+              taken: That number is already in use
         address:
           attributes:
             postcode:

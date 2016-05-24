@@ -1,5 +1,19 @@
+# frozen_string_literal: true
 class Location < ActiveRecord::Base
-  EDIT_FIELDS = %w(address_id booking_location_uid hidden hours organisation phone title uid).freeze
+  EDIT_FIELDS = %w(
+    address_id
+    booking_location_uid
+    hidden
+    hours
+    organisation
+    phone
+    title
+    uid
+    extension
+    twilio_number
+  ).freeze
+  PHONE_NUMBER_REGEXP = /\A\+44\d{9,10}\z/
+  TP_CALL_CENTRE_NUMBER = '+442037333495'
 
   belongs_to :address, validate: true
   belongs_to :booking_location, -> { current },
@@ -12,10 +26,16 @@ class Location < ActiveRecord::Base
   validates :organisation, presence: true
   validates :title, presence: true
   validates :address, presence: true
-  validates :phone, presence: true, if: ->(l) { l.booking_location.blank? }
-  validates :booking_location, presence: true, if: ->(l) { l.phone.nil? }
+  validates :booking_location, presence: { if: ->(l) { l.phone.nil? } }
   validates :version, presence: true
   validates :state, presence: true, inclusion: %w(old current)
+  validates :phone,
+            presence: { if: ->(l) { l.booking_location.blank? } },
+            format: { with: PHONE_NUMBER_REGEXP, if: ->(l) { l.phone.present? && l.current? } }
+  validates :twilio_number,
+            uniqueness: { conditions: -> { current } },
+            format: PHONE_NUMBER_REGEXP,
+            if: ->(l) { l.twilio_number.present? && l.current? }
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }
@@ -53,5 +73,9 @@ class Location < ActiveRecord::Base
     EDIT_FIELDS.all? do |field_name|
       !params.key?(field_name) || params[field_name].to_s == self[field_name].to_s
     end
+  end
+
+  def current?
+    state == 'current'
   end
 end
