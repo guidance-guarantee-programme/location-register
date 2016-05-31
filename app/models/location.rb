@@ -12,7 +12,6 @@ class Location < ActiveRecord::Base
     extension
     twilio_number
   ).freeze
-  PHONE_NUMBER_REGEXP = /\A\+44\d{9,10}\z/
   TP_CALL_CENTRE_NUMBER = '+442037333495'
 
   belongs_to :address, validate: true
@@ -31,11 +30,11 @@ class Location < ActiveRecord::Base
   validates :state, presence: true, inclusion: %w(old current)
   validates :phone,
             presence: { if: ->(l) { l.booking_location.blank? } },
-            format: { with: PHONE_NUMBER_REGEXP, if: ->(l) { l.phone.present? && l.current? } }
+            uk_phone_number: { if: :current_with_phone_number? }
   validates :twilio_number,
             uniqueness: { conditions: -> { current } },
-            format: PHONE_NUMBER_REGEXP,
-            if: ->(l) { l.twilio_number.present? && l.current? }
+            uk_phone_number: true,
+            if: :current_with_twilio_number?
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }
@@ -77,5 +76,13 @@ class Location < ActiveRecord::Base
 
   def current?
     state == 'current'
+  end
+
+  def current_with_phone_number?
+    current? && phone.present?
+  end
+
+  def current_with_twilio_number?
+    current? && twilio_number.present?
   end
 end
