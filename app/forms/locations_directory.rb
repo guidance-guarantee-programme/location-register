@@ -37,6 +37,7 @@ class LocationsDirectory
   def normalize_boolean_or_default(value, default)
     return default if value.nil?
     return false if %w(false 0).include?(value)
+
     value.present?
   end
 end

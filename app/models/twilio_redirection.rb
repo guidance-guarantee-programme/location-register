@@ -21,6 +21,7 @@ class TwilioRedirection
 
     def phone_options
       return {} if @location.extension.blank?
+
       { sendDigits: @location.extension }
     end
   end

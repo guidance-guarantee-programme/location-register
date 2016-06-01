@@ -45,8 +45,10 @@ class Address < ActiveRecord::Base
 
   def set_point_from_postcode
     return if postcode.blank? || point.present?
+
     geocode = PostcodeGeocoder.new(postcode)
     return unless geocode.valid?
+
     self.point = {
       type: 'Point',
       coordinates: geocode.coordinates
