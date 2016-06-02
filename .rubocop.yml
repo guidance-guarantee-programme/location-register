@@ -27,3 +27,6 @@ Metrics/ModuleLength:
 
 Style/RescueModifier:
   Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false

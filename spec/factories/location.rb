@@ -6,7 +6,9 @@ FactoryGirl.define do
     cas
     sequence(:title) { |n| "Alpha location #{n}" }
     address
-    phone '01111111111'
+    sequence(:phone) { |n| "+44100000#{1000 + n}" }
+    sequence(:twilio_number) { |n| "+44111111#{1000 + n}" }
+    extension nil
     hours 'MON-FRI 9am-5pm'
     booking_location nil
     editor { build(:user) }

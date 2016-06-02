@@ -6,13 +6,13 @@ RSpec.describe UpdateLocation do
   let(:address) { create(:address) }
 
   describe '#update' do
-    let!(:location) {  Location.create(params) }
+    let!(:location) {  Location.create!(params) }
     let(:other_user) { create(:user) }
     let(:params) do
       {
         organisation: 'CAS',
         title: 'Test Vile',
-        phone: '01111111111',
+        phone: '+44111111111',
         hours: 'MON-FRI 9am-5pm',
         booking_location_uid: nil,
         address_id: address.id,

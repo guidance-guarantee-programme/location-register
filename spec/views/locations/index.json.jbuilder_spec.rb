@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'locations/index' do
+  let(:location) { build(:location, uid: '25de9301-50b5-49ba-a5da-7f40a2fcfe29', title: 'Test location') }
+
   it 'renders the locations as json' do
-    assign(
-      :locations,
-      [build(:location, uid: '25de9301-50b5-49ba-a5da-7f40a2fcfe29', title: 'Test location')]
-    )
+    assign(:locations, [location])
 
     render
 
@@ -23,7 +22,7 @@ RSpec.describe 'locations/index' do
             'title' => 'Test location',
             'address' => "Test flat 3\nTesting center\nTest Avenue\nTest Vile\nTesty\nUB9 4LH",
             'booking_location_id' => '',
-            'phone' => '01111111111',
+            'phone' => location.phone,
             'hours' => 'MON-FRI 9am-5pm'
           }
         }
