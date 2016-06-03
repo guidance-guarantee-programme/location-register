@@ -24,6 +24,7 @@ class AddActiveRecordLookupsToReplaceCurie < ActiveRecord::Migration
 
   def extract_uid(field)
     return nil if field.nil?
+
     field.match(/^\[[^:]*:(.*)\]$/)[1]
   end
 end

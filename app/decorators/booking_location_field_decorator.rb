@@ -11,6 +11,7 @@ class BookingLocationFieldDecorator < SimpleDelegator
 
   def wrap(value)
     return '' if value.nil?
+
     value.title
   end
 end

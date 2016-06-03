@@ -15,6 +15,7 @@ class VisibilityFieldDecorator < SimpleDelegator
 
   def wrap(value)
     return '' if value.nil?
+
     value ? 'Hidden' : 'Active'
   end
 end
