@@ -20,6 +20,7 @@ class Location < ActiveRecord::Base
              primary_key: :uid,
              class_name: 'Location'
   belongs_to :editor, class_name: 'User'
+  has_many :locations, foreign_key: :booking_location_uid, primary_key: :uid
 
   validates :uid, presence: true
   validates :organisation, presence: true
@@ -41,6 +42,11 @@ class Location < ActiveRecord::Base
   scope :active, -> { where(hidden: false) }
 
   class << self
+    def booking_location_for(uid)
+      location = find_by(uid: uid)
+      location.booking_location || location
+    end
+
     def between(start_time, end_time)
       where(created_at: start_time...end_time)
     end
@@ -84,5 +90,9 @@ class Location < ActiveRecord::Base
 
   def current_with_twilio_number?
     current? && twilio_number.present?
+  end
+
+  def address_line
+    address.to_a.join(', ')
   end
 end
