@@ -32,5 +32,11 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'start' => '0900',
       'end' => '1300'
     )
+
+    expect(subject['guiders'].first).to eq(
+      'id' => booking_location.guiders.first.id,
+      'name' => 'Rick Sanchez',
+      'email' => 'rick@example.com'
+    )
   end
 end
