@@ -95,4 +95,10 @@ class Location < ActiveRecord::Base
   def address_line
     address.to_a.join(', ')
   end
+
+  def slots
+    return [] if booking_location_uid.present?
+
+    Slot.all
+  end
 end

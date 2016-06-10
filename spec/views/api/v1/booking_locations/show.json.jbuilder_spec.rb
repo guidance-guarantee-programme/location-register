@@ -5,28 +5,32 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
 
   before do
     assign :location, booking_location
-    render
+
+    travel_to '2016-06-05 10:00:00' do
+      render
+    end
   end
 
+  subject { JSON.parse(rendered) }
+
   it 'renders the booking location particulars' do
-    expect(JSON.parse(rendered)).to include(
+    expect(subject).to include(
       'uid' => booking_location.uid,
       'name' => booking_location.title,
-      'address' => booking_location.address_line,
-      'locations' => [
-        {
-          'uid' => booking_location.locations.first.uid,
-          'name' => booking_location.locations.first.title,
-          'address' => booking_location.locations.first.address_line,
-          'locations' => []
-        },
-        {
-          'uid' => booking_location.locations.second.uid,
-          'name' => booking_location.locations.second.title,
-          'address' => booking_location.locations.second.address_line,
-          'locations' => []
-        }
-      ]
+      'address' => booking_location.address_line
+    )
+
+    expect(subject['locations'].first).to eq(
+      'uid' => booking_location.locations.first.uid,
+      'name' => booking_location.locations.first.title,
+      'address' => booking_location.locations.first.address_line,
+      'locations' => []
+    )
+
+    expect(subject['slots'].first).to eq(
+      'date' => '2016-06-07',
+      'start' => '0900',
+      'end' => '1300'
     )
   end
 end

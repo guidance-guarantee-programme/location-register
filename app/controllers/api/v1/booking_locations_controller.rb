@@ -3,8 +3,6 @@ module Api
     class BookingLocationsController < ActionController::Base
       def show
         @location = Location.booking_location_for(params[:uid])
-
-        render json: @location
       end
     end
   end

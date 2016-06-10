@@ -14,7 +14,7 @@ RSpec.feature 'Booking Locations API' do
 
   def when_one_of_its_children_are_requested
     @child_location = @booking_location.locations.first
-    visit api_v1_booking_location_path(uid: @child_location.uid)
+    visit api_v1_booking_location_path(uid: @child_location.uid, format: :json)
   end
 
   def then_the_response_is_ok

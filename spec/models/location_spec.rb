@@ -1,6 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Location do
+  describe '#slots' do
+    context 'for a non-booking location' do
+      let(:location) { build(:location, booking_location_uid: 'deadbeef') }
+
+      it 'returns an empty array' do
+        expect(location.slots).to eq([])
+      end
+    end
+
+    context 'for a booking location' do
+      let(:location) { build(:location) }
+
+      it 'returns slots' do
+        travel_to '2016-06-07 10:00:00' do
+          expect(location.slots).to_not be_empty
+        end
+      end
+    end
+  end
+
   describe '.booking_location_for' do
     let(:booking_location) { create(:booking_location) }
 
