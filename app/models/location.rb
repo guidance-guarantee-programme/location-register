@@ -20,6 +20,8 @@ class Location < ActiveRecord::Base
              primary_key: :uid,
              class_name: 'Location'
   belongs_to :editor, class_name: 'User'
+  has_many :locations, foreign_key: :booking_location_uid, primary_key: :uid
+  has_many :guiders
 
   validates :uid, presence: true
   validates :organisation, presence: true
@@ -35,12 +37,18 @@ class Location < ActiveRecord::Base
             uniqueness: { conditions: -> { current } },
             uk_phone_number: true,
             if: :current_with_twilio_number?
+  validates :guiders, length: { is: 0 }, if: :booking_location_uid?
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }
   scope :active, -> { where(hidden: false) }
 
   class << self
+    def booking_location_for(uid)
+      location = includes(:locations, :guiders).find_by(uid: uid)
+      location&.booking_location || location
+    end
+
     def between(start_time, end_time)
       where(created_at: start_time...end_time)
     end
@@ -84,5 +92,15 @@ class Location < ActiveRecord::Base
 
   def current_with_twilio_number?
     current? && twilio_number.present?
+  end
+
+  def address_line
+    address.to_a.join(', ')
+  end
+
+  def slots
+    return [] if booking_location_uid.present?
+
+    Slot.all
   end
 end

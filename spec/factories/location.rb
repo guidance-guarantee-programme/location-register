@@ -28,5 +28,13 @@ FactoryGirl.define do
     trait :nicab do
       organisation 'nicab'
     end
+
+    factory :booking_location do
+      after(:create) do |parent|
+        create(:guider, location: parent)
+
+        create_list(:location, 2, booking_location: parent)
+      end
+    end
   end
 end
