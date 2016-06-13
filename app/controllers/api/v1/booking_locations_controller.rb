@@ -7,6 +7,8 @@ module Api
 
       def show
         @location = Location.booking_location_for(params[:uid])
+
+        head :not_found unless @location
       end
     end
   end
