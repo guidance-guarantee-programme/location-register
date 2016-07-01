@@ -1,107 +1,121 @@
-<%= form_for location, url: admin_location_path, method: 'put' do |f| %>
-  <% if location.errors.any? %>
+<% if location.errors.any? %>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="error-summary t-errors ">
-          <h2 class="error-summary__heading">There's a problem</h2>
-          <ul class="error-summary__list">
-            <% error_messages_for(location, location.address).each do |attribute, attribute_errors| %>
-              <% attribute_errors.each do |attribute_error| %>
-                <li class="error-summary__list-item t-error-message">
-                  <a class="error-summary__link" href="#<%= attribute %>"><%= sanitize(attribute_error, :tags => []) %></a>
-                </li>
-              <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="error-summary t-errors ">
+        <h2 class="error-summary__heading">There's a problem</h2>
+        <ul class="error-summary__list">
+          <% error_messages_for(location, location.address).each do |attribute, attribute_errors| %>
+            <% attribute_errors.each do |attribute_error| %>
+              <li class="error-summary__list-item t-error-message">
+                <a class="error-summary__link" href="#<%= attribute %>"><%= sanitize(attribute_error, :tags => []) %></a>
+              </li>
             <% end %>
-          </ul>
-        </div>
+          <% end %>
+        </ul>
       </div>
     </div>
-  <% end %>
-
-  <div class="form-group <%= 'form-group--error' if f.object.errors[:title].any? %>" id="title">
-    <%= f.label :title %>
-    <%= render 'error', error_messages: location.errors[:title] %>
-    <%= f.text_field :title, class: 'input-md-3 form-control t-location-title' %>
-  </div>
-
-  <%= f.fields_for(:address, location.address) do |a| %>
-    <div class="<%= 'form-group--error' if a.object.errors[:address_line_1].any? %>">
-      <div class="form-group" id="address_line_1">
-        <%= a.label :address_line_1, 'Address' %>
-        <%= render 'error', error_messages: a.object.errors[:address_line_1] %>
-        <%= a.text_field :address_line_1, class: 'input-md-3 form-control t-address-line-1' %>
-      </div>
-
-      <div class="form-group <%= 'form-group--error' if a.object.errors[:address_line_2].any? %>" id="address_line_2">
-        <%= render 'error', error_messages: location.address.errors[:address_line_2] %>
-        <%= a.text_field :address_line_2, class: 'input-md-3 form-control t-address-line-2' %>
-      </div>
-
-      <div class="form-group <%= 'form-group--error' if a.object.errors[:address_line_3].any? %>" id="address_line_3">
-        <%= render 'error', error_messages: location.address.errors[:address_line_3] %>
-        <%= a.text_field :address_line_3, class: 'input-md-3 form-control t-address-line-3' %>
-      </div>
-    </div>
-
-    <div class="form-group <%= 'form-group--error' if a.object.errors[:town].any? %>" id="town">
-      <%= a.label :town %>
-      <%= render 'error', error_messages: location.address.errors[:town] %>
-      <%= a.text_field :town, class: 'input-md-3 form-control t-town' %>
-    </div>
-
-    <div class="form-group <%= 'form-group--error' if a.object.errors[:county].any? %>" id="county">
-      <%= a.label :county %>
-      <%= render 'error', error_messages: location.address.errors[:county] %>
-      <%= a.text_field :county, class: 'input-md-3 form-control t-county' %>
-    </div>
-
-    <div class="form-group <%= 'form-group--error' if a.object.errors[:postcode].any? %>" id="postcode">
-      <%= a.label :postcode %>
-      <%= render 'error', error_messages: location.address.errors[:postcode] %>
-      <%= a.text_field :postcode, class: 'input-md-2 form-control t-postcode' %>
-    </div>
-  <% end %>
-
-  <div class="form-group <%= 'form-group--error' if f.object.errors[:hours].any? %>" id="hours">
-    <%= f.label :hours, 'Booking hours' %>
-    <%= render 'error', error_messages: location.errors[:hours] %>
-    <%= f.text_area :hours, class: 'input-md-3 form-control t-booking-hours' %>
-  </div>
-
-  <div class="form-group <%= 'form-group--error' if f.object.errors[:booking_location].any? %>" id="booking_location">
-    <%= f.label :booking_location_uid, 'Booking location:' %>
-    <%= render 'error', error_messages: location.errors[:booking_location] %>
-    <%= f.collection_select(
-          :booking_location_uid,
-          @booking_locations,
-          :uid,
-          :title,
-          { include_blank: true },
-          class: 'input-md-3 form-control t-booking-location'
-        )
-    %>
-  </div>
-
-  <div class="form-group <%= 'form-group--error' if f.object.errors[:phone].any? %>" id="phone">
-    <%= f.label :phone, 'Telephone number' %>
-    <%= render 'error', error_messages: location.errors[:phone] %>
-    <%= f.text_field :phone, class: 'input-md-3 form-control', disabled: true %>
-  </div>
-
-  <div class="form-group t-visibility <%= 'form-group--error' if f.object.errors[:hidden].any? %>" id="hidden">
-    <%= f.label :hidden, 'Visibility', class: 'block' %><br/>
-    <%= render 'error', error_messages: location.errors[:hidden] %>
-    <%= hidden_field_tag :display_hidden, params[:display_hidden] %>
-    <%= hidden_field_tag :display_active, params[:display_active] %>
-    <%= f.radio_button :hidden, false, class: 'l-location-status__checkbox', id: "location_hidden_false_#{location.id}" %>
-    <%= f.label "hidden_false_#{location.id}", 'Active', class: 'l-location-status__label' %>
-    <%= f.radio_button :hidden, true, class: 'l-location-status__checkbox', id: "location_hidden_true_#{location.id}" %>
-    <%= f.label "hidden_true_#{location.id}", 'Hidden', class: 'l-location-status__label' %>
-  </div>
-
-  <div class="form-group">
-    <%= link_to 'Cancel', admin_location_path(location.uid), class: 'btn btn-default t-cancel-button' %>
-    <%= f.submit 'Save', class: 'btn btn-success t-save-button' %>
   </div>
 <% end %>
+
+<% if policy(location).admin? %>
+  <div class="form-group <%= 'form-group--error' if f.object.errors[:organisation].any? %>" id="organisation">
+    <%= f.label :organisation %>
+    <%= render 'error', error_messages: location.errors[:organisation] %>
+    <%= f.select :organisation, Location::ORGANISATIONS, { include_blank: true }, class: 'input-md-3 form-control t-organisation text-uppercase' %>
+  </div>
+<% end %>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:title].any? %>" id="title">
+  <%= f.label :title %>
+  <%= render 'error', error_messages: location.errors[:title] %>
+  <%= f.text_field :title, class: 'input-md-3 form-control t-location-title' %>
+</div>
+
+<%= f.fields_for(:address, location.address) do |a| %>
+  <div class="<%= 'form-group--error' if a.object.errors[:address_line_1].any? %>">
+    <div class="form-group" id="address_line_1">
+      <%= a.label :address_line_1, 'Address' %>
+      <%= render 'error', error_messages: a.object.errors[:address_line_1] %>
+      <%= a.text_field :address_line_1, class: 'input-md-3 form-control t-address-line-1' %>
+    </div>
+
+    <div class="form-group <%= 'form-group--error' if a.object.errors[:address_line_2].any? %>" id="address_line_2">
+      <%= render 'error', error_messages: location.address.errors[:address_line_2] %>
+      <%= a.text_field :address_line_2, class: 'input-md-3 form-control t-address-line-2' %>
+    </div>
+
+    <div class="form-group <%= 'form-group--error' if a.object.errors[:address_line_3].any? %>" id="address_line_3">
+      <%= render 'error', error_messages: location.address.errors[:address_line_3] %>
+      <%= a.text_field :address_line_3, class: 'input-md-3 form-control t-address-line-3' %>
+    </div>
+  </div>
+
+  <div class="form-group <%= 'form-group--error' if a.object.errors[:town].any? %>" id="town">
+    <%= a.label :town %>
+    <%= render 'error', error_messages: location.address.errors[:town] %>
+    <%= a.text_field :town, class: 'input-md-3 form-control t-town' %>
+  </div>
+
+  <div class="form-group <%= 'form-group--error' if a.object.errors[:county].any? %>" id="county">
+    <%= a.label :county %>
+    <%= render 'error', error_messages: location.address.errors[:county] %>
+    <%= a.text_field :county, class: 'input-md-3 form-control t-county' %>
+  </div>
+
+  <div class="form-group <%= 'form-group--error' if a.object.errors[:postcode].any? %>" id="postcode">
+    <%= a.label :postcode %>
+    <%= render 'error', error_messages: location.address.errors[:postcode] %>
+    <%= a.text_field :postcode, class: 'input-md-2 form-control t-postcode' %>
+  </div>
+<% end %>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:hours].any? %>" id="hours">
+  <%= f.label :hours, 'Booking hours' %>
+  <%= render 'error', error_messages: location.errors[:hours] %>
+  <%= f.text_area :hours, class: 'input-md-3 form-control t-booking-hours' %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:booking_location].any? %>" id="booking_location">
+  <%= f.label :booking_location_uid, 'Booking location:' %>
+  <%= render 'error', error_messages: location.errors[:booking_location] %>
+  <%= f.collection_select(
+        :booking_location_uid,
+        @booking_locations,
+        :uid,
+        :title,
+        { include_blank: true },
+        class: 'input-md-3 form-control t-booking-location'
+      )
+  %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:phone].any? %>" id="phone">
+  <%= f.label :phone, 'Telephone number' %>
+  <%= render 'error', error_messages: location.errors[:phone] %>
+  <%= f.text_field :phone, class: 'input-md-3 form-control t-phone', disabled: !policy(location).phone? %>
+</div>
+
+<% if policy(location).admin? %>
+  <div class="form-group <%= 'form-group--error' if f.object.errors[:twilio_number].any? %>" id="twilio-number">
+    <%= f.label :twilio_number, 'Twilio number' %>
+    <%= render 'error', error_messages: location.errors[:twilio_number] %>
+    <%= f.text_field :twilio_number, class: 'input-md-3 form-control t-twilio-number' %>
+  </div>
+<% end %>
+
+<div class="form-group t-visibility <%= 'form-group--error' if f.object.errors[:hidden].any? %>" id="hidden">
+  <%= f.label :hidden, 'Visibility', class: 'block' %><br/>
+  <%= render 'error', error_messages: location.errors[:hidden] %>
+  <%= hidden_field_tag :display_hidden, params[:display_hidden] %>
+  <%= hidden_field_tag :display_active, params[:display_active] %>
+  <%= f.radio_button :hidden, false, class: 'l-location-status__checkbox t-hidden-false', id: "location_hidden_false_#{location.id}" %>
+  <%= f.label "hidden_false_#{location.id}", 'Active', class: 'l-location-status__label' %>
+  <%= f.radio_button :hidden, true, class: 'l-location-status__checkbox t-hidden-true', id: "location_hidden_true_#{location.id}" %>
+  <%= f.label "hidden_true_#{location.id}", 'Hidden', class: 'l-location-status__label' %>
+</div>
+
+<div class="form-group">
+  <%= link_to 'Cancel', admin_location_path(location.uid), class: 'btn btn-default t-cancel-button' %>
+  <%= f.submit 'Save', class: 'btn btn-success t-save-button' %>
+</div>

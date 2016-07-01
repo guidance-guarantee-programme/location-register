@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'twilio' => 'twilios#show'
 
   namespace :admin do
-    resources :locations, only: [:index, :update, :show, :edit]
+    resources :locations, except: :destroy
     resources :edited_locations, only: [:index]
     root 'locations#index'
   end

@@ -1,7 +1,7 @@
 Given(/^a location exists that has been hidden$/) do
   user = create(:user, :pensionwise_admin)
   location = create(:location, :nicab, created_at: 1.month.ago)
-  updater = UpdateLocation.new(location: location, user: user)
+  updater = CreateOrUpdateLocation.new(location: location, user: user)
   params = { 'hidden' => 'true' }
   updater.update(params)
 end
@@ -26,7 +26,7 @@ end
 Given(/^a location exists that has been hidden and then made visible$/) do
   user = create(:user, :pensionwise_admin)
   location = create(:location, :nicab, created_at: 1.month.ago)
-  updater = UpdateLocation.new(location: location, user: user)
+  updater = CreateOrUpdateLocation.new(location: location, user: user)
   params = { 'hidden' => 'true' }
   updater.update(params)
   params = { 'hidden' => 'false' }
@@ -36,7 +36,7 @@ end
 Given(/^a location exists that was hidden yesterday$/) do
   user = create(:user, :pensionwise_admin)
   location = create(:location, :nicab, created_at: 1.month.ago)
-  updater = UpdateLocation.new(location: location, user: user)
+  updater = CreateOrUpdateLocation.new(location: location, user: user)
   travel_to(Time.zone.yesterday) do
     params = { hidden: true }.with_indifferent_access
     updater.update(params)
@@ -50,7 +50,7 @@ end
 Given(/^a location exists that with a address edit$/) do
   user = create(:user, :pensionwise_admin)
   location = create(:location, :nicab, :one_line_address, created_at: 1.month.ago)
-  updater = UpdateLocation.new(location: location, user: user)
+  updater = CreateOrUpdateLocation.new(location: location, user: user)
   params = { address: { address_line_1: 'My New Address', postcode: 'UB9 4LH' } }.with_indifferent_access
   updater.update(params)
 end

@@ -13,6 +13,7 @@ class Location < ActiveRecord::Base
     twilio_number
   ).freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
+  ORGANISATIONS = %w(cas cita nicab).freeze
 
   belongs_to :address, validate: true
   belongs_to :booking_location, -> { current },
@@ -24,7 +25,7 @@ class Location < ActiveRecord::Base
   has_many :guiders
 
   validates :uid, presence: true
-  validates :organisation, presence: true
+  validates :organisation, presence: true, inclusion: ORGANISATIONS
   validates :title, presence: true
   validates :address, presence: true
   validates :booking_location, presence: { if: ->(l) { l.phone.nil? } }
@@ -38,6 +39,7 @@ class Location < ActiveRecord::Base
             uk_phone_number: true,
             if: :current_with_twilio_number?
   validates :guiders, length: { is: 0 }, if: :booking_location_uid?
+  validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }

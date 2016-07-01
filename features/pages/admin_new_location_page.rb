@@ -1,6 +1,7 @@
-class AdminEditLocationPage < SitePrism::Page
-  set_url '/admin/locations/{uid}/edit'
+class AdminNewLocationPage < SitePrism::Page
+  set_url '/admin/locations/new'
 
+  element :organisation, '.t-organisation'
   element :location_title, '.t-location-title'
   element :booking_hours, '.t-booking-hours'
   element :visibility, '.t-visibility'
@@ -12,14 +13,10 @@ class AdminEditLocationPage < SitePrism::Page
   element :town, '.t-town'
   element :county, '.t-county'
   element :postcode, '.t-postcode'
+  element :phone, '.t-phone'
+  element :twilio, '.t-twilio-number'
 
-  element :hidden_false, '.t-hidden-false'
+  element :hidden_true, '.t-hidden-true'
 
   element :save_button, '.t-save-button'
-
-  elements :errors, '.t-error-message'
-
-  def error_messages
-    errors.map(&:text)
-  end
 end

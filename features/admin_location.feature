@@ -53,3 +53,14 @@ Feature: Admin - Location Directory
     When I visit the "Apples" location
     And I set the locations "postcode" field to ""
     Then I should see an error message for "postcode"
+
+  Scenario: I can make a location with a twilio number visible
+    Given a hidden location exists with a twilio number
+    When I toggle the locations visiblity
+    Then the location is visible
+
+  Scenario: I can not make a location without a twilio number visible
+    Given a hidden location exists without a twilio number
+    When I toggle the locations visiblity
+    Then I get a permission denied error
+    And the location is hidden

@@ -32,6 +32,8 @@ en:
             twilio_number:
               invalid: Please use the format +44XXXXXXXXXX
               taken: That number is already in use
+            hidden:
+              inclusion: Must be hidden until a twilio number is set
         address:
           attributes:
             postcode:
