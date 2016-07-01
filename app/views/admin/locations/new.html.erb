@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="inline-block">New Location</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @location, url: admin_locations_path do |f| %>
+      <%= render 'form', f: f, location: @location %>
+    <% end %>
+  </div>
+</div>

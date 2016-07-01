@@ -6,6 +6,8 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= render 'form', location: @location %>
+    <%= form_for @location, url: admin_location_path, method: 'put' do |f| %>
+      <%= render 'form', f: f, location: @location %>
+    <% end %>
   </div>
 </div>

@@ -11,6 +11,14 @@ class LocationPolicy < ApplicationPolicy
     end
   end
 
+  def admin?
+    user.pensionwise_admin?
+  end
+
+  def phone?
+    record.version.nil? || (record.version == 1 && record.new_record?)
+  end
+
   def edit?
     admin_or_organisations_project_manager?
   end
@@ -27,14 +35,23 @@ class LocationPolicy < ApplicationPolicy
     admin_or_organisations_project_manager?
   end
 
+  def create?
+    admin_or_organisations_project_manager?
+  end
+
   def permitted_attributes
-    [
+    base_params = [
       :booking_location_uid,
       :hidden,
       :title,
       :hours,
       address: [:address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode]
     ]
+
+    base_params << :phone if record == Location
+    base_params << :organisation << :twilio_number if admin?
+
+    base_params
   end
 
   private

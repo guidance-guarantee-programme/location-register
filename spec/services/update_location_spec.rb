@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UpdateLocation do
+RSpec.describe CreateOrUpdateLocation do
   let(:user) { create(:user) }
   subject { described_class.new(location: location, user: user) }
   let(:address) { create(:address) }
@@ -10,9 +10,10 @@ RSpec.describe UpdateLocation do
     let(:other_user) { create(:user) }
     let(:params) do
       {
-        organisation: 'CAS',
+        organisation: 'cas',
         title: 'Test Vile',
         phone: '+44111111111',
+        twilio_number: '+44111111112',
         hours: 'MON-FRI 9am-5pm',
         booking_location_uid: nil,
         address_id: address.id,

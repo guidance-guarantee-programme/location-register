@@ -11,6 +11,24 @@ module Admin
       end
     end
 
+    def new
+      @location = Location.new(address: Address.new)
+      @booking_locations = policy_scope(Location.booking_locations)
+    end
+
+    def create
+      updater = CreateOrUpdateLocation.new(user: current_user)
+      @location = updater.build(permitted_attributes(Location))
+      authorize @location
+
+      if @location.save
+        redirect_to admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
+      else
+        @booking_locations = policy_scope(Location.booking_locations)
+        render :new
+      end
+    end
+
     def show
     end
 
@@ -19,7 +37,7 @@ module Admin
     end
 
     def update
-      updater = UpdateLocation.new(location: @location, user: current_user)
+      updater = CreateOrUpdateLocation.new(location: @location, user: current_user)
       @location = updater.update(permitted_attributes(@location))
       if @location.new_record?
         @booking_locations = policy_scope(Location.booking_locations)

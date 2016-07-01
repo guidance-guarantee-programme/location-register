@@ -17,8 +17,8 @@ FactoryGirl.define do
       organisation 'cas'
     end
 
-    trait :citi do
-      organisation 'citi'
+    trait :cita do
+      organisation 'cita'
     end
 
     trait :one_line_address do

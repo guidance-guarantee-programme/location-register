@@ -33,7 +33,7 @@ class AddTwilioNumberToLocation < ActiveRecord::Migration
           location.hidden || puts("No twilio number for: #{location.title}")
         end
 
-        updater = UpdateLocation.new(location: location, user: User.find_by(email: 'david.henry@pensionwise.gov.uk'))
+        updater = CreateOrUpdateLocation.new(location: location, user: User.find_by(email: 'david.henry@pensionwise.gov.uk'))
 
         if changes.any? && (updater.update(changes) == location)
           raise "Errors: #{location.errors.full_messages.join(', ')}"

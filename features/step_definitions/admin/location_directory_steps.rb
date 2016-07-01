@@ -24,7 +24,7 @@ end
 Given(/^locations exist for other organisations$/) do
   create(:user, :project_manager, :nicab)
   create(:location, :cas)
-  create(:location, :citi)
+  create(:location, :cita)
   @nicab_location = create(:location, :nicab)
 end
 
