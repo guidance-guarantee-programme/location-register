@@ -17,13 +17,15 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
     expect(subject).to include(
       'uid' => booking_location.uid,
       'name' => booking_location.title,
-      'address' => booking_location.address_line
+      'address' => booking_location.address_line,
+      'online_booking_twilio_number' => booking_location.online_booking_twilio_number
     )
 
     expect(subject['locations'].first).to eq(
       'uid' => booking_location.locations.first.uid,
       'name' => booking_location.locations.first.title,
       'address' => booking_location.locations.first.address_line,
+      'online_booking_twilio_number' => '',
       'locations' => []
     )
 
