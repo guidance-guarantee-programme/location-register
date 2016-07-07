@@ -37,7 +37,6 @@ end
 
 group :development do
   gem 'rubocop', require: false
-  gem 'spring'
   gem 'web-console', '~> 2.0'
 end
 
