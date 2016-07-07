@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610135053) do
+ActiveRecord::Schema.define(version: 20160707140820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,19 +55,20 @@ ActiveRecord::Schema.define(version: 20160610135053) do
     t.string   "organisation"
     t.string   "title"
     t.string   "phone"
-    t.string   "hours",                limit: 500
-    t.string   "state",                            default: "pending"
+    t.string   "hours",                        limit: 500
+    t.string   "state",                                    default: "pending"
     t.datetime "closed_at"
     t.integer  "version"
     t.jsonb    "raw"
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.boolean  "hidden",                           default: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+    t.boolean  "hidden",                                   default: false
     t.integer  "address_id"
     t.string   "booking_location_uid"
     t.integer  "editor_id"
     t.string   "twilio_number"
     t.string   "extension"
+    t.string   "online_booking_twilio_number",             default: "",        null: false
   end
 
   add_index "locations", ["booking_location_uid"], name: "index_locations_on_booking_location_uid", using: :btree
