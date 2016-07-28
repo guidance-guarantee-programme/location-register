@@ -47,7 +47,11 @@ class Location < ActiveRecord::Base
 
   class << self
     def booking_location_for(uid)
-      location = includes(:locations, :guiders).find_by(uid: uid)
+      location = includes(:locations, :guiders)
+                 .current
+                 .active
+                 .find_by(uid: uid)
+
       location&.booking_location || location
     end
 
