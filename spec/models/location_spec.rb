@@ -61,6 +61,30 @@ RSpec.describe Location do
         expect(subject).to eq(booking_location)
       end
     end
+
+    context 'with multiple locations of differing version' do
+      let(:uid) { booking_location.uid }
+
+      before do
+        booking_location.update_attribute(:state, 'old')
+      end
+
+      it 'returns only the current version' do
+        expect(subject).to be_nil
+      end
+    end
+
+    context 'with inactive locations' do
+      let(:uid) { booking_location.uid }
+
+      before do
+        booking_location.update_attribute(:hidden, true)
+      end
+
+      it 'returns only active versions' do
+        expect(subject).to be_nil
+      end
+    end
   end
 
   describe '.externally_visible' do
