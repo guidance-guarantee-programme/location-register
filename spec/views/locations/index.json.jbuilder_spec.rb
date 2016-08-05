@@ -23,7 +23,8 @@ RSpec.describe 'locations/index' do
             'address' => "Test flat 3\nTesting center\nTest Avenue\nTest Vile\nTesty\nUB9 4LH",
             'booking_location_id' => '',
             'phone' => location.phone,
-            'hours' => 'MON-FRI 9am-5pm'
+            'hours' => 'MON-FRI 9am-5pm',
+            'twilio_number' => location.twilio_number
           }
         }
       ]
