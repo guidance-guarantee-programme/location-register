@@ -36,7 +36,7 @@ end
 
 Given(/^two locations exist called "([^"]*)" and "([^"]*)"$/) do |title1, title2|
   create(:user, :project_manager, :nicab)
-  create(:location, :nicab, title: title1)
+  create(:location, :nicab, title: title1, booking_location: create(:location))
   create(:location, :nicab, title: title2)
 end
 

@@ -43,7 +43,9 @@ Then(/^the "([^"]*)" location has a new version where "([^"]*)" has been set to 
   previous_location, current_location = *LocationTestHelper.get_all_location_versions(title: title)
 
   edited_fields = EditedLocationField.all(current_location, previous_location)
-  expect(edited_fields).to equal_edits([{ field: LocationTestHelper.field_name(field), new_value: value }])
+  expect(edited_fields).to equal_edits(
+    [{ field: LocationTestHelper.field_name(field), new_value: LocationTestHelper.field_value(field, value) }]
+  )
 end
 
 Then(/^the "([^"]*)" location address has been updated to have "([^"]*)" set to "([^"]*)"$/) do |title, _field, value|
@@ -59,7 +61,11 @@ Then(/^I should see an error message for "([^"]*)"$/) do |field|
 end
 
 module LocationTestHelper
-  FIELD_NAME_MAP = { 'location_title' => 'title', 'booking_hours' => 'hours' }.freeze
+  FIELD_NAME_MAP = {
+    'location_title' => 'title',
+    'booking_hours' => 'hours',
+    'make_location_visible' => 'visibility'
+  }.freeze
 
   module_function
 
@@ -70,5 +76,10 @@ module LocationTestHelper
 
   def field_name(field)
     FIELD_NAME_MAP[field] || field
+  end
+
+  def field_value(field, value)
+    return value unless field == 'make_location_visible'
+    value == 'No' ? 'Hidden' : 'Active'
   end
 end

@@ -15,10 +15,10 @@ Feature: Admin - Location Directory
     Then the "Apples" location has a new version where "<Field>" has been set to "<Value>"
 
     Examples:
-      | method | Field            | Value                  |
-      | set    | location_title   | Super Location         |
-      | set    | booking_hours    | Mon to Fri 6am to 1pm  |
-      | choose | visibility       | Hidden                 |
+      | method | Field                 | Value                  |
+      | set    | location_title        | Super Location         |
+      | set    | booking_hours         | Mon to Fri 6am to 1pm  |
+      | choose | make_location_visible | No                     |
 
   Scenario: Editing a locations booking location creates a new version with the updated values
     Given two locations exist called "Apples" and "Bamboo"

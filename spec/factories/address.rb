@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :address do
     uid { SecureRandom.uuid }
-    address 'Flat 10'
-    address_line_1 'Test flat 3'
+    sequence(:address_line_1) { |n| "Test flat #{n}" }
     address_line_2 'Testing center'
     address_line_3 'Test Avenue'
     town 'Test Vile'

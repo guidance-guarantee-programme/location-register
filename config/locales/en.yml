@@ -27,13 +27,16 @@ en:
           attributes:
             phone:
               invalid: Please use the format +44XXXXXXXXXX
+              present: Leave blank when booking location exists
             title:
               blank: Please enter the title
             twilio_number:
               invalid: Please use the format +44XXXXXXXXXX
               taken: That number is already in use
             hidden:
-              inclusion: Must be hidden until a twilio number is set
+              inclusion: Can't be visible - additional admin needed
+            hours:
+              present: Leave blank when booking location exists
         address:
           attributes:
             postcode:
