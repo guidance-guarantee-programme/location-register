@@ -7,7 +7,7 @@ class TwiliosController < ApplicationController
     else
       @twilio_redirection = TwilioRedirection.for(params[:To])
       if @twilio_redirection
-        render :show, format: :xml
+        render :show, formats: :xml
       else
         head(:not_found)
       end
