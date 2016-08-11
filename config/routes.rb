@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :locations, only: :index
 
   post 'twilio' => 'twilios#show'
+  get 'twilio' => 'twilios#show'
 
   namespace :admin do
     resources :locations, except: :destroy
