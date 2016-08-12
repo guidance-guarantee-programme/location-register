@@ -3,7 +3,7 @@ class AdminEditLocationPage < SitePrism::Page
 
   element :location_title, '.t-location-title'
   element :booking_hours, '.t-booking-hours'
-  element :visibility, '.t-visibility'
+  element :make_location_visible, '.t-visibility'
   element :booking_location, '.t-booking-location'
 
   element :address_line_1, '.t-address-line-1'

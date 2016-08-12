@@ -13,6 +13,13 @@ FactoryGirl.define do
     booking_location nil
     editor { build(:user) }
 
+    before(:create) do |location|
+      if location.booking_location.present?
+        location.hours = nil
+        location.phone = nil
+      end
+    end
+
     trait :cas do
       organisation 'cas'
     end

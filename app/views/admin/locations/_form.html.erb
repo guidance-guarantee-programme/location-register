@@ -70,12 +70,6 @@
   </div>
 <% end %>
 
-<div class="form-group <%= 'form-group--error' if f.object.errors[:hours].any? %>" id="hours">
-  <%= f.label :hours, 'Booking hours' %>
-  <%= render 'error', error_messages: location.errors[:hours] %>
-  <%= f.text_area :hours, class: 'input-md-3 form-control t-booking-hours' %>
-</div>
-
 <div class="form-group <%= 'form-group--error' if f.object.errors[:booking_location].any? %>" id="booking_location">
   <%= f.label :booking_location_uid, 'Booking location:' %>
   <%= render 'error', error_messages: location.errors[:booking_location] %>
@@ -88,6 +82,12 @@
         class: 'input-md-3 form-control t-booking-location'
       )
   %>
+</div>
+
+<div class="form-group <%= 'form-group--error' if f.object.errors[:hours].any? %>" id="hours">
+  <%= f.label :hours, 'Booking hours' %>
+  <%= render 'error', error_messages: location.errors[:hours] %>
+  <%= f.text_area :hours, class: 'input-md-3 form-control t-booking-hours' %>
 </div>
 
 <div class="form-group <%= 'form-group--error' if f.object.errors[:phone].any? %>" id="phone">
@@ -105,14 +105,14 @@
 <% end %>
 
 <div class="form-group t-visibility <%= 'form-group--error' if f.object.errors[:hidden].any? %>" id="hidden">
-  <%= f.label :hidden, 'Visibility', class: 'block' %><br/>
+  <%= f.label :hidden, 'Make location visible?', class: 'block' %><br/>
   <%= render 'error', error_messages: location.errors[:hidden] %>
   <%= hidden_field_tag :display_hidden, params[:display_hidden] %>
   <%= hidden_field_tag :display_active, params[:display_active] %>
   <%= f.radio_button :hidden, false, class: 'l-location-status__checkbox t-hidden-false', id: "location_hidden_false_#{location.id}" %>
-  <%= f.label "hidden_false_#{location.id}", 'Active', class: 'l-location-status__label' %>
+  <%= f.label "hidden_false_#{location.id}", 'Yes', class: 'l-location-status__label' %>
   <%= f.radio_button :hidden, true, class: 'l-location-status__checkbox t-hidden-true', id: "location_hidden_true_#{location.id}" %>
-  <%= f.label "hidden_true_#{location.id}", 'Hidden', class: 'l-location-status__label' %>
+  <%= f.label "hidden_true_#{location.id}", 'No', class: 'l-location-status__label' %>
 </div>
 
 <div class="form-group">

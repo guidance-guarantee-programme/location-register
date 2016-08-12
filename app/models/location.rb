@@ -28,12 +28,16 @@ class Location < ActiveRecord::Base
   validates :organisation, presence: true, inclusion: ORGANISATIONS
   validates :title, presence: true
   validates :address, presence: true
-  validates :booking_location, presence: { if: ->(l) { l.phone.nil? } }
+  validates :booking_location,
+            presence: { if: ->(l) { l.phone.blank? } }
   validates :version, presence: true
   validates :state, presence: true, inclusion: %w(old current)
   validates :phone,
             presence: { if: ->(l) { l.booking_location.blank? } },
+            absence: { if: ->(l) { l.booking_location.present? } },
             uk_phone_number: { if: :current_with_phone_number? }
+  validates :hours,
+            absence: { if: ->(l) { l.booking_location.present? } }
   validates :twilio_number,
             uniqueness: { conditions: -> { current } },
             uk_phone_number: true,
@@ -93,7 +97,7 @@ class Location < ActiveRecord::Base
   end
 
   def current_with_phone_number?
-    current? && phone.present?
+    current? && booking_location.nil? && phone.present?
   end
 
   def current_with_twilio_number?
