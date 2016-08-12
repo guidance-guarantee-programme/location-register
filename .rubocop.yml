@@ -30,3 +30,6 @@ Style/RescueModifier:
 
 Lint/AssignmentInCondition:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
