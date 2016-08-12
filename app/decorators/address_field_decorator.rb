@@ -12,6 +12,6 @@ class AddressFieldDecorator < SimpleDelegator
   def wrap(value)
     return '' if value.nil?
 
-    value.to_a.join('<br/>').html_safe
+    value.to_a.join('<br/>').html_safe # rubocop:disable Rails/OutputSafety
   end
 end
