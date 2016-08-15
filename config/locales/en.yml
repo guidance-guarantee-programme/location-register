@@ -28,6 +28,7 @@ en:
             phone:
               invalid: Please use the format +44XXXXXXXXXX
               present: Leave blank when booking location exists
+              twilio_must_be_changed: Twilio number must also be changed
             title:
               blank: Please enter the title
             twilio_number:
