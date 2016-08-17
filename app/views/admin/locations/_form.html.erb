@@ -71,7 +71,7 @@
 <% end %>
 
 <div class="form-group <%= 'form-group--error' if f.object.errors[:booking_location].any? %>" id="booking_location">
-  <%= f.label :booking_location_uid, 'Booking location:' %>
+  <%= f.label :booking_location_uid, 'Booking location' %>
   <%= render 'error', error_messages: location.errors[:booking_location] %>
   <%= f.collection_select(
         :booking_location_uid,

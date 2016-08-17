@@ -101,4 +101,56 @@ RSpec.describe Location do
       expect(locations).to match_array([active_location])
     end
   end
+
+  describe 'editing the phone number' do
+    let(:version_3) do
+      build(:location, uid: '12345', version: 3, phone: '+44123456111', twilio_number: '+44987654321', state: 'old')
+        .tap { |l| l.save!(validate: false) }
+    end
+    let(:version_4) do
+      version_3
+      build(:location, uid: '12345', version: 4, phone: version_4_phone, twilio_number: version_4_twilio, state: 'old')
+        .tap { |l| l.save!(validate: false) }
+    end
+    let(:version_5) do
+      version_4
+      build(:location, uid: '12345', version: 5, phone: version_5_phone, twilio_number: version_5_twilio)
+    end
+
+    it 'can create a new record with a phone number' do
+      location = build(:location, twilio_number: nil, hidden: true)
+      expect(location).to be_valid
+    end
+
+    context 'phone number has changed' do
+      let(:version_4_phone) { '+44123456789' }
+      let(:version_5_phone) { '+44123456222' }
+
+      context 'twilio number has changed' do
+        let(:version_4_twilio) { '+44987654321' }
+        let(:version_5_twilio) { '+44987654222' }
+
+        it 'existing records are valid' do
+          expect(version_4).to be_valid
+        end
+
+        it 'edits are valid' do
+          expect(version_5).to be_valid
+        end
+      end
+
+      context 'twilio number has not changed' do
+        let(:version_4_twilio) { '+44987654321' }
+        let(:version_5_twilio) { '+44987654321' }
+
+        it 'existing records are valid' do
+          expect(version_4).to be_valid
+        end
+
+        it 'edits are invalid' do
+          expect(version_5).not_to be_valid
+        end
+      end
+    end
+  end
 end

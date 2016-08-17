@@ -3,6 +3,26 @@ require 'rails_helper'
 RSpec.describe LocationPolicy do
   subject { described_class }
 
+  permissions :phone? do
+    let(:user) { build(:user) }
+    let(:admin) { build(:user, :cas, :pensionwise_admin) }
+
+    it 'grants access for a new location' do
+      expect(subject).to permit(user, Location.new(version: nil))
+      expect(subject).to permit(user, Location.new(version: 1))
+    end
+
+    context 'for an existing location' do
+      it 'deny access for a normal user' do
+        expect(subject).not_to permit(user, create(:location, version: 1))
+      end
+
+      it 'grant access for an admin user' do
+        expect(subject).to permit(admin, create(:location, version: 1))
+      end
+    end
+  end
+
   permissions :index? do
     it 'grant access to everyone' do
       expect(subject).to permit(nil, nil)
@@ -40,6 +60,90 @@ RSpec.describe LocationPolicy do
       it 'deny access to everyone' do
         expect(subject).not_to permit(user, cas_location)
         expect(subject).not_to permit(user, nicab_location)
+      end
+    end
+  end
+
+  describe '#permitted_attributes' do
+    subject { described_class.new(user, record) }
+
+    context 'when it is a new record' do
+      let(:record) { Location }
+      let(:user) { create(:user) }
+
+      it do
+        expect(subject.permitted_attributes).to eq(
+          [
+            :booking_location_uid,
+            :hidden,
+            :title,
+            :hours,
+            {
+              address: [
+                :address_line_1,
+                :address_line_2,
+                :address_line_3,
+                :town,
+                :county,
+                :postcode
+              ]
+            },
+            :phone
+          ]
+        )
+      end
+    end
+
+    context 'when it is an admin user' do
+      let(:record) { create(:location) }
+      let(:user) { create(:user, :pensionwise_admin) }
+
+      it do
+        expect(subject.permitted_attributes).to eq(
+          [
+            :booking_location_uid,
+            :hidden,
+            :title,
+            :hours,
+            {
+              address: [
+                :address_line_1,
+                :address_line_2,
+                :address_line_3,
+                :town,
+                :county,
+                :postcode
+              ]
+            },
+            :phone,
+            :organisation,
+            :twilio_number
+          ]
+        )
+      end
+    end
+
+    context 'when it is an existing record for a non admin user' do
+      let(:record) { create(:location) }
+      let(:user) { create(:user) }
+
+      it do
+        expect(subject.permitted_attributes).to eq(
+          [
+            :booking_location_uid,
+            :hidden,
+            :title,
+            :hours,
+            address: [
+              :address_line_1,
+              :address_line_2,
+              :address_line_3,
+              :town,
+              :county,
+              :postcode
+            ]
+          ]
+        )
       end
     end
   end
