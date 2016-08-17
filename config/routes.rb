@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api, constraints: { format: :json } do
     namespace :v1 do
       get '/booking_locations/:uid', to: 'booking_locations#show', as: :booking_location
+      get '/twilio_numbers', to: 'twilio_numbers#index', as: :twilio_numbers
     end
   end
 
