@@ -6,7 +6,7 @@ class TwilioRedirection
   class Location
     def self.for(twilio_number)
       location = ::Location.current.find_by(twilio_number: twilio_number)
-      location ? new(location.booking_location || location) : nil
+      location ? new(location.canonical_location) : nil
     end
 
     def initialize(location)

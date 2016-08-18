@@ -1,6 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe Location do
+  describe '.latest_for_twilio_number' do
+    let(:user) { create(:user) }
+    let(:location_1_ver_1) { create(:location) }
+    let!(:location_1_ver_2) { CreateOrUpdateLocation.new(location: location_1_ver_1, user: user).update(params) }
+
+    context 'when a location has has multiple twilio number' do
+      let(:params) { { 'phone' => '+44999999999', 'twilio_number' => '+44999999111' } }
+
+      it 'returns the most recent version for each twilio number' do
+        expect(described_class.latest_for_twilio_number).to eq([location_1_ver_2, location_1_ver_1])
+      end
+    end
+
+    context 'when a locations is edited without the twilio number changing' do
+      let(:params) { { 'title' => 'New Name' } }
+
+      it 'only returns the latest version of the location' do
+        expect(described_class.latest_for_twilio_number).to eq([location_1_ver_2])
+      end
+    end
+
+    context 'when two locations have used the same twilio number' do
+      let(:params) { { 'phone' => '+44999999999', 'twilio_number' => '+44999999111' } }
+      let!(:location_2) { create(:location, twilio_number: location_1_ver_1.twilio_number) }
+
+      it 'the newer location takes precedence over the old location' do
+        expect(described_class.latest_for_twilio_number).to eq([location_2, location_1_ver_2])
+      end
+    end
+  end
+
   describe '#guiders' do
     context 'for child locations' do
       it 'is invalid with associated guiders' do

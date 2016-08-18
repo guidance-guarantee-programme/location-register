@@ -55,7 +55,7 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
                  .active
                  .find_by(uid: uid)
 
-      location&.booking_location || location
+      location&.canonical_location
     end
 
     def between(start_time, end_time)
@@ -78,11 +78,24 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
         .includes(:address, :editor, :booking_location)
         .references(:address, :editor, :booking_location)
     end
+
+    def latest_for_twilio_number
+      reorder(:hidden, 'updated_at DESC', 'created_at DESC')
+        .each_with_object({}) do |location, hash|
+          next if location.twilio_number.blank?
+          hash[location.twilio_number] ||= location
+        end
+        .values
+    end
   end
 
   def initialize(*args)
     super
     self.uid ||= SecureRandom.uuid
+  end
+
+  def canonical_location
+    booking_location || self
   end
 
   def matches_params?(params)
