@@ -42,7 +42,6 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
             if: :current_with_twilio_number?
   validates :guiders, length: { is: 0 }, if: :booking_location_uid?
   validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
-  validate :allow_phone_edit
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }
@@ -124,20 +123,5 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
     return [] if booking_location_uid.present?
 
     Slot.all
-  end
-
-  private
-
-  def allow_phone_edit
-    return unless new_record?
-    return if version.nil? || version == 1
-    return if phone == previous&.phone
-    return if twilio_number != previous&.twilio_number
-
-    errors.add(:phone, :twilio_must_be_changed)
-  end
-
-  def previous
-    @previous ||= self.class.find_by(uid: uid, version: version - 1)
   end
 end

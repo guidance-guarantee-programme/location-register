@@ -133,6 +133,11 @@ RSpec.describe Location do
     end
   end
 
+  it 'can create a new record with a phone number and no twilio number' do
+    location = build(:location, twilio_number: nil, hidden: true)
+    expect(location).to be_valid
+  end
+
   describe 'editing the phone number' do
     let(:version_3) do
       build(:location, uid: '12345', version: 3, phone: '+44123456111', twilio_number: '+44987654321', state: 'old')
@@ -148,17 +153,12 @@ RSpec.describe Location do
       build(:location, uid: '12345', version: 5, phone: version_5_phone, twilio_number: version_5_twilio)
     end
 
-    it 'can create a new record with a phone number' do
-      location = build(:location, twilio_number: nil, hidden: true)
-      expect(location).to be_valid
-    end
-
     context 'phone number has changed' do
+      let(:version_4_twilio) { '+44987654321' }
       let(:version_4_phone) { '+44123456789' }
       let(:version_5_phone) { '+44123456222' }
 
-      context 'twilio number has changed' do
-        let(:version_4_twilio) { '+44987654321' }
+      context 'and the twilio number has changed' do
         let(:version_5_twilio) { '+44987654222' }
 
         it 'existing records are valid' do
@@ -170,16 +170,15 @@ RSpec.describe Location do
         end
       end
 
-      context 'twilio number has not changed' do
-        let(:version_4_twilio) { '+44987654321' }
-        let(:version_5_twilio) { '+44987654321' }
+      context 'and the twilio number has not changed' do
+        let(:version_5_twilio) { version_4_twilio }
 
         it 'existing records are valid' do
           expect(version_4).to be_valid
         end
 
-        it 'edits are invalid' do
-          expect(version_5).not_to be_valid
+        it 'edits are valid' do
+          expect(version_5).to be_valid
         end
       end
     end
