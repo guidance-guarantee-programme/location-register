@@ -97,6 +97,10 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
     booking_location || self
   end
 
+  def current_version
+    self.class.current.find_by(uid: uid)
+  end
+
   def matches_params?(params)
     EDIT_FIELDS.all? do |field_name|
       !params.key?(field_name) || params[field_name].to_s == self[field_name].to_s

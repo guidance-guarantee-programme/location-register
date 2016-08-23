@@ -37,7 +37,7 @@ RSpec.describe Address do
       expect(address.to_a).to eq(
         [
           address.address_line_1,
-          'Testing center',
+          'Testing centre',
           'Test Avenue',
           'Test Vile',
           'Testy',
