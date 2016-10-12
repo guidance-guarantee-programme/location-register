@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="inline-block">Guiders</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 well">
+    <%= form_for @guider, url: admin_location_guiders_path(@location.uid) do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control t-name', placeholder: 'Jane Doe' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control t-email', placeholder: 'jane.doe@example.com' %>
+      </div>
+      <%= f.button 'Add Guider', class: 'btn btn-default t-add' %>
+    <% end %>
+  </div>
+  <div class="col-md-9">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-header">
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @location.guiders.each do |guider| %>
+          <tr class="t-guider">
+            <td class="t-guider-name"><%= guider.name %></td>
+            <td class="t-guider-email"><%= guider.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

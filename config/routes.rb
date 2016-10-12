@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   get 'twilio' => 'twilios#show'
 
   namespace :admin do
-    resources :locations, except: :destroy
+    resources :locations, except: :destroy do
+      get 'online_booking', on: :member
+
+      resources :guiders, only: %i(index create)
+    end
+
     resources :edited_locations, only: [:index]
     root 'locations#index'
   end

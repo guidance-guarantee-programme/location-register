@@ -40,6 +40,10 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
             uniqueness: { conditions: -> { current } },
             uk_phone_number: true,
             if: :current_with_twilio_number?
+  validates :online_booking_twilio_number,
+            uk_phone_number: true,
+            allow_blank: true,
+            unless: :booking_location_uid?
   validates :guiders, length: { is: 0 }, if: :booking_location_uid?
   validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
 

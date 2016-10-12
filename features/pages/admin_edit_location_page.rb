@@ -17,6 +17,8 @@ class AdminEditLocationPage < SitePrism::Page
 
   element :save_button, '.t-save-button'
 
+  element :guiders, '.t-guiders'
+
   elements :errors, '.t-error-message'
 
   def error_messages

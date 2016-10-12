@@ -1,6 +1,6 @@
 module Admin
   class LocationsController < Admin::BaseController
-    before_action :set_authorised_location, only: [:update, :show, :edit]
+    before_action :set_authorised_location, only: [:update, :show, :edit, :online_booking]
 
     def index
       authorize Location
@@ -45,6 +45,9 @@ module Admin
       else
         redirect_to admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
       end
+    end
+
+    def online_booking
     end
 
     private

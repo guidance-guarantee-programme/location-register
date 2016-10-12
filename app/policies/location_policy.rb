@@ -39,6 +39,10 @@ class LocationPolicy < ApplicationPolicy
     admin_or_organisations_project_manager?
   end
 
+  def online_booking?
+    admin?
+  end
+
   def permitted_attributes
     base_params = [
       :booking_location_uid,
@@ -49,7 +53,7 @@ class LocationPolicy < ApplicationPolicy
     ]
 
     base_params += [:phone] if creating_new_record? || admin?
-    base_params += [:organisation, :twilio_number] if admin?
+    base_params += [:organisation, :twilio_number, :online_booking_twilio_number] if admin?
 
     base_params
   end

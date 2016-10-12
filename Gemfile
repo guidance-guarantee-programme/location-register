@@ -45,6 +45,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'poltergeist'
+  gem 'phantomjs', require: 'phantomjs/poltergeist'
   gem 'site_prism'
   gem 'vcr'
   gem 'webmock'
