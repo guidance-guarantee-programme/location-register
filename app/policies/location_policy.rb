@@ -49,7 +49,7 @@ class LocationPolicy < ApplicationPolicy
     ]
 
     base_params += [:phone] if creating_new_record? || admin?
-    base_params += [:organisation, :twilio_number] if admin?
+    base_params += [:organisation, :twilio_number, :online_booking_twilio_number] if admin?
 
     base_params
   end

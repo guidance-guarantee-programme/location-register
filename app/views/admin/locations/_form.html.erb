@@ -102,6 +102,12 @@
     <%= render 'error', error_messages: location.errors[:twilio_number] %>
     <%= f.text_field :twilio_number, class: 'input-md-3 form-control t-twilio-number' %>
   </div>
+
+  <div class="form-group <%= 'form-group--error' if f.object.errors[:online_booking_twilio_number].any? %>" id="online-booking-twilio-number">
+    <%= f.label :online_booking_twilio_number, 'Online booking twilio number' %>
+    <%= render 'error', error_messages: location.errors[:online_booking_twilio_number] %>
+    <%= f.text_field :online_booking_twilio_number, class: 'input-md-3 form-control t-online-booking-twilio-number' %>
+  </div>
 <% end %>
 
 <div class="form-group t-visibility <%= 'form-group--error' if f.object.errors[:hidden].any? %>" id="hidden">
