@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :locations, except: :destroy do
+      get 'online_booking', on: :member
+
       resources :guiders, only: %i(index create)
     end
 

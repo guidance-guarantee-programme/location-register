@@ -39,6 +39,10 @@ class LocationPolicy < ApplicationPolicy
     admin_or_organisations_project_manager?
   end
 
+  def online_booking?
+    admin?
+  end
+
   def permitted_attributes
     base_params = [
       :booking_location_uid,
