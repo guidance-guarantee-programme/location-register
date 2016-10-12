@@ -26,9 +26,9 @@ Then(/^no location exists to view$/) do
 end
 
 When(/^I visit the "([^"]*)" location$/) do |location_title|
-  location = Location.find_by(title: location_title)
+  @location = Location.find_by(title: location_title)
   @page = AdminLocationPage.new
-  @page.load(uid: location.uid)
+  @page.load(uid: @location.uid)
 end
 
 When(/^I (.*) the locations "([^"]*)" field to "([^"]*)"$/) do |method, field, new_value|
@@ -58,6 +58,26 @@ end
 Then(/^I should see an error message for "([^"]*)"$/) do |field|
   edit_page = AdminEditLocationPage.new
   expect(edit_page.error_messages.first).to match(field)
+end
+
+When(/^I add a guider$/) do
+  AdminGuiderPage.new.tap do |guider_page|
+    guider_page.load(location_id: @location.uid)
+
+    guider_page.name.set 'Ben Lovell'
+    guider_page.email.set 'ben@example.com'
+    guider_page.add.click
+  end
+end
+
+Then(/^the guider is added$/) do
+  AdminGuiderPage.new.tap do |guider_page|
+    expect(guider_page).to be_displayed
+    expect(guider_page).to have_guiders(count: 1)
+
+    expect(guider_page.guiders.first.name.text).to eq('Ben Lovell')
+    expect(guider_page.guiders.first.email.text).to eq('ben@example.com')
+  end
 end
 
 module LocationTestHelper

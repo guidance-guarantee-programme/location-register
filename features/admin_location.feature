@@ -64,3 +64,9 @@ Feature: Admin - Location Directory
     When I toggle the locations visiblity
     Then I get a permission denied error
     And the location is hidden
+
+  Scenario: Adding guiders for an online booking location
+    Given a location exists called "London"
+    When I visit the "London" location
+    And I add a guider
+    Then the guider is added
