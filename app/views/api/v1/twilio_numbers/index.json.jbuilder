@@ -10,6 +10,8 @@ json.twilio_numbers  do
 
       json.booking_location location.canonical_location.title
       json.booking_location_postcode location.canonical_location.address.postcode
+
+      json.hours location.canonical_location.hours
     end
   end
 end
