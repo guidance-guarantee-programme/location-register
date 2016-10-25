@@ -11,6 +11,7 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
     uid
     extension
     twilio_number
+    online_booking_twilio_number
   ).freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
   ORGANISATIONS = %w(cas cita nicab).freeze
@@ -87,8 +88,8 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
         .each_with_object({}) do |location, hash|
           next if location.twilio_number.blank?
           hash[location.twilio_number] ||= location
+          hash[location.online_booking_twilio_number] ||= location if location.online_booking_twilio_number.present?
         end
-        .values
     end
   end
 

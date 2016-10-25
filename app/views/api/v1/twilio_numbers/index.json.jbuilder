@@ -1,6 +1,6 @@
 json.twilio_numbers  do
-  @locations.each do |location|
-    json.set!(location.twilio_number) do
+  @locations.each do |number, location|
+    json.set!(number) do
       json.uid location.uid
 
       json.delivery_partner location.organisation
