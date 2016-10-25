@@ -12,6 +12,7 @@ FactoryGirl.define do
     hours 'MON-FRI 9am-5pm'
     booking_location nil
     editor { build(:user) }
+    online_booking_enabled false
 
     before(:create) do |location|
       if location.booking_location.present?

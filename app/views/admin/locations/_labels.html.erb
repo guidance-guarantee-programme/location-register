@@ -3,3 +3,6 @@
 <% else %>
   <span class="label label-danger label--inline">Booking location</span>
 <% end %>
+<% if location.canonical_location.online_booking_enabled? %>
+  <span class="label label-success label--inline">Online booking</span>
+<% end %>

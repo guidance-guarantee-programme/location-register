@@ -122,7 +122,7 @@
 </div>
 
 <% if policy(location).admin? %>
-  <div class="form-group t-visibility <%= 'form-group--error' if f.object.errors[:online_booking_enabled].any? %>" id="online_booking_enabled">
+  <div class="form-group <%= 'form-group--error' if f.object.errors[:online_booking_enabled].any? %>" id="online_booking_enabled">
     <%= f.label :online_booking_enabled, 'Online bookings?', class: 'block' %><br/>
     <%= render 'error', error_messages: location.errors[:online_booking_enabled] %>
     <%= f.radio_button :online_booking_enabled, true, class: 'l-location-status__checkbox', id: "location_online_booking_enabled_true_#{location.id}" %>
