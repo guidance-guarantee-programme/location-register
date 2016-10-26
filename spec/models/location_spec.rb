@@ -10,7 +10,10 @@ RSpec.describe Location do
       let(:params) { { 'phone' => '+44999999999', 'twilio_number' => '+44999999111' } }
 
       it 'returns the most recent version for each twilio number' do
-        expect(described_class.latest_for_twilio_number).to eq([location_1_ver_2, location_1_ver_1])
+        expect(described_class.latest_for_twilio_number).to eq(
+          location_1_ver_2.twilio_number => location_1_ver_2,
+          location_1_ver_1.twilio_number => location_1_ver_1
+        )
       end
     end
 
@@ -18,7 +21,9 @@ RSpec.describe Location do
       let(:params) { { 'title' => 'New Name' } }
 
       it 'only returns the latest version of the location' do
-        expect(described_class.latest_for_twilio_number).to eq([location_1_ver_2])
+        expect(described_class.latest_for_twilio_number).to eq(
+          location_1_ver_2.twilio_number => location_1_ver_2
+        )
       end
     end
 
@@ -27,7 +32,21 @@ RSpec.describe Location do
       let!(:location_2) { create(:location, twilio_number: location_1_ver_1.twilio_number) }
 
       it 'the newer location takes precedence over the old location' do
-        expect(described_class.latest_for_twilio_number).to eq([location_2, location_1_ver_2])
+        expect(described_class.latest_for_twilio_number).to eq(
+          location_2.twilio_number => location_2,
+          location_1_ver_2.twilio_number => location_1_ver_2
+        )
+      end
+    end
+
+    context 'when a location has an online booking twilio number' do
+      let(:params) { { 'online_booking_twilio_number' => '+44999999111' } }
+
+      it 'returns a location for both twilio number and online twilio number' do
+        expect(described_class.latest_for_twilio_number).to eq(
+          location_1_ver_2.twilio_number => location_1_ver_2,
+          location_1_ver_2.online_booking_twilio_number => location_1_ver_2
+        )
       end
     end
   end

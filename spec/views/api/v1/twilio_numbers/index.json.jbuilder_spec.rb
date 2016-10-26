@@ -5,7 +5,7 @@ RSpec.describe 'api/v1/twilio_numbers/index.json.jbuilder' do
   let(:location) { create(:location, booking_location: booking_location) }
 
   before do
-    assign :locations, [booking_location, location]
+    assign :locations, booking_location.twilio_number => booking_location, location.twilio_number => location
     render
   end
 
