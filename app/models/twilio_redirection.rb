@@ -18,6 +18,8 @@ class TwilioRedirection
       @location = location
     end
 
+    delegate :title, to: :@location
+
     def phone
       return ::Location::TP_CALL_CENTRE_NUMBER if @location.hidden?
 
@@ -35,6 +37,10 @@ class TwilioRedirection
     def self.lookup(twilio_number)
       call_centre = ::CallCentre.find_by(twilio_number: twilio_number)
       call_centre ? CallCentre.new(call_centre) : nil
+    end
+
+    def title
+      ''
     end
 
     def phone_options

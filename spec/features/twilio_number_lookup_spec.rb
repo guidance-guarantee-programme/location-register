@@ -128,7 +128,7 @@ RSpec.describe 'Twilio number lookup', type: :request do
     <<~XML_END
       <?xml version="1.0" encoding="UTF-8"?>
       <Response>
-        <Dial>
+        <Dial action="http://www.example.com/twilio/handle_status" method="GET">
           #{number}
         </Dial>
       </Response>

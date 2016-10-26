@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   post 'twilio' => 'twilios#show'
   get 'twilio' => 'twilios#show'
+  get 'twilio/handle_status' => 'twilios#handle_status', as: :twilio_handle_status
 
   namespace :admin do
     resources :locations, except: :destroy do
