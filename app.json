@@ -1,0 +1,59 @@
+{
+  "name": "location-register",
+  "description": "Add app.json file for heroku review app creation",
+  "scripts": {},
+  "env": {
+    "BUGSNAG_API_KEY": {
+      "required": true
+    },
+    "BUGSNAG_RELEASE_STAGE": {
+      "required": true
+    },
+    "BUILDPACK_URL": {
+      "required": true
+    },
+    "CACHE_MAX_AGE": {
+      "required": true
+    },
+    "DOWNSTREAM_APP": {
+      "required": true
+    },
+    "NEW_RELIC_LICENSE_KEY": {
+      "required": true
+    },
+    "OAUTH_ID": "Please set",
+    "OAUTH_ROOT_URL": "Please set",
+    "OAUTH_SECRET": "Please set",
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    },
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "logentries",
+    "heroku-postgresql",
+    "expeditedssl",
+    "ssl"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/ddollar/heroku-buildpack-multi.git"
+    }
+  ]
+}
