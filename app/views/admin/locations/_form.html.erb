@@ -121,6 +121,17 @@
   <%= f.label "hidden_true_#{location.id}", 'No', class: 'l-location-status__label' %>
 </div>
 
+<% if policy(location).admin? %>
+  <div class="form-group <%= 'form-group--error' if f.object.errors[:online_booking_enabled].any? %>" id="online_booking_enabled">
+    <%= f.label :online_booking_enabled, 'Online bookings?', class: 'block' %><br/>
+    <%= render 'error', error_messages: location.errors[:online_booking_enabled] %>
+    <%= f.radio_button :online_booking_enabled, true, class: 'l-location-status__checkbox', id: "location_online_booking_enabled_true_#{location.id}" %>
+    <%= f.label "online_booking_enabled_true_#{location.id}", 'Enabled', class: 'l-location-status__label' %>
+    <%= f.radio_button :online_booking_enabled, false, class: 'l-location-status__checkbox', id: "location_online_booking_enabled_false_#{location.id}" %>
+    <%= f.label "online_booking_enabled_false_#{location.id}", 'Disabled', class: 'l-location-status__label' %>
+  </div>
+<% end %>
+
 <div class="form-group">
   <%= link_to 'Cancel', admin_location_path(location.uid), class: 'btn btn-default t-cancel-button' %>
   <%= f.submit 'Save', class: 'btn btn-success t-save-button' %>

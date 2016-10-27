@@ -118,7 +118,8 @@ RSpec.describe LocationPolicy do
             :phone,
             :organisation,
             :twilio_number,
-            :online_booking_twilio_number
+            :online_booking_twilio_number,
+            :online_booking_enabled
           ]
         )
       end

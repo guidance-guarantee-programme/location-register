@@ -12,6 +12,7 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
     extension
     twilio_number
     online_booking_twilio_number
+    online_booking_enabled
   ).freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
   ORGANISATIONS = %w(cas cita nicab).freeze
@@ -47,6 +48,7 @@ class Location < ActiveRecord::Base # rubocop: disable Metrics/ClassLength
             unless: :booking_location_uid?
   validates :guiders, length: { is: 0 }, if: :booking_location_uid?
   validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
+  validates :online_booking_enabled, inclusion: { in: [false], if: ->(l) { l.booking_location.present? } }
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }

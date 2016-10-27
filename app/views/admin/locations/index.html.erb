@@ -22,6 +22,10 @@
           <%= render 'admin/locations/labels', location: location %>
           <%= render location %>
         </div>
+        <div class="col-md-6">
+          <br>
+          <%= link_to 'Edit', edit_admin_location_path(location.uid), class: 'btn btn-default t-edit-button' %>
+        </div>
       </div>
     <% end %>
   </div>

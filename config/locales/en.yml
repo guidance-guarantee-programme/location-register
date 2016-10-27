@@ -38,6 +38,8 @@ en:
               inclusion: Can't be visible - additional admin needed
             hours:
               present: Leave blank when booking location exists
+            online_booking_enabled:
+              inclusion: Only booking locations can be enabled
         address:
           attributes:
             postcode:

@@ -18,12 +18,26 @@
   <%- if location.booking_location %>
     <tr>
       <td>Booking location:</td>
-      <td class="t-booking-location"><%= location.booking_location.title %></td>
+      <td class="t-booking-location"><%= link_to(location.booking_location.title, admin_location_path(location.booking_location.uid)) %></td>
+    </tr>
+    <tr>
+      <td>Direct number:</td>
+      <td class="t-telephone_number"><%= location.canonical_location.phone %></td>
     </tr>
   <% else %>
     <tr>
-      <td>Telephone number:</td>
+      <td>Direct number:</td>
       <td class="t-telephone_number"><%= location.phone %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>External number:</td>
+    <td><%= location.twilio_number %></td>
+  </tr>
+  <% if location.online_booking_twilio_number.present? %>
+    <tr>
+      <td>Online booking number:</td>
+      <td><%= location.online_booking_twilio_number %></td>
     </tr>
   <% end %>
   <tr>
