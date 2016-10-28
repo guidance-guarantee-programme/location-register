@@ -36,6 +36,22 @@ RSpec.describe CreateOrUpdateLocation do
     end
 
     context 'when an existing location would be changed by the update' do
+      context 'and the location has guiders assigned to it' do
+        let!(:guider) { create(:guider, location: location) }
+
+        before do
+          subject.update(params.merge(title: 'New title'))
+        end
+
+        it 'the guiders are still assigned to the new version of the location' do
+          expect(location.current_version.guiders.pluck(:name, :email)).to eq([[guider.name, guider.email]])
+        end
+
+        it 'the guiders will no longer be assigned to the old version of the location' do
+          expect(location.guiders).to be_empty
+        end
+      end
+
       context 'when an error occurs during the creation of the new record' do
         before do
           allow(Location).to receive(:create!).and_raise(ActiveRecord::RecordInvalid)
