@@ -13,4 +13,20 @@ class TwiliosController < ApplicationController
       end
     end
   end
+
+  def handle_status
+    twilio_number = params[:Called]
+    @location_name = TwilioRedirection.for(twilio_number)&.title
+
+    if params[:DialCallStatus] == 'failed'
+      message = if twilio_number.present?
+                  "Call forwarding failed for: '#{@location_name || 'Unknown Location'}' (#{twilio_number})"
+                else
+                  "Call forwarding failed for: 'No forwarding number'"
+                end
+      Bugsnag.notify(message)
+    end
+
+    render :handle_status, formats: :xml
+  end
 end

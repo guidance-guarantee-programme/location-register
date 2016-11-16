@@ -47,9 +47,7 @@
   },
   "addons": [
     "logentries",
-    "heroku-postgresql",
-    "expeditedssl",
-    "ssl"
+    "heroku-postgresql"
   ],
   "buildpacks": [
     {
