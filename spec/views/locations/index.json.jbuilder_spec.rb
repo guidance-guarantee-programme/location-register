@@ -4,7 +4,7 @@ RSpec.describe 'locations/index' do
   let(:location) { build(:location, uid: '25de9301-50b5-49ba-a5da-7f40a2fcfe29', title: 'Test location') }
 
   it 'renders the locations as json' do
-    assign(:locations, [location])
+    @locations =  [location]
 
     render
 

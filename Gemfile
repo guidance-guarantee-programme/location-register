@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '5.0.0.1'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -46,6 +46,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'poltergeist'
   gem 'phantomjs', require: 'phantomjs/poltergeist'
+  gem 'phantomjs-binaries'
   gem 'site_prism'
   gem 'vcr'
   gem 'webmock'

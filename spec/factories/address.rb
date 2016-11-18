@@ -11,7 +11,7 @@ FactoryGirl.define do
       {
         type: 'Point',
         coordinates: [12.12, 45.45]
-      }.to_json
+      }
     end
   end
 
