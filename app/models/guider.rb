@@ -1,3 +1,3 @@
-class Guider < ActiveRecord::Base
+class Guider < ApplicationRecord
   belongs_to :location
 end

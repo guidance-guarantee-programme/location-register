@@ -1,4 +1,4 @@
-class CallCentre < ActiveRecord::Base
+class CallCentre < ApplicationRecord
   validates :uid, presence: true
   validates :purpose, presence: true
   validates :phone, uk_phone_number: true

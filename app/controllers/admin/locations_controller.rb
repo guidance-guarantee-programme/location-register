@@ -18,7 +18,7 @@ module Admin
 
     def create
       updater = CreateOrUpdateLocation.new(user: current_user)
-      @location = updater.build(permitted_attributes(Location))
+      @location = updater.build(permitted_attributes(Location).to_h)
       authorize @location
 
       if @location.save
@@ -38,7 +38,7 @@ module Admin
 
     def update
       updater = CreateOrUpdateLocation.new(location: @location, user: current_user)
-      @location = updater.update(permitted_attributes(@location))
+      @location = updater.update(permitted_attributes(@location).to_h)
       if @location.new_record?
         @booking_locations = policy_scope(Location.booking_locations)
         render :edit

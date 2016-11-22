@@ -1,4 +1,4 @@
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
   def self.find_or_initialize_from_params(params)
     find_or_initialize_by(
       address_line_1: params['address_line_1'].presence,
