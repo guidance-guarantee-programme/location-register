@@ -15,7 +15,7 @@ RSpec.describe LocationsController do
 
     it 'passes the include_hidden_locations flag to Location.external_visible' do
       expect(Location).to receive(:externally_visible).with(include_hidden_locations: 'true')
-      get :index, format: 'json', include_hidden_locations: 'true'
+      get :index, format: 'json', params: { include_hidden_locations: 'true' }
     end
   end
 end

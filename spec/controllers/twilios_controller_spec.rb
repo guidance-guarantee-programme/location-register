@@ -11,12 +11,12 @@ RSpec.describe TwiliosController do
         let(:params) { { 'DialCallStatus' => 'failed' } }
 
         it 'is successful' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(response).to be_ok
         end
 
         it 'raise an appropriate Bugsnag error' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(Bugsnag).to have_received(:notify).with(
             "Call forwarding failed for: 'No forwarding number'"
           )
@@ -28,12 +28,12 @@ RSpec.describe TwiliosController do
         let(:params) { { 'DialCallStatus' => 'failed', 'Called' => location.twilio_number } }
 
         it 'is successful' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(response).to be_ok
         end
 
         it 'raise an appropriate Bugsnag error' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(Bugsnag).to have_received(:notify).with(
             "Call forwarding failed for: '#{location.title}' (#{location.twilio_number})"
           )
@@ -44,12 +44,12 @@ RSpec.describe TwiliosController do
         let(:params) { { 'DialCallStatus' => 'failed', 'Called' => '+44123456789' } }
 
         it 'is successful' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(response).to be_ok
         end
 
         it 'raise an appropriate Bugsnag error' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(Bugsnag).to have_received(:notify).with(
             "Call forwarding failed for: 'Unknown Location' (+44123456789)"
           )
@@ -63,12 +63,12 @@ RSpec.describe TwiliosController do
         let(:params) { { 'DialCallStatus' => call_status, 'Called' => location.twilio_number } }
 
         it 'is successful' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(response).to be_ok
         end
 
         it 'does not raise a Bugsnag error' do
-          get :handle_status, params
+          get :handle_status, params: params
           expect(Bugsnag).not_to have_received(:notify)
         end
       end
