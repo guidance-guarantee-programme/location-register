@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Slot do
   subject do
-    travel_to(date) { Slot.all }
+    travel_to(date) { described_class.all }
   end
 
   context 'on Sunday' do

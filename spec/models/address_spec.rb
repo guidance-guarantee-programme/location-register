@@ -14,10 +14,10 @@ RSpec.describe Address do
       end
 
       it 'does not corrupt an existing address uid' do
-        address_1 = create(:address, point: nil)
-        address_2 = Address.find(address_1.id)
+        address1 = create(:address, point: nil)
+        address2 = Address.find(address1.id)
 
-        expect(address_1.uid).to eq(address_2.uid)
+        expect(address1.uid).to eq(address2.uid)
       end
     end
 
