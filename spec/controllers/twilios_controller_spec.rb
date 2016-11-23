@@ -8,7 +8,7 @@ RSpec.describe TwiliosController do
 
     context 'when the call status was failed' do
       context 'but no CAB number is provided' do
-        let(:params) { { 'DialCallStatus' => 'failed' } }
+        let(:params) { Hash[params: { 'DialCallStatus' => 'failed' }] }
 
         it 'is successful' do
           get :handle_status, params
@@ -25,7 +25,7 @@ RSpec.describe TwiliosController do
 
       context 'and a know CAB number is provided' do
         let(:location) { create(:location, twilio_number: '+44123456789') }
-        let(:params) { { 'DialCallStatus' => 'failed', 'Called' => location.twilio_number } }
+        let(:params) { Hash[params: { 'DialCallStatus' => 'failed', 'Called' => location.twilio_number }] }
 
         it 'is successful' do
           get :handle_status, params
@@ -41,7 +41,7 @@ RSpec.describe TwiliosController do
       end
 
       context 'and an unknown number is provided' do
-        let(:params) { { 'DialCallStatus' => 'failed', 'Called' => '+44123456789' } }
+        let(:params) { Hash[params: { 'DialCallStatus' => 'failed', 'Called' => '+44123456789' }] }
 
         it 'is successful' do
           get :handle_status, params
@@ -60,7 +60,7 @@ RSpec.describe TwiliosController do
     %w(busy completed no-answer).each do |call_status|
       context "when the call status is #{call_status}" do
         let(:location) { create(:location, twilio_number: '+44123456789') }
-        let(:params) { { 'DialCallStatus' => call_status, 'Called' => location.twilio_number } }
+        let(:params) { Hash[params: { 'DialCallStatus' => call_status, 'Called' => location.twilio_number }] }
 
         it 'is successful' do
           get :handle_status, params

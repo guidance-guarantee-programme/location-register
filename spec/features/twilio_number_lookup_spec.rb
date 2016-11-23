@@ -84,15 +84,15 @@ RSpec.describe 'Twilio number lookup', type: :request do
   end
 
   def when_twilio_requests_a_forwarding_number
-    post twilio_path, To: @redirection.twilio_number, format: :xml
+    post twilio_path(format: :xml), params: { To: @redirection.twilio_number }
   end
 
   def when_twilio_requests_a_blank_forwarding_number
-    post twilio_path, To: '', format: :xml
+    post twilio_path(format: :xml), params: { To: '' }
   end
 
   def when_twilio_requests_a_unknown_forwarding_number
-    post twilio_path, To: '+1111111', format: :xml
+    post twilio_path(format: :xml), params: { To: '+1111111' }
   end
 
   def then_xml_containing_the_location_number_is_returned
