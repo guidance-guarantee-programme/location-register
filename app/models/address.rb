@@ -33,13 +33,13 @@ class Address < ApplicationRecord
   private
 
   def valid_uk_postcode
-    if postcode.present?
-      uk_postcode = UKPostcode.parse(postcode)
-      if uk_postcode.full_valid?
-        errors.add(:postcode, :geocoding_error) unless point.present?
-      else
-        errors.add(:postcode, :non_uk)
-      end
+    return if postcode.blank?
+
+    uk_postcode = UKPostcode.parse(postcode)
+    if uk_postcode.full_valid?
+      errors.add(:postcode, :geocoding_error) unless point.present?
+    else
+      errors.add(:postcode, :non_uk)
     end
   end
 

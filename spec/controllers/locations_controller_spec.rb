@@ -5,7 +5,7 @@ RSpec.describe LocationsController do
     before { allow(Location).to receive(:externally_visible).and_return(double) }
 
     it 'renders the location as JSON' do
-      get :index, format: 'json'
+      get :index, format: 'json', params: {}
       expect(response).to be_ok
     end
 
