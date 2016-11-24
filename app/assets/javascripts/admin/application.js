@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require ./locations-directory
+//= require select2
+//= require ./search

@@ -15,6 +15,19 @@
   <li>
     <%= link_to 'Directory', admin_locations_path %>
   </li>
+  <li>
+    <p style="color: #bfbfbf; padding-top: 13px;">
+      Search
+      <%=
+        select_tag(
+          :search,
+          options_for_select(Location.current_by_visibility.map { |l| [l.title, l.uid, 'data-hidden' => l.hidden?] }, @location&.uid),
+          class: 'input-md-3',
+          include_blank: true
+        )
+      %>
+    </p>
+  </li>
 <% end %>
 
 <% content_for(:content) do %>

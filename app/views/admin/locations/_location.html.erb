@@ -18,7 +18,9 @@
   <%- if location.booking_location %>
     <tr>
       <td>Booking location:</td>
-      <td class="t-booking-location"><%= link_to(location.booking_location.title, admin_location_path(location.booking_location.uid)) %></td>
+      <td class="t-booking-location <%= location_visibility_class(location.booking_location) %>">
+        <%= link_to(location.booking_location.title, admin_location_path(location.booking_location.uid)) %>
+      </td>
     </tr>
     <tr>
       <td>Direct number:</td>
@@ -42,7 +44,9 @@
   <% end %>
   <tr>
     <td>Status:</td>
-    <td class="t-visibility"><%= location.hidden ? 'Hidden' : 'Active' %></td>
+    <td class="t-visibility <%= location_visibility_class(location) %>">
+      <%= location.hidden ? 'Hidden' : 'Active' %>
+    </td>
   </tr>
   <tr>
     <td>Last updated:</td>

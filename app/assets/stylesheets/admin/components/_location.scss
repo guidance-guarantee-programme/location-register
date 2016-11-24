@@ -1,0 +1,17 @@
+// scss-lint:disable PlaceholderInExtend
+.location__visible:before {
+  @extend .glyphicon;
+  @extend .glyphicon-eye-open;
+
+  padding-right: 3px;
+  color: $visible-location;
+}
+
+.location__hidden:before {
+  @extend .glyphicon;
+  @extend .glyphicon-eye-close;
+
+  padding-right: 3px;
+  color: $hidden-location;
+}
+// scss-lint:enable PlaceholderInExtend

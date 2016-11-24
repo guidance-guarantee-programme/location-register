@@ -27,6 +27,7 @@ gem 'newrelic_rpm'
 gem 'plek'
 gem 'pundit'
 gem 'uk_postcode'
+gem 'select2-rails'
 
 group :development, :test do
   gem 'dotenv-rails'
