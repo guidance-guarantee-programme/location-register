@@ -10,6 +10,6 @@ json.features @locations do |location|
     json.phone location.phone.to_s
     json.hours location.hours.to_s
     json.twilio_number location.twilio_number
-    json.online_booking_enabled location.canonical_location.online_booking_enabled
+    json.online_booking_enabled location.canonical_location.can_take_online_bookings?
   end
 end

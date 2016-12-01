@@ -48,4 +48,17 @@ RSpec.describe Slot do
       ).to be_truthy
     end
   end
+
+  context 'the period contains a holiday' do
+    let(:date) { '2016-12-01 10:00:00' }
+    let(:holiday_period) { Date.new(2016, 12, 23)..Date.new(2017, 1, 2) }
+
+    it 'ignores the holiday dates' do
+      expect(
+        subject
+          .map { |slot| Date.parse(slot.date) }
+          .none? { |d| holiday_period.cover?(d) }
+      ).to be_truthy
+    end
+  end
 end
