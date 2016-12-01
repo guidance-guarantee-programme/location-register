@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe VisibilityFieldDecorator do
-  subject { described_class.new(object) }
-
+RSpec.describe EditedField::VisibilityField do
   shared_examples_for 'a visibility display field' do
     context 'when blank' do
       let(:value) { nil }
@@ -30,21 +28,21 @@ RSpec.describe VisibilityFieldDecorator do
   end
 
   describe '#old_value' do
-    subject { described_class.new(object).old_value }
-    let(:object) { double(old_value: value) }
+    subject { described_class.new(:hidden, nil, old_location).old_value }
+    let(:old_location) { double(hidden: value) }
 
     it_behaves_like 'a visibility display field'
   end
 
   describe '#new_value' do
-    subject { described_class.new(object).new_value }
-    let(:object) { double(new_value: value) }
+    subject { described_class.new(:hidden, location, nil).new_value }
+    let(:location) { double(hidden: value) }
 
     it_behaves_like 'a visibility display field'
   end
 
   describe '#field' do
-    subject { described_class.new(double) }
+    subject { described_class.new(:hidden, nil, nil) }
 
     it 'displays visibility' do
       expect(subject.field).to eq('visibility')

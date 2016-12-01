@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BookingLocationFieldDecorator do
-  subject { described_class.new(object) }
-
+RSpec.describe EditedField::BookingLocationField do
   shared_examples_for 'a booking location display field' do
     context 'when blank' do
       let(:booking_location) { nil }
@@ -22,15 +20,15 @@ RSpec.describe BookingLocationFieldDecorator do
   end
 
   describe '#old_value' do
-    subject { described_class.new(object).old_value }
-    let(:object) { double(old_value: booking_location) }
+    subject { described_class.new(:booking_location, nil, old_location).old_value }
+    let(:old_location) { double(booking_location: booking_location) }
 
     it_behaves_like 'a booking location display field'
   end
 
   describe '#new_value' do
-    subject { described_class.new(object).new_value }
-    let(:object) { double(new_value: booking_location) }
+    subject { described_class.new(:booking_location, location, nil).new_value }
+    let(:location) { double(booking_location: booking_location) }
 
     it_behaves_like 'a booking location display field'
   end

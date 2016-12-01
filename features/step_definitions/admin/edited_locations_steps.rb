@@ -12,14 +12,12 @@ When(/^I view the edited locations page$/) do
 end
 
 Then(/^I should see a location with the following edits:$/) do |table|
-  expect(@page).to have_locations count: 1
-  location = @page.locations[0]
+  expect(@page).to have_edits count: table.hashes.count
 
-  expect(location).to have_edits count: table.hashes.count
   table.hashes.each_with_index do |edit, i|
-    expect(location.edits[i].field.text).to eq(edit['Field'])
-    expect(location.edits[i].old_value.text).to eq(edit['Old value'])
-    expect(location.edits[i].new_value.text).to eq(edit['New value'])
+    expect(@page.edits[i].field.text).to eq(edit['Field'])
+    expect(@page.edits[i].old_value.text).to eq(edit['Old value'])
+    expect(@page.edits[i].new_value.text).to eq(edit['New value'])
   end
 end
 

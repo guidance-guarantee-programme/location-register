@@ -34,15 +34,15 @@ end
 When(/^I (.*) the locations "([^"]*)" field to "([^"]*)"$/) do |method, field, new_value|
   @page.edit_button.click
   edit_page = AdminEditLocationPage.new
-  element = edit_page.send(field)
-  element.send(method, new_value)
+  element = edit_page.public_send(field)
+  element.public_send(method, new_value)
   edit_page.save_button.click
 end
 
 Then(/^the "([^"]*)" location has a new version where "([^"]*)" has been set to "([^"]*)"$/) do |title, field, value|
   previous_location, current_location = *LocationTestHelper.get_all_location_versions(title: title)
 
-  edited_fields = EditedLocationField.all(current_location, previous_location)
+  edited_fields = EditedLocation.new([current_location, previous_location]).edits.values.flatten
   expect(edited_fields).to equal_edits(
     [{ field: LocationTestHelper.field_name(field), new_value: LocationTestHelper.field_value(field, value) }]
   )
@@ -51,7 +51,7 @@ end
 Then(/^the "([^"]*)" location address has been updated to have "([^"]*)" set to "([^"]*)"$/) do |title, _field, value|
   previous_location, current_location = *LocationTestHelper.get_all_location_versions(title: title)
 
-  edited_fields = EditedLocationField.all(current_location, previous_location)
+  edited_fields = EditedLocation.new([current_location, previous_location]).edits.values.flatten
   expect(edited_fields).to match_edits([{ field: 'address', new_value: value }])
 end
 
