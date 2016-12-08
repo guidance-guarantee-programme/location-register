@@ -21,7 +21,7 @@
       <%=
         select_tag(
           :search,
-          options_for_select(Location.current_by_visibility.map { |l| [l.title, l.uid, 'data-hidden' => l.hidden?] }, @location&.uid),
+          options_for_select(location_select_options, @location&.uid),
           class: 'input-md-3',
           include_blank: true
         )
