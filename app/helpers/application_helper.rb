@@ -25,4 +25,16 @@ module ApplicationHelper
   def location_visibility_class(location)
     location.hidden? ? 'location__hidden' : 'location__visible'
   end
+
+  def location_select_options
+    return [] unless current_user
+    locations = Pundit.policy_scope!(current_user, Location.current_by_visibility)
+    locations.map do |location|
+      [
+        location.title,
+        location.uid,
+        'data-hidden' => location.hidden?
+      ]
+    end
+  end
 end
