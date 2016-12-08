@@ -21,4 +21,8 @@ module ApplicationHelper
       .inject(&:merge)
       .sort_by(&:first)
   end
+
+  def location_visibility_class(location)
+    location.hidden? ? 'location__hidden' : 'location__visible'
+  end
 end

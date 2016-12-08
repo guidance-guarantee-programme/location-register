@@ -51,7 +51,7 @@ Given(/^a hidden location exists with a twilio number$/) do
   @location = create(:location, twilio_number: '+442712345678', hidden: true)
 end
 
-When(/^I toggle the locations visiblity$/) do
+When(/^I toggle the location's visibility$/) do
   @page = AdminEditLocationPage.new
   @page.load(uid: @location.uid)
 

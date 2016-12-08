@@ -56,12 +56,12 @@ Feature: Admin - Location Directory
 
   Scenario: I can make a location with a twilio number visible
     Given a hidden location exists with a twilio number
-    When I toggle the locations visiblity
+    When I toggle the location's visibility
     Then the location is visible
 
   Scenario: I can not make a location without a twilio number visible
     Given a hidden location exists without a twilio number
-    When I toggle the locations visiblity
+    When I toggle the location's visibility
     Then I get a permission denied error
     And the location is hidden
 
