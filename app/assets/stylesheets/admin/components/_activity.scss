@@ -1,0 +1,33 @@
+.activity {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activity-details {
+  flex-basis: 75%;
+}
+
+.activity-edit-header,
+.activity-edit {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: solid 1px $activities-border-bottom;
+  padding: 5px 0;
+}
+
+.activity-edit-header {
+  font-weight: bold;
+}
+
+.activity-badge {
+  flex-basis: 25%;
+  text-align: right;
+}
+
+.activity-field {
+  flex-basis: 20%;
+}
+
+.activity-value {
+  flex-basis: 40%;
+}

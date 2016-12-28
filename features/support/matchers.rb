@@ -27,8 +27,11 @@ module RSpecEditMatcher
   module_function
 
   def match(actual_array, expected_array, match_type)
-    actual_array.count == expected_array.count &&
+    if actual_array.count == expected_array.count
       actual_array.zip(expected_array).all? { |actual, expected| match_edit(actual, expected, match_type) }
+    elsif expected_array.count == 1
+      actual_array.any? { |actual| match_edit(actual, expected_array.first, match_type) }
+    end
   end
 
   def failure_message(actual_array, expected_array, match_type = 'equal')
