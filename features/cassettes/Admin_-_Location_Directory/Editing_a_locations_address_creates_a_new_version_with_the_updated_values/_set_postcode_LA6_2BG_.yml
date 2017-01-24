@@ -1,0 +1,173 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=LA6%202BG&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Fri, 20 Jan 2017 15:26:08 GMT
+      Expires:
+      - Sat, 21 Jan 2017 15:26:08 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '689'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "LA6 2BG",
+                       "short_name" : "LA6 2BG",
+                       "types" : [ "postal_code" ]
+                    },
+                    {
+                       "long_name" : "Bective Road",
+                       "short_name" : "Bective Rd",
+                       "types" : [ "route" ]
+                    },
+                    {
+                       "long_name" : "Kirkby Lonsdale",
+                       "short_name" : "Kirkby Lonsdale",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Carnforth",
+                       "short_name" : "Carnforth",
+                       "types" : [ "postal_town" ]
+                    },
+                    {
+                       "long_name" : "Cumbria",
+                       "short_name" : "Cumbria",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "England",
+                       "short_name" : "England",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United Kingdom",
+                       "short_name" : "GB",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Bective Rd, Kirkby Lonsdale, Carnforth LA6 2BG, UK",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 54.2027558,
+                          "lng" : -2.5986924
+                       },
+                       "southwest" : {
+                          "lat" : 54.20209149999999,
+                          "lng" : -2.6000472
+                       }
+                    },
+                    "location" : {
+                       "lat" : 54.2023933,
+                       "lng" : -2.5994648
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 54.2037726302915,
+                          "lng" : -2.598020819708498
+                       },
+                       "southwest" : {
+                          "lat" : 54.2010746697085,
+                          "lng" : -2.600718780291502
+                       }
+                    }
+                 },
+                 "place_id" : "ChIJh0FcX0yGfEgR4W155B1p8c4",
+                 "types" : [ "postal_code" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "LA6",
+                       "short_name" : "LA6",
+                       "types" : [ "postal_code", "postal_code_prefix" ]
+                    },
+                    {
+                       "long_name" : "Carnforth",
+                       "short_name" : "Carnforth",
+                       "types" : [ "postal_town" ]
+                    },
+                    {
+                       "long_name" : "England",
+                       "short_name" : "England",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United Kingdom",
+                       "short_name" : "GB",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Carnforth LA6, UK",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 54.3050584,
+                          "lng" : -2.2913678
+                       },
+                       "southwest" : {
+                          "lat" : 54.0869345,
+                          "lng" : -2.7717273
+                       }
+                    },
+                    "location" : {
+                       "lat" : 54.1877639,
+                       "lng" : -2.5946545
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 54.3050584,
+                          "lng" : -2.2913678
+                       },
+                       "southwest" : {
+                          "lat" : 54.0869345,
+                          "lng" : -2.7717273
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJYUuY87ZifEgRFhu3aahZXos",
+                 "types" : [ "postal_code", "postal_code_prefix" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version:
+  recorded_at: Fri, 20 Jan 2017 15:26:08 GMT
+recorded_with: VCR 3.0.3

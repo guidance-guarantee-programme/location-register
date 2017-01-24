@@ -41,6 +41,7 @@ Feature: Admin - Location Directory
       | set    | town             | Test vale              |
       | set    | county           | Testland               |
       | set    | postcode         | PR1 2NJ                |
+      | set    | postcode         | LA6 2BG                |
 
   Scenario: A new location version is created when the location is edited
     Given a location exists called "Apples"

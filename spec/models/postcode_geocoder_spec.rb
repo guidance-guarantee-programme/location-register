@@ -52,13 +52,25 @@ RSpec.describe PostcodeGeocoder do
       end
     end
 
-    context 'when geocoder returns multiple results' do
-      before do
-        allow(Geocoder).to receive(:search).and_return([valid_geocode, invalid_geocode])
+    context 'when geocoder has multiple results' do
+      context 'and exactly one of the is a postcode address component' do
+        before do
+          allow(Geocoder).to receive(:search).and_return([valid_geocode, invalid_geocode])
+        end
+
+        it 'is valid' do
+          expect(subject).to be_valid
+        end
       end
 
-      it 'is not valid' do
-        expect(subject).not_to be_valid
+      context 'and multiple are postcode address components' do
+        before do
+          allow(Geocoder).to receive(:search).and_return([valid_geocode, valid_geocode])
+        end
+
+        it 'is not valid' do
+          expect(subject).not_to be_valid
+        end
       end
     end
   end
