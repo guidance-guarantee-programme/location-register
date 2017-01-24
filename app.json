@@ -51,7 +51,10 @@
   ],
   "buildpacks": [
     {
-      "url": "https://github.com/ddollar/heroku-buildpack-multi.git"
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
     }
   ]
 }
