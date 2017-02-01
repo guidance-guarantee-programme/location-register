@@ -18,11 +18,3 @@ addons:
 before_script:
 - "./bin/rake db:setup RAILS_ENV=test"
 - npm install
-deploy:
-  provider: heroku
-  app: staging-locator-pensionwise
-  api_key:
-    secure: YSFobVg9yj/PGEhKkvDaswmOj0jusBDc+9+VDswrg2OUAT0OYL6ypV8Sk/wtzhSDDysbMrq5mWwlG+886lWqYgF6WJyhy5syrqaqPrvHNx7lTq3mWTpSbM545kXcI923cP1Rx7rgzlvCVNVRYgnoIryAMrFaeeqYfMpBC2Zg0aRFCFlSYhdmuVdXQB1es/QfyqlT7rlzNWdg/B8LLkuAj4b9wkFj0tmjYK0zD59aC4MoZyWn9iNyiu73Uwx0+Vqcak0RNmLVLTeYKIlhrz4Oswzq5KJmTxclEmJrhTE4AS8YcJzA2NSbQ/6XHq2//XsrOIHva0FtkvwByDfnP3dFc/zARLS+hu5Jm+JdNCyBZiwJKu10yCgCnvfkLio4C1iPY5U+m90VRMhMEP3m2Y3PmohEOmyeG1PxWg4nEYdRIJcMW5rcyExiNArAyO+QjIUAZSXMpqg1CQTIWJjh5LOIP9JgYmIauvl19OFRdbfq31XwgjXphZaOl2aeU5Aw3lNmK5N/H145LVlVxuKup8bjdzFzO+sYG+2Wsg2FuR9yTYDv3raCTFK6yDp7dWvoiM90dZ8hxtwCWz5Ohs/h5nUJCAytq7NEUYswB+bIHtuBXsF+CqaBTLkHRFRz7j+EkUbNXid6Xyh9A0+YNJh4LtQcV/idmA+OJgCxkY9D4T+M6bA=
-  on:
-    repo: guidance-guarantee-programme/location-register
-  run: curl -X POST -d '' https://ggp-smoke-tests.herokuapp.com/staging
