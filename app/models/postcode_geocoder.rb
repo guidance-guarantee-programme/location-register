@@ -6,7 +6,7 @@ class PostcodeGeocoder
   end
 
   def valid?
-    @geocodes.count == 1
+    @geocodes.count.positive?
   end
 
   def coordinates
