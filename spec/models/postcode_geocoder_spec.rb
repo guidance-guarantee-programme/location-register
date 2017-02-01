@@ -36,7 +36,7 @@ RSpec.describe PostcodeGeocoder do
           allow(Geocoder).to receive(:search).and_return([valid_geocode])
         end
 
-        it 'is not valid' do
+        it 'is valid' do
           expect(subject).to be_valid
         end
       end
@@ -68,8 +68,8 @@ RSpec.describe PostcodeGeocoder do
           allow(Geocoder).to receive(:search).and_return([valid_geocode, valid_geocode])
         end
 
-        it 'is not valid' do
-          expect(subject).not_to be_valid
+        it 'is valid' do
+          expect(subject).to be_valid
         end
       end
     end
