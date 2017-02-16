@@ -48,7 +48,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
             unless: :booking_location_uid?
   validates :guiders, length: { is: 0 }, if: :booking_location_uid?
   validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
-  validates :online_booking_enabled, inclusion: { in: [false], if: ->(l) { l.booking_location.present? } }
+  validates :online_booking_enabled, inclusion: { in: [true, false] }
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }
@@ -134,9 +134,5 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     return [] if booking_location_uid.present?
 
     Slot.all
-  end
-
-  def can_take_online_bookings?
-    online_booking_enabled? && ONLINE_BOOKING_OFFLINE.exclude?(Time.zone.today)
   end
 end
