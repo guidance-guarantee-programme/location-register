@@ -2,16 +2,15 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
-gem 'rails', '5.0.0.1'
+gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.0'
 
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'foreman'
 gem 'puma'
@@ -23,6 +22,7 @@ gem 'gaffe'
 gem 'gds-sso'
 gem 'geocoder'
 gem 'govuk_admin_template'
+gem 'json', '~> 2.0.3'
 gem 'newrelic_rpm'
 gem 'plek'
 gem 'pundit'
@@ -37,7 +37,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.45.0', require: false
   gem 'web-console', '~> 2.0'
 end
 
