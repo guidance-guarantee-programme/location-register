@@ -1,4 +1,3 @@
-
 class Slot
   Instance = Struct.new(:date, :start, :end)
 
@@ -26,7 +25,7 @@ class Slot
       booking_window_end = 6.weeks.from_now
 
       (grace_period..booking_window_end).reject do |date|
-        date.saturday? || date.sunday? || CAB_HOLIDAYS.include?(date)
+        date.saturday? || date.sunday?
       end
     end
 
