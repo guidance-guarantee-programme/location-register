@@ -81,11 +81,23 @@ RSpec.describe Location do
     end
 
     context 'for a booking location' do
-      let(:location) { build(:location) }
+      subject do
+        travel_to('2016-06-07 10:00:00') { location.slots }
+      end
 
-      it 'returns slots' do
-        travel_to '2016-06-07 10:00:00' do
-          expect(location.slots).to_not be_empty
+      context 'when no cut-off date exists' do
+        let(:location) { build(:location) }
+
+        it 'returns slots' do
+          expect(subject).to_not be_empty
+        end
+      end
+
+      context 'when a cut-off date exists' do
+        let(:location) { build(:location, cut_off_from: '2016-06-23') }
+
+        it 'only returns slots after the cut-off date' do
+          expect(subject.last.date).to eq('2016-06-22')
         end
       end
     end

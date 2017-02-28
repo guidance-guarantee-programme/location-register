@@ -131,6 +131,6 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   end
 
   def slots
-    Slot.all
+    Slot.all(cut_off_from)
   end
 end
