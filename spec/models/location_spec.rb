@@ -75,8 +75,8 @@ RSpec.describe Location do
     context 'for a non-booking location' do
       let(:location) { build(:location, booking_location_uid: 'deadbeef') }
 
-      it 'returns an empty array' do
-        expect(location.slots).to eq([])
+      it 'returns the slots' do
+        expect(location.slots).to_not be_empty
       end
     end
 

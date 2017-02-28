@@ -131,8 +131,6 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   end
 
   def slots
-    return [] if booking_location_uid.present?
-
     Slot.all
   end
 end
