@@ -190,7 +190,7 @@ RSpec.describe Location do
           let(:online_booking_twilio_number) { nil }
           before { location.valid? }
 
-          it 'is has no errors' do
+          it 'has no errors' do
             expect(subject).to be_empty
           end
         end
@@ -203,7 +203,7 @@ RSpec.describe Location do
           let(:online_booking_twilio_number) { nil }
           before { location.valid? }
 
-          it 'is has errors' do
+          it 'has errors' do
             expect(subject).to be_present
           end
         end
@@ -212,7 +212,7 @@ RSpec.describe Location do
           let(:online_booking_twilio_number) { '+441111112222' }
           before { location.valid? }
 
-          it 'is has no errors' do
+          it 'has no errors' do
             expect(subject).to be_empty
           end
         end
@@ -229,7 +229,7 @@ RSpec.describe Location do
           let(:booking_location) { create(:location) }
           before { location.valid? }
 
-          it 'is has no errors' do
+          it 'has no errors' do
             expect(subject).to be_empty
           end
         end
@@ -238,7 +238,7 @@ RSpec.describe Location do
           let(:booking_location) { nil }
           before { location.valid? }
 
-          it 'is has no errors' do
+          it 'has no errors' do
             expect(subject).to be_empty
           end
         end
