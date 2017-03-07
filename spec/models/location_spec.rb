@@ -169,6 +169,83 @@ RSpec.describe Location do
     expect(location).to be_valid
   end
 
+  describe '#online_booking_twilio_number' do
+    let(:location) do
+      build :location do |location|
+        location.booking_location = booking_location
+        location.online_booking_enabled = online_booking_enabled
+        location.online_booking_twilio_number = online_booking_twilio_number
+      end
+    end
+
+    subject { location.errors[:online_booking_twilio_number] }
+
+    context 'when online booking is enabled' do
+      let(:online_booking_enabled) { true }
+
+      context 'and the location has a parent location' do
+        let(:booking_location) { create(:location) }
+
+        context 'and the online booking twilio number is absent' do
+          let(:online_booking_twilio_number) { nil }
+          before { location.valid? }
+
+          it 'is has no errors' do
+            expect(subject).to be_empty
+          end
+        end
+      end
+
+      context 'and the location has no parent location' do
+        let(:booking_location) { nil }
+
+        context 'and the online booking twilio number is absent' do
+          let(:online_booking_twilio_number) { nil }
+          before { location.valid? }
+
+          it 'is has errors' do
+            expect(subject).to be_present
+          end
+        end
+
+        context 'and the online booking twilio number is present' do
+          let(:online_booking_twilio_number) { '+441111112222' }
+          before { location.valid? }
+
+          it 'is has no errors' do
+            expect(subject).to be_empty
+          end
+        end
+      end
+    end
+
+    context 'when online booking is disabled' do
+      let(:online_booking_enabled) { false }
+
+      context 'and the online booking twilio number is absent' do
+        let(:online_booking_twilio_number) { nil }
+
+        context 'and the location has a parent location' do
+          let(:booking_location) { create(:location) }
+          before { location.valid? }
+
+          it 'is has no errors' do
+            expect(subject).to be_empty
+          end
+        end
+
+        context 'and the location has no parent location' do
+          let(:booking_location) { nil }
+          before { location.valid? }
+
+          it 'is has no errors' do
+            expect(subject).to be_empty
+          end
+        end
+      end
+    end
+  end
+
   describe 'editing the phone number' do
     let(:version_3) do
       build(:location, uid: '12345', version: 3, phone: '+44123456111', twilio_number: '+44987654321', state: 'old')
