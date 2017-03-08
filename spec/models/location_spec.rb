@@ -143,8 +143,8 @@ RSpec.describe Location do
         booking_location.update_attribute(:hidden, true)
       end
 
-      it 'returns only active versions' do
-        expect(subject).to be_nil
+      it 'returns the inactive version' do
+        expect(subject).to eq(booking_location)
       end
     end
   end

@@ -60,7 +60,6 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     def booking_location_for(uid)
       location = includes(:locations, :guiders)
                  .current
-                 .active
                  .find_by(uid: uid)
 
       location&.canonical_location
