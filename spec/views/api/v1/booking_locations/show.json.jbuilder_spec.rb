@@ -18,7 +18,8 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'uid' => booking_location.uid,
       'name' => booking_location.title,
       'address' => booking_location.address_line,
-      'online_booking_twilio_number' => booking_location.online_booking_twilio_number
+      'online_booking_twilio_number' => booking_location.online_booking_twilio_number,
+      'hidden' => booking_location.hidden
     )
 
     expect(subject['locations'].first).to include(
@@ -26,6 +27,7 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'name' => booking_location.locations.first.title,
       'address' => booking_location.locations.first.address_line,
       'online_booking_twilio_number' => '',
+      'hidden' => booking_location.locations.first.hidden,
       'locations' => [],
       'slots' => a_hash_including(
         'date' => '2016-06-09',
