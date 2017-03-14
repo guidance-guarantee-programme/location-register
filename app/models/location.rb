@@ -26,6 +26,8 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   has_many :locations, foreign_key: :booking_location_uid, primary_key: :uid
   has_many :guiders
 
+  has_many :guider_assignments
+
   validates :uid, presence: true
   validates :organisation, presence: true, inclusion: ORGANISATIONS
   validates :title, presence: true
