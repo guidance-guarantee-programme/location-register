@@ -37,7 +37,7 @@ RSpec.describe CreateOrUpdateLocation do
 
     context 'when an existing location would be changed by the update' do
       context 'and the location has guiders assigned to it' do
-        let!(:guider) { create(:guider, location: location) }
+        let!(:guider) { location.guiders.create!(attributes_for(:guider)) }
 
         before do
           subject.update(params.merge(title: 'New title'))
@@ -48,7 +48,7 @@ RSpec.describe CreateOrUpdateLocation do
         end
 
         it 'the guiders will no longer be assigned to the old version of the location' do
-          expect(location.guiders).to be_empty
+          expect(location.reload.guiders).to be_empty
         end
       end
 

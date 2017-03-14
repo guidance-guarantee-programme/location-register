@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314101829) do
+ActiveRecord::Schema.define(version: 20170315105142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,12 +50,10 @@ ActiveRecord::Schema.define(version: 20170314101829) do
   end
 
   create_table "guiders", force: :cascade do |t|
-    t.string   "name",        default: "", null: false
-    t.string   "email",       default: "", null: false
-    t.integer  "location_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["location_id"], name: "index_guiders_on_location_id", using: :btree
+    t.string   "name",       default: "", null: false
+    t.string   "email",      default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "locations", force: :cascade do |t|
