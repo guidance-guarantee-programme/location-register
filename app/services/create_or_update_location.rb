@@ -61,7 +61,8 @@ class CreateOrUpdateLocation
     old_location = location
     build_new_version(params)
     @location.save!
-    old_location.guiders.update_all(location_id: @location.id)
+
+    old_location.guider_assignments.update_all(location_id: @location.id)
   end
 
   def previous_version_attributes

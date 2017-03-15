@@ -1,6 +1,7 @@
 module Admin
   class GuidersController < Admin::BaseController
-    before_action :set_authorised_location, :set_guider
+    before_action :set_authorised_location
+    before_action :set_guider, except: :create
 
     def index
       @guiders = @location.guiders
@@ -19,7 +20,7 @@ module Admin
     end
 
     def set_guider
-      @guider = Guider.new(location: @location)
+      @guider = Guider.new
     end
 
     def set_authorised_location

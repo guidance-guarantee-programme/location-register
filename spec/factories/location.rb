@@ -41,7 +41,7 @@ FactoryGirl.define do
       online_booking_twilio_number '+441442800110'
 
       after(:create) do |parent|
-        create(:guider, location: parent)
+        parent.guiders.create!(attributes_for(:guider))
 
         create_list(:location, 2, booking_location: parent)
       end
