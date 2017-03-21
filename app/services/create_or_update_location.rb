@@ -75,6 +75,7 @@ class CreateOrUpdateLocation
     new_booking_location.save!
 
     NotifyPensionGuidanceJob.perform_later
+    NotifyPlannerJob.perform_later(new_booking_location.uid, location.uid)
   end
 
   def previous_version_attributes

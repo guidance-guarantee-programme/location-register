@@ -43,6 +43,7 @@ RSpec.describe CreateOrUpdateLocation do
 
         before do
           allow(NotifyPensionGuidanceJob).to receive(:perform_later)
+          allow(NotifyPlannerJob).to receive(:perform_later)
 
           subject.update(
             params.merge(
@@ -59,6 +60,11 @@ RSpec.describe CreateOrUpdateLocation do
 
         it 'notifies the dependent systems' do
           expect(NotifyPensionGuidanceJob).to have_received(:perform_later)
+
+          expect(NotifyPlannerJob).to have_received(:perform_later).with(
+            new_booking_location.uid,
+            location.uid
+          )
         end
       end
 
