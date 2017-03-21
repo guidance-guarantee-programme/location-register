@@ -41,7 +41,9 @@ RSpec.describe CreateOrUpdateLocation do
         let(:new_booking_location) { create(:booking_location) }
         let(:location) { old_booking_location.locations.first }
 
-        it 'copies the guiders from the old booking location' do
+        before do
+          allow(NotifyPensionGuidanceJob).to receive(:perform_later)
+
           subject.update(
             params.merge(
               booking_location_uid: new_booking_location.uid,
@@ -49,8 +51,14 @@ RSpec.describe CreateOrUpdateLocation do
               hours: nil
             )
           )
+        end
 
+        it 'copies the guiders from the old booking location' do
           expect(new_booking_location.guider_ids).to include(*old_booking_location.guider_ids)
+        end
+
+        it 'notifies the dependent systems' do
+          expect(NotifyPensionGuidanceJob).to have_received(:perform_later)
         end
       end
 

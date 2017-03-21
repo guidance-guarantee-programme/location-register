@@ -73,6 +73,8 @@ class CreateOrUpdateLocation
 
     new_booking_location.guider_ids |= old_booking_location.guider_ids
     new_booking_location.save!
+
+    NotifyPensionGuidanceJob.perform_later
   end
 
   def previous_version_attributes

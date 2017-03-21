@@ -4,6 +4,9 @@ require 'spec_helper'
 require_relative '../config/environment'
 require 'rspec/rails'
 require 'pundit/rspec'
+require 'webmock/rspec'
+
+WebMock.disable_net_connect!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
