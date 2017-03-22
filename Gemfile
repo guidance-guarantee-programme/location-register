@@ -30,6 +30,7 @@ gem 'plek'
 gem 'pundit'
 gem 'uk_postcode'
 gem 'select2-rails'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'dotenv-rails'
