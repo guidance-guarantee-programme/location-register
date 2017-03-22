@@ -31,6 +31,7 @@ gem 'pundit'
 gem 'uk_postcode'
 gem 'select2-rails'
 gem 'sidekiq'
+gem 'sinatra', require: false
 
 group :development, :test do
   gem 'dotenv-rails'
