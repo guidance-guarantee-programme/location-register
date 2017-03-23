@@ -64,7 +64,7 @@ class CreateOrUpdateLocation
 
     old_location.guider_assignments.update_all(location_id: @location.id)
 
-    reassign_booking_location(old_location.booking_location, @location.booking_location)
+    reassign_booking_location(old_location.canonical_location, @location.booking_location)
   end
 
   def reassign_booking_location(old_booking_location, new_booking_location)
