@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   namespace :api, constraints: { format: :json } do
     namespace :v1 do
@@ -27,4 +29,6 @@ Rails.application.routes.draw do
   root 'locators#index'
 
   mount GovukAdminTemplate::Engine, at: '/style-guide'
+
+  mount Sidekiq::Web, at: '/sidekiq', constraints: AuthenticatedUser.new
 end

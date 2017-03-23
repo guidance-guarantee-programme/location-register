@@ -18,6 +18,8 @@ gem 'puma'
 gem 'alphabetical_paginate'
 gem 'bugsnag'
 gem 'deprecated_columns'
+gem 'faraday'
+gem 'faraday_middleware'
 gem 'gaffe'
 gem 'gds-sso'
 gem 'geocoder'
@@ -28,6 +30,8 @@ gem 'plek'
 gem 'pundit'
 gem 'uk_postcode'
 gem 'select2-rails'
+gem 'sidekiq'
+gem 'sinatra', require: false
 
 group :development, :test do
   gem 'dotenv-rails'

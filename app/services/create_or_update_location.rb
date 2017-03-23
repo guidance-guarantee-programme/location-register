@@ -63,6 +63,19 @@ class CreateOrUpdateLocation
     @location.save!
 
     old_location.guider_assignments.update_all(location_id: @location.id)
+
+    reassign_booking_location(old_location.booking_location, @location.booking_location)
+  end
+
+  def reassign_booking_location(old_booking_location, new_booking_location)
+    return unless old_booking_location && new_booking_location
+    return unless old_booking_location.uid != new_booking_location.uid
+
+    new_booking_location.guider_ids |= old_booking_location.guider_ids
+    new_booking_location.save!
+
+    NotifyPensionGuidanceJob.perform_later
+    NotifyPlannerJob.perform_later(new_booking_location.uid, location.uid)
   end
 
   def previous_version_attributes

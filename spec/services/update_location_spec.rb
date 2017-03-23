@@ -36,6 +36,38 @@ RSpec.describe CreateOrUpdateLocation do
     end
 
     context 'when an existing location would be changed by the update' do
+      context 'and the location is reassigned to a different booking location' do
+        let(:old_booking_location) { create(:booking_location) }
+        let(:new_booking_location) { create(:booking_location) }
+        let(:location) { old_booking_location.locations.first }
+
+        before do
+          allow(NotifyPensionGuidanceJob).to receive(:perform_later)
+          allow(NotifyPlannerJob).to receive(:perform_later)
+
+          subject.update(
+            params.merge(
+              booking_location_uid: new_booking_location.uid,
+              phone: nil,
+              hours: nil
+            )
+          )
+        end
+
+        it 'copies the guiders from the old booking location' do
+          expect(new_booking_location.guider_ids).to include(*old_booking_location.guider_ids)
+        end
+
+        it 'notifies the dependent systems' do
+          expect(NotifyPensionGuidanceJob).to have_received(:perform_later)
+
+          expect(NotifyPlannerJob).to have_received(:perform_later).with(
+            new_booking_location.uid,
+            location.uid
+          )
+        end
+      end
+
       context 'and the location has guiders assigned to it' do
         let!(:guider) { location.guiders.create!(attributes_for(:guider)) }
 
