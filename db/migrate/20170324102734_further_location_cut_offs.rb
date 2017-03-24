@@ -1,0 +1,93 @@
+class FurtherLocationCutOffs < ActiveRecord::Migration[5.0]
+  def up
+    locations_to_close = %w(
+      1812446c-77a1-462f-b356-a13b3c203658
+      1dd4fe43-a0ca-4468-b7a3-d78b8d8501a1
+      c751d1c7-39a2-46d9-ab10-ff5a57060fe9
+      d0a6ac30-8f8d-4cf1-8cd0-4db27f104502
+      b4aa9b5f-2a68-4668-a715-a1e78614a613
+      0b703eb5-64fa-44b5-85e0-fa378392ba55
+      ab13c300-c2dc-4802-a929-148102cbdace
+      15fd41b2-439a-448a-b775-b2b61e16d4bb
+      ac7112c3-e3cf-45cd-a8ff-9ba827b8e7ef
+      183080c6-642b-4b8f-96fd-891f5cd9f9c7
+      1cc67bbb-b879-4def-8713-99255a0bce03
+      c165d25e-f27b-4ce9-b3d3-e7415ebaa93c
+      89821b79-b132-4893-bc9f-c247dd9009fd
+      1a1ad00f-d967-448a-a4a6-772369fa5087
+      253a5060-9fc7-4936-8ab2-805b8ac0e781
+      2c1d89a2-79c5-42c9-bf9e-61027bb3f288
+      d076ede9-5c36-49a4-879c-d8924792583f
+      123015e5-bb23-4690-ad41-99e12c381392
+      41bf016b-5d5f-4a3a-b844-a23f32a2bc62
+      ce9c8519-3dc8-46c7-ab56-90993dd80960
+      848a0ab6-d59f-4f4c-93fb-acc0360af89d
+      d731ddd3-da0e-4bc4-a2ba-39f8e6ca70ad
+      3ab516af-6735-4523-bf24-370b09f02ff4
+      3d907c55-3d54-4de9-b965-5f3c1181c40d
+      b7de428f-99b2-476b-ad22-8a2455b52a5b
+      436cdf44-efd8-49d5-8dbb-c41a3ad6dd8e
+      ddf6eedb-b007-49a1-9def-64778c2ed38d
+      56d74aa9-f2a0-4b90-8d86-91e11eb71b36
+      4c1c3978-ffad-4a47-97ba-210e6eb8857f
+      74cd1044-d0d2-49ff-9fd2-eeb17f186fcd
+      209b2f4d-5696-46ab-a4ec-65839acd0744
+      ff03a764-13c7-4fee-9318-f1bd412b4338
+      8c31f021-688d-49d0-a629-c74493547305
+      2e3e2961-fe75-4cc3-88e1-78f48fb399aa
+      964eff71-cb06-472a-be42-02d9eb67b17a
+      068af268-515f-47ba-9ef6-dea129b5413d
+      6cdd30bf-c736-4f5a-a780-4afd0cf2c361
+      8e0e385f-2ec9-4e4f-b38e-63ca22d2ac1a
+      fd9fdeff-d3e2-4fb8-a20a-38a4381fdfef
+      04893a8d-d145-4b62-aaee-7db8d7106a12
+      28c7fac1-4c6d-4444-b30f-e3711eedd9b0
+      f47c08e1-9322-4730-9059-c3aa97f49cf4
+      7c00741c-0f7c-436d-ad27-1a503693192e
+      ee399dec-f9c2-4201-b27f-e3da114d3e17
+      27a9ea16-a86e-4d59-a15a-7a2999d383fd
+      c02201b3-cc4e-4ef2-9183-7eb704287303
+      1adae53b-5ce3-47ab-a7c3-24393c7f7f1a
+      41214e8d-9dfc-4f2f-9e58-8bf08c51001c
+      886a161a-41ca-4366-9b51-75ce94aa23fb
+      bd464be9-8b9f-4a55-b3ef-a4a8f16ed41d
+      c8a52d5a-4136-4c0f-b7f2-4277cfb8c249
+      184fcd75-7196-4be3-8541-bf2adad929d2
+      a371284c-681f-4da5-9d4f-c3f6b24620b3
+      f91ee9b9-2253-42d7-a505-586b66aed41a
+      ddfe1168-abbf-461d-b5ea-1ce6c63ee4cf
+      709ffeec-9059-4e25-89b7-5db04d3cf79c
+      8ffb927e-ceea-4db7-a373-a9f335428b8b
+      a75c52c0-7b36-42b5-b965-73c8949c252d
+      b115e9ff-bd4f-4a73-9f2e-ff4f04383309
+      e8fa2ad0-9b45-418e-93ef-120c79cdb487
+      ae8775e3-fee6-4fe2-97d6-6d0c149d4b48
+      4e7620ee-acab-49fc-833a-251ac3a84fb3
+      d9b55e78-2c11-44e3-a203-76c11070e334
+      adbdad96-4d54-4ce0-ac1f-86bc55957baa
+      beb75452-1762-4aa5-aa71-cf255a18f88e
+      52747945-8f8a-4766-b397-e19f765a58db
+      fef02333-6563-4643-b4dd-68224090d395
+      203355b5-b24f-40ca-8bf4-dacaefafa284
+      ed6ef0a3-f533-47a2-a214-1cbb71f86081
+      6b042dfe-70a8-4ab0-ab9d-372c2da7b407
+      7b6f6842-8a82-4993-ba0c-3b7e080b3e05
+      99f19b15-2a16-42bf-b0ae-f8c63c0e9586
+      04c29b5f-a199-4acd-a2d7-5369ff9a52f2
+      9d855ce9-2b2e-446d-ab60-2dafd996d830
+      6e30c892-6361-4c5d-a2d6-1cd767a46d82
+      18ef0b7d-b13a-4284-9765-aa888aa4ba09
+      b5948a66-34fa-44f9-9c62-641eb2cf501b
+      36ab7bd7-87e2-47d6-8ffc-edd7e5264380
+      e5e91152-3956-4860-8b4c-cd0620a1215d
+      ca3ac388-8713-41f3-a534-ae1677d5e352
+      49641b3a-19f9-4838-85f5-efa4b30676b8
+    ).freeze
+
+    Location.current.active.where(uid: locations_to_close).update_all(cut_off_from: '2017-04-21')
+  end
+
+  def down
+    # noop
+  end
+end
