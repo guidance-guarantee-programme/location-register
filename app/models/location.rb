@@ -138,6 +138,14 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   end
 
   def can_take_online_bookings?
-    online_booking_enabled? && BANK_HOLIDAYS.exclude?(Time.zone.today)
+    online_booking_enabled? && BANK_HOLIDAYS.exclude?(Time.zone.today) && operational?
+  end
+
+  def cut_off?
+    cut_off_from? && Time.zone.today >= cut_off_from
+  end
+
+  def operational?
+    !cut_off?
   end
 end
