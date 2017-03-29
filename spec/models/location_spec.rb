@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Location do
+  describe '#can_take_online_bookings?' do
+    context 'when the location has passed the cut-off period' do
+      subject do
+        build_stubbed(:location, :allows_online_booking, cut_off_from: '2017-01-01')
+      end
+
+      it 'is false' do
+        expect(subject.can_take_online_bookings?).to be_falsey
+      end
+    end
+
+    context 'when the location is still operational' do
+      subject do
+        build_stubbed(:location, :allows_online_booking)
+      end
+
+      it 'is true' do
+        expect(subject.can_take_online_bookings?).to be_truthy
+      end
+    end
+  end
+
   describe '.latest_for_twilio_number' do
     let(:user) { create(:user) }
     let(:location_1_ver_1) { create(:location) }
