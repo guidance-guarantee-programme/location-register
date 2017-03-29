@@ -25,8 +25,12 @@ class Slot
       booking_window_end = 6.weeks.from_now
 
       (grace_period..booking_window_end).reject do |date|
-        date.saturday? || date.sunday? || cut_off_from && date >= cut_off_from
+        date.saturday? || date.sunday? || cut_off_from && date >= cut_off_from || bank_holiday?(date)
       end
+    end
+
+    def bank_holiday?(date)
+      BANK_HOLIDAYS.include?(date)
     end
 
     def grace_period

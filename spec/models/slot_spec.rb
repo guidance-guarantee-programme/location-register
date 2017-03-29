@@ -5,6 +5,14 @@ RSpec.describe Slot do
     travel_to(date) { described_class.all }
   end
 
+  context 'on a bank holiday' do
+    let(:date) { BANK_HOLIDAYS.first }
+
+    it 'the first slot is the following Wednesday' do
+      expect(subject.first).to have_attributes(date: '2017-04-19')
+    end
+  end
+
   context 'on Sunday' do
     let(:date) { '2016-06-05 10:00:00' }
 
