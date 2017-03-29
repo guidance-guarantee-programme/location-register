@@ -15,18 +15,19 @@
     <% end %>
     <%- @locations.each do |location| %>
       <div class="row t-location" id="location-<%= location.uid %>">
-        <div class="col-md-6">
-          <h2 class="inline-block">
-            <%= link_to location.title, admin_location_path(location.uid), class: 't-location-title' %>
+        <div class="col-md-11">
+          <h2 class="inline-block t-location-title">
+            <%= location.title %>
           </h2>
           <%= render 'admin/locations/labels', location: location %>
           <%= render location %>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-1">
           <br>
           <%= link_to 'Edit', edit_admin_location_path(location.uid), class: 'btn btn-default t-edit-button' %>
         </div>
       </div>
+      <hr>
     <% end %>
   </div>
 </div>

@@ -32,7 +32,7 @@ module ApplicationHelper
     locations.map do |location|
       [
         location.title,
-        location.uid,
+        "#{location.uid}/edit",
         'data-hidden' => location.hidden?
       ]
     end

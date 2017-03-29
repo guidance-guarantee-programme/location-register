@@ -1,13 +1,86 @@
+<% content_for(:page_title, t('service.title', page_title: "Edit Location - #{@location.title}")) %>
+
+<nav aria-label="Breadcrumb" class="t-breadcrumb">
+  <ol class="breadcrumb">
+    <li><a href="/admin/">Home</a></li>
+    <li class="active">Edit Location - <%= @location.title %></li>
+  </ol>
+</nav>
+
 <div class="row">
   <div class="col-md-12">
     <h1 class="inline-block">Edit Location - <%= @location.title %></h1>
     <%= render 'admin/locations/labels', location: @location %>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%- if @location.booking_location %>
+      <p>Booking location: <%= link_to(@location.booking_location.title, edit_admin_location_path(@location.booking_location.uid)) %> (Direct number: <%= @location.canonical_location.phone %>)</p>
+    <%- end %>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <%= form_for @location, url: admin_location_path, method: 'put' do |f| %>
       <%= render 'form', f: f, location: @location %>
     <% end %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h2>Child locations</h2>
+    <div class="child-locations">
+      <% @location.locations.current_by_visibility.each do |location| %>
+        <p class="child-locations__location">
+          <%= link_to edit_admin_location_path(location.uid), class: location_visibility_class(location) do %>
+            <%= location.title %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+    <% if @location.locations.current_by_visibility.empty? %>
+      <p>No child locations</p>
+    <% end %>
+  </div>
+</div>
+<hr>
+<% if policy(@location).admin? %>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Guiders</h2>
+      <% if @location.guiders.count > 0 %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="location-details-table__fixed-width-column">Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @location.guiders.each do |guider| %>
+              <tr>
+                <td><%= guider.name %></td>
+                <td><%= guider.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>No guiders</p>
+      <% end %>
+      <%= link_to 'Edit guiders', admin_location_guiders_url(@location.uid), class: 'btn btn-default' %>
+    </div>
+  </div>
+  <hr>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Edits</h2>
+    <%= render 'admin/edited_locations/location_edits', location_edits: EditedLocation.for(@location) %>
   </div>
 </div>

@@ -45,7 +45,7 @@ Given(/^a location exists called "([^"]*)"$/) do |title|
   create(:location, :nicab, title: title)
 end
 
-When(/^I naviagte to the "([^"]*)" page$/) do |letter|
+When(/^I navigate to the "([^"]*)" page$/) do |letter|
   @page.navigate_to(letter)
 end
 
@@ -103,8 +103,8 @@ Then(/^I see that the location has a newer version$/) do
   expect(Location.where(version: 2)).to exist
 end
 
-When(/^I click on the location$/) do
-  @page.click_on_first_location
+When(/^I click on the location edit button$/) do
+  @page.click_on_first_location_edit_button
 end
 
 Then(/^I am on the locations page$/) do

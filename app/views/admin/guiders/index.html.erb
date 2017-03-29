@@ -1,8 +1,16 @@
+<% content_for(:page_title, t('service.title', page_title: "Guiders for #{@location.title}")) %>
+
+<nav aria-label="Breadcrumb" class="t-breadcrumb">
+  <ol class="breadcrumb">
+    <li><a href="/admin/">Home</a></li>
+    <li><a href="<%= edit_admin_location_path(@location.uid) %>">Edit Location - <%= @location.title %></a></li>
+    <li class="active">Guiders for <%= @location.title %></li>
+  </ol>
+</nav>
+
 <div class="row">
   <div class="col-md-12">
-    <h1 class="inline-block">
-      Guiders for <%= link_to @location.title, admin_location_path(@location.uid) %>
-    </h1>
+    <h1>Guiders for <%= @location.title %></h1>
   </div>
 </div>
 <div class="row">
@@ -16,7 +24,7 @@
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control t-email', placeholder: 'jane.doe@example.com' %>
       </div>
-      <%= f.button 'Add Guider', class: 'btn btn-default t-add' %>
+      <%= f.button 'Add Guider', class: 'btn btn-primary t-add' %>
     <% end %>
   </div>
   <div class="col-md-9">

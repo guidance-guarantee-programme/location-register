@@ -22,14 +22,11 @@ module Admin
       authorize @location
 
       if @location.save
-        redirect_to admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
+        redirect_to edit_admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
       else
         @booking_locations = policy_scope(Location.booking_locations)
         render :new
       end
-    end
-
-    def show
     end
 
     def edit
@@ -43,7 +40,7 @@ module Admin
         @booking_locations = policy_scope(Location.booking_locations)
         render :edit
       else
-        redirect_to admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
+        redirect_to edit_admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
       end
     end
 

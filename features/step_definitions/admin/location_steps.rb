@@ -10,10 +10,13 @@ end
 
 Then(/^I can see the locations details$/) do
   expect(@page).to have_location_title
-  expect(@page).to have_address
+  expect(@page).to have_address_line_1
+  expect(@page).to have_address_line_2
+  expect(@page).to have_address_line_3
   expect(@page).to have_booking_hours
   expect(@page).to have_telephone_number
-  expect(@page).to have_visibility
+  expect(@page).to have_hidden_false
+  expect(@page).to have_hidden_true
 end
 
 Given(/^a location exist for another organisations$/) do
@@ -32,11 +35,9 @@ When(/^I visit the "([^"]*)" location$/) do |location_title|
 end
 
 When(/^I (.*) the locations "([^"]*)" field to "([^"]*)"$/) do |method, field, new_value|
-  @page.edit_button.click
-  edit_page = AdminEditLocationPage.new
-  element = edit_page.public_send(field)
+  element = @page.public_send(field)
   element.public_send(method, new_value)
-  edit_page.save_button.click
+  @page.save_button.click
 end
 
 Then(/^the "([^"]*)" location has a new version where "([^"]*)" has been set to "([^"]*)"$/) do |title, field, value|
@@ -56,7 +57,7 @@ Then(/^the "([^"]*)" location address has been updated to have "([^"]*)" set to 
 end
 
 Then(/^I should see an error message for "([^"]*)"$/) do |field|
-  edit_page = AdminEditLocationPage.new
+  edit_page = AdminLocationPage.new
   expect(edit_page.error_messages.first).to match(field)
 end
 

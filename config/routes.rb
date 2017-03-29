@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'twilio/handle_status' => 'twilios#handle_status', as: :twilio_handle_status
 
   namespace :admin do
-    resources :locations, except: :destroy do
+    resources :locations, except: %i(destroy show) do
       get 'online_booking', on: :member
 
       resources :guiders, only: %i(index create)

@@ -52,7 +52,7 @@ Given(/^a hidden location exists with a twilio number$/) do
 end
 
 When(/^I toggle the location's visibility$/) do
-  @page = AdminEditLocationPage.new
+  @page = AdminLocationPage.new
   @page.load(uid: @location.uid)
 
   @page.hidden_false.set false
