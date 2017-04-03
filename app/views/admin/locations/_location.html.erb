@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-striped">
   <tr>
     <td class="location-details-table__fixed-width-column">Address:</td>
     <td class="t-address">
@@ -19,7 +19,7 @@
     <tr>
       <td>Booking location:</td>
       <td class="t-booking-location <%= location_visibility_class(location.booking_location) %>">
-        <%= link_to(location.booking_location.title, admin_location_path(location.booking_location.uid)) %>
+        <%= link_to(location.booking_location.title, edit_admin_location_path(location.booking_location.uid)) %>
       </td>
     </tr>
     <tr>

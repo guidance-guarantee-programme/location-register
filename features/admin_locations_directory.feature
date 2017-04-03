@@ -17,7 +17,7 @@ Feature: Admin - Location Directory
   Scenario: Location pagination works as expected
     Given two locations exist called "Apples" and "Bamboo"
     When I visit the locations admin directory
-    And I naviagte to the "B" page
+    And I navigate to the "B" page
     Then I should see the "Bamboo" location
 
   Scenario: Hidden locations are not displayed by default
@@ -43,7 +43,7 @@ Feature: Admin - Location Directory
   Scenario: Navigating to a specific locations page
     Given an active location exists
     When I visit the locations admin directory
-    And I click on the location
+    And I click on the location edit button
     Then I am on the locations page
 
   Scenario: Exporting locations in CSV format

@@ -16,24 +16,30 @@
     </a>
     <div id="collapse-<%= edited_location.uid %>-<%= created_at.to_i %>" class="panel-collapse collapse">
       <div class="panel-body">
-        <div class="activity-edit-header">
-          <div class="activity-field">Field</div>
-          <div class="activity-value">From</div>
-          <div class="activity-value">To</div>
-        </div>
-        <% edits.sort_by(&:field).each do |edit| %>
-          <div class="activity-edit t-edit">
-            <div class="activity-field t-edited-field">
-              <%= edit.field.titlecase %>
-            </div>
-            <div class="activity-value t-edited-old">
-              <%= edit.old_value %>
-            </div>
-            <div class="activity-value t-edited-new">
-              <%= edit.new_value %>
-            </div>
-          </div>
-        <% end %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          <tbody class="t-edit">
+            <% edits.sort_by(&:field).each do |edit| %>
+              <tr>
+                <td class="t-edited-field">
+                  <%= edit.field.titlecase %>
+                </td>
+                <td class="t-edited-old">
+                  <%= edit.old_value %>
+                </td>
+                <td class="t-edited-new">
+                  <%= edit.new_value %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

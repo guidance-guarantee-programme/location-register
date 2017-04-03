@@ -1,0 +1,10 @@
+.child-locations {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.child-locations__location {
+  flex-basis: 33%;
+  margin: 8px 0;
+}

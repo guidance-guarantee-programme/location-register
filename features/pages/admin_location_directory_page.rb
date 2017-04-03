@@ -7,6 +7,7 @@ class AdminLocationDirectoryPage < SitePrism::Page
     element :booking_hours, '.t-booking_hours'
     element :telephone_number, '.t-telephone_number'
     element :visibility, '.t-visibility'
+    element :edit_button, '.t-edit-button'
   end
 
   elements :pagination, '.t-pagination__letter'
@@ -34,9 +35,9 @@ class AdminLocationDirectoryPage < SitePrism::Page
     filter_submit.click unless javascript_enabled?
   end
 
-  def click_on_first_location
+  def click_on_first_location_edit_button
     location = locations[0]
-    location.location_title.click
+    location.edit_button.click
   end
 
   private
