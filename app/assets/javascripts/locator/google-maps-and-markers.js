@@ -153,8 +153,11 @@
         var bookingLocation = findLocationProperties(features, bookingLocationId);
         if (bookingLocation) {
           location['hours'] = bookingLocation['hours'];
-          location['phone'] = bookingLocation['phone'];
           location['booking_centre'] = bookingLocation['title'];
+
+          if (location['phone'] === '') {
+            location['phone'] = bookingLocation['phone'];
+          }
         }
       }
 
