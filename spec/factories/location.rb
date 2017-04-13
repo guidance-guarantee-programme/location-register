@@ -13,6 +13,7 @@ FactoryGirl.define do
     booking_location nil
     editor { build(:user) }
     online_booking_enabled false
+    online_booking_reply_to 'dave@example.com'
 
     before(:create) do |location|
       if location.booking_location.present?
