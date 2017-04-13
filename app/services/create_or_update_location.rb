@@ -91,7 +91,7 @@ class CreateOrUpdateLocation
   end
 
   def clean(attributes)
-    attributes.each do |key, value|
+    attributes.except(:online_booking_reply_to).each do |key, value|
       attributes[key] = nil if value.is_a?(String) && value.blank?
     end
   end

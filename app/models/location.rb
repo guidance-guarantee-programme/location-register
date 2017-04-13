@@ -13,6 +13,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     twilio_number
     online_booking_twilio_number
     online_booking_enabled
+    online_booking_reply_to
   ).freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
   ORGANISATIONS = %w(cas cita nicab).freeze

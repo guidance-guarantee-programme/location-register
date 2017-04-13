@@ -1,4 +1,12 @@
 class LocationPolicy < ApplicationPolicy
+  ADMIN_PARAMS = %i(
+    organisation
+    twilio_number
+    online_booking_twilio_number
+    online_booking_enabled
+    online_booking_reply_to
+  ).freeze
+
   class Scope < ApplicationPolicy::Scope
     def resolve
       if user.pensionwise_admin?
@@ -53,8 +61,7 @@ class LocationPolicy < ApplicationPolicy
     ]
 
     base_params += [:phone] if creating_new_record? || admin?
-    base_params += [:organisation, :twilio_number, :online_booking_twilio_number, :online_booking_enabled] if admin?
-
+    base_params += ADMIN_PARAMS if admin?
     base_params
   end
 

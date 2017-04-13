@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324102734) do
+ActiveRecord::Schema.define(version: 20170413090950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170324102734) do
     t.string   "online_booking_twilio_number",             default: ""
     t.boolean  "online_booking_enabled",                   default: false
     t.date     "cut_off_from"
+    t.string   "online_booking_reply_to",                  default: "",        null: false
     t.index ["booking_location_uid"], name: "index_locations_on_booking_location_uid", using: :btree
   end
 
