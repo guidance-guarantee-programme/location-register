@@ -74,15 +74,6 @@ RSpec.describe Location do
   end
 
   describe '#guiders' do
-    context 'for child locations' do
-      it 'is invalid with associated guiders' do
-        location = build(:location, booking_location_uid: 'deadbeef')
-        location.guiders << build(:guider)
-
-        expect(location).to_not be_valid
-      end
-    end
-
     context 'for booking locations' do
       it 'is valid with associated guiders' do
         location = build(:booking_location)
