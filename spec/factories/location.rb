@@ -1,8 +1,6 @@
 FactoryGirl.define do
   factory :location do
     uid { SecureRandom.uuid }
-    state 'current'
-    version 1
     cas
     sequence(:title) { |n| "Alpha location #{n}" }
     address
