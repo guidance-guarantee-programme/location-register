@@ -118,8 +118,16 @@ RSpec.describe Location do
       context 'when a cut-off date exists' do
         let(:location) { build(:location, cut_off_from: '2016-06-23') }
 
-        it 'only returns slots after the cut-off date' do
+        it 'only returns slots before the cut-off date' do
           expect(subject.last.date).to eq('2016-06-22')
+        end
+      end
+
+      context 'when a cut-off-to date exists' do
+        let(:location) { build(:location, cut_off_to: '2016-06-23') }
+
+        it 'only returns slots after the cut-off date' do
+          expect(subject.first.date).to eq('2016-06-24')
         end
       end
     end

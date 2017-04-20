@@ -134,7 +134,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   end
 
   def slots
-    Slot.all(cut_off_from)
+    Slot.all(cut_off_from, cut_off_to)
   end
 
   def can_take_online_bookings?

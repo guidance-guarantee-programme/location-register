@@ -10,8 +10,8 @@ class Slot
   }.freeze
 
   class << self
-    def all(cut_off_from = nil)
-      slot_dates(cut_off_from).map do |date|
+    def all(cut_off_from = nil, cut_off_to = nil)
+      slot_dates(cut_off_from, cut_off_to).map do |date|
         [
           Instance.new(date.iso8601, '0900', '1300'),
           Instance.new(date.iso8601, '1300', '1700')
@@ -21,11 +21,14 @@ class Slot
 
     private
 
-    def slot_dates(cut_off_from)
+    def slot_dates(cut_off_from, cut_off_to) # rubocop:disable Metrics/CyclomaticComplexity
       booking_window_end = 6.weeks.from_now
 
       (grace_period..booking_window_end).reject do |date|
-        date.saturday? || date.sunday? || cut_off_from && date >= cut_off_from || bank_holiday?(date)
+        date.saturday? || date.sunday? ||
+          cut_off_to && date <= cut_off_to ||
+          cut_off_from && date >= cut_off_from ||
+          bank_holiday?(date)
       end
     end
 
