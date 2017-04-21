@@ -22,7 +22,6 @@ Rails.application.routes.draw do
       resources :guiders, only: %i(index create)
     end
 
-    resources :edited_locations, only: [:index]
     root 'locations#index'
   end
 
