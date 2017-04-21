@@ -11,6 +11,6 @@ json.slots location.slots do |slot|
   json.end slot.end
 end
 
-json.locations location.locations.current do |child|
+json.locations location.locations do |child|
   json.partial! 'booking_location', location: child
 end

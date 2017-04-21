@@ -34,7 +34,7 @@
   <div class="col-md-12">
     <h2>Child locations</h2>
     <div class="child-locations">
-      <% @location.locations.current_by_visibility.each do |location| %>
+      <% @location.locations.by_visibility.each do |location| %>
         <p class="child-locations__location">
           <%= link_to edit_admin_location_path(location.uid), class: location_visibility_class(location) do %>
             <%= location.title %>
@@ -42,7 +42,7 @@
         </p>
       <% end %>
     </div>
-    <% if @location.locations.current_by_visibility.empty? %>
+    <% if @location.locations.by_visibility.empty? %>
       <p>No child locations</p>
     <% end %>
   </div>

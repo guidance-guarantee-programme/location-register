@@ -28,7 +28,7 @@ module ApplicationHelper
 
   def location_select_options
     return [] unless current_user
-    locations = Pundit.policy_scope!(current_user, Location.current_by_visibility)
+    locations = Pundit.policy_scope!(current_user, Location.by_visibility)
     locations.map do |location|
       [
         location.title,

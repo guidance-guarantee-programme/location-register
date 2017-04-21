@@ -8,17 +8,16 @@ RSpec.describe LocationPolicy do
     let(:admin) { build(:user, :cas, :pensionwise_admin) }
 
     it 'grants access for a new location' do
-      expect(subject).to permit(user, Location.new(version: nil))
-      expect(subject).to permit(user, Location.new(version: 1))
+      expect(subject).to permit(user, Location.new)
     end
 
     context 'for an existing location' do
       it 'deny access for a normal user' do
-        expect(subject).not_to permit(user, create(:location, version: 1))
+        expect(subject).not_to permit(user, create(:location))
       end
 
       it 'grant access for an admin user' do
-        expect(subject).to permit(admin, create(:location, version: 1))
+        expect(subject).to permit(admin, create(:location))
       end
     end
   end

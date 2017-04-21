@@ -24,7 +24,7 @@ module Admin
     end
 
     def set_authorised_location
-      @location ||= Location.current.active.find_by!(uid: params[:location_id])
+      @location ||= Location.active.find_by!(uid: params[:location_id])
       authorize @location
     end
   end

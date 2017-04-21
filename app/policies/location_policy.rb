@@ -24,7 +24,7 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def phone?
-    record.version.nil? || (record.version == 1 && record.new_record?) || admin?
+    record.new_record? || admin?
   end
 
   def edit?
