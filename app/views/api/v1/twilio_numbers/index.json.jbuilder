@@ -6,10 +6,10 @@ json.twilio_numbers  do
       json.delivery_partner location.organisation
 
       json.location location.title
-      json.location_postcode location.address.postcode
+      json.location_postcode location.postcode
 
       json.booking_location location.canonical_location.title
-      json.booking_location_postcode location.canonical_location.address.postcode
+      json.booking_location_postcode location.canonical_location.postcode
 
       json.hours location.canonical_location.hours
     end

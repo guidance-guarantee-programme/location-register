@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class LocationsCsv < CsvGenerator
   def initialize(record_or_records)
-    @records = Array(record_or_records).map { |record| LocationWithAddress.new(record) }
+    @records = Array(record_or_records)
   end
 
   def attributes
@@ -23,13 +23,5 @@ class LocationsCsv < CsvGenerator
 
   def hidden_formatter(value)
     value ? 'Hidden' : 'Active'
-  end
-
-  class LocationWithAddress
-    attr_reader :attributes
-
-    def initialize(location)
-      @attributes = location.address.attributes.merge(location.attributes)
-    end
   end
 end

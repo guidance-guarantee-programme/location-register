@@ -5,7 +5,7 @@ RSpec.describe LocationsCsv do
   let(:separator) { ',' }
 
   describe '#csv' do
-    subject { described_class.new(Location.new(address: Address.new)).call.lines }
+    subject { described_class.new(Location.new).call.lines }
 
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
@@ -38,12 +38,12 @@ RSpec.describe LocationsCsv do
             location.title,
             location.phone,
             location.hours,
-            location.address.address_line_1,
-            location.address.address_line_2,
-            location.address.address_line_3,
-            location.address.town,
-            location.address.county,
-            location.address.postcode,
+            location.address_line_1,
+            location.address_line_2,
+            location.address_line_3,
+            location.town,
+            location.county,
+            location.postcode,
             'Active'
           ]
         )
@@ -51,7 +51,7 @@ RSpec.describe LocationsCsv do
     end
 
     context '#hidden_formatter' do
-      subject { described_class.new(Location.new(address: Address.new)) }
+      subject { described_class.new(Location.new) }
 
       it 'when value is true displays `Hidden`' do
         expect(subject.hidden_formatter(true)).to eq('Hidden')

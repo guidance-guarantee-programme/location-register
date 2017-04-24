@@ -2,7 +2,7 @@
   <tr>
     <td class="location-details-table__fixed-width-column">Address:</td>
     <td class="t-address">
-      <%- location.address.to_a.each do |address_line| %>
+      <%- location.address_lines.to_a.each do |address_line| %>
         <%= address_line %><br/>
       <% end %>
     </td>

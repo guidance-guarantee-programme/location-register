@@ -312,4 +312,47 @@ RSpec.describe Location do
       end
     end
   end
+
+  describe 'address validations' do
+    subject { described_class.new(params).tap(&:valid?) }
+    let(:geocode) { instance_double('PostcodeGeocoder', valid?: false) }
+
+    before do
+      allow(PostcodeGeocoder).to receive(:new).and_return(geocode)
+    end
+
+    context 'when postcode is present' do
+      context 'and is a valid UK postcode' do
+        let(:params) { { postcode: 'AA1 2BB' } }
+
+        it 'raises a validation around geocoding' do
+          expect(subject.errors).to be_added(:postcode, :geocoding_error)
+        end
+      end
+
+      context 'and is not a valid UK postcode' do
+        let(:params) { { postcode: 'APPLES' } }
+
+        it 'raise a validation around postcode not being valid' do
+          expect(subject.errors).to be_added(:postcode, :non_uk)
+        end
+
+        it 'it does not raise a validation around geocoding' do
+          expect(subject.errors).not_to be_added(:postcode, :geocoding_error)
+        end
+      end
+    end
+
+    context 'when postcode is not present' do
+      let(:params) { { postcode: nil } }
+
+      it 'raise a validation around postcode is blank' do
+        expect(subject.errors).to be_added(:postcode, :blank)
+      end
+
+      it 'it does not raise a validation around geocoding' do
+        expect(subject.errors).not_to be_added(:postcode, :geocoding_error)
+      end
+    end
+  end
 end
