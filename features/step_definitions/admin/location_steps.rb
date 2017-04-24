@@ -40,20 +40,12 @@ When(/^I (.*) the locations "([^"]*)" field to "([^"]*)"$/) do |method, field, n
   @page.save_button.click
 end
 
-Then(/^the "([^"]*)" location has a new version where "([^"]*)" has been set to "([^"]*)"$/) do |title, field, value|
-  previous_location, current_location = *LocationTestHelper.get_all_location_versions(title: title)
+Then(/^the "([^"]*)" location has the field "([^"]*)" set to "([^"]*)"$/) do |title, field, value|
+  location = Location.find_by(title: title)
+  field_value = location.send(field)
+  field_value = field_value.title if field_value.is_a?(Location)
 
-  edited_fields = EditedLocation.new([current_location, previous_location]).edits.values.flatten
-  expect(edited_fields).to equal_edits(
-    [{ field: LocationTestHelper.field_name(field), new_value: LocationTestHelper.field_value(field, value) }]
-  )
-end
-
-Then(/^the "([^"]*)" location address has been updated to have "([^"]*)" set to "([^"]*)"$/) do |title, _field, value|
-  previous_location, current_location = *LocationTestHelper.get_all_location_versions(title: title)
-
-  edited_fields = EditedLocation.new([current_location, previous_location]).edits.values.flatten
-  expect(edited_fields).to match_edits([{ field: 'address', new_value: value }])
+  expect(field_value).to eq value
 end
 
 Then(/^I should see an error message for "([^"]*)"$/) do |field|
@@ -89,11 +81,6 @@ module LocationTestHelper
   }.freeze
 
   module_function
-
-  def get_all_location_versions(query)
-    location_uid = Location.find_by(query).uid
-    Location.where(uid: location_uid).order(:version)
-  end
 
   def field_name(field)
     FIELD_NAME_MAP[field] || field

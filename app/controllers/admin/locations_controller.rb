@@ -12,13 +12,15 @@ module Admin
     end
 
     def new
-      @location = Location.new(address: Address.new)
+      @location = Location.new
       @booking_locations = policy_scope(Location.booking_locations)
     end
 
     def create
-      updater = CreateOrUpdateLocation.new(user: current_user)
-      @location = updater.build(permitted_attributes(Location).to_h)
+      @location = Location.new(location_params) do |new_location|
+        new_location.organisation = current_user.organisation_slug
+        new_location.editor = current_user
+      end
       authorize @location
 
       if @location.save
@@ -34,13 +36,11 @@ module Admin
     end
 
     def update
-      updater = CreateOrUpdateLocation.new(location: @location, user: current_user)
-      @location = updater.update(permitted_attributes(@location).to_h)
-      if @location.invalid?
+      if @location.update_attributes(location_params)
+        redirect_to edit_admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
+      else
         @booking_locations = policy_scope(Location.booking_locations)
         render :edit
-      else
-        redirect_to edit_admin_location_path(@location.uid), notice: "Successfully updated #{@location.title}"
       end
     end
 
@@ -48,6 +48,10 @@ module Admin
     end
 
     private
+
+    def location_params
+      params.fetch(:location, {}).permit(Location::EDIT_FIELDS)
+    end
 
     def set_authorised_location
       @location ||= Location.find_by!(uid: params[:id])

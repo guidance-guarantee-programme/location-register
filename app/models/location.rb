@@ -13,11 +13,11 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     online_booking_twilio_number
     online_booking_enabled
     online_booking_reply_to
-    address_line_1,
-    address_line_2,
-    address_line_3,
-    town,
-    county,
+    address_line_1
+    address_line_2
+    address_line_3
+    town
+    county
     postcode
   ).freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
@@ -171,5 +171,10 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
       type: 'Point',
       coordinates: geocode.coordinates
     }
+  end
+
+  after_commit do
+    #NotifyPensionGuidanceJob.perform_later
+    #NotifyPlannerJob.perform_later(booking_location.uid, location.uid)
   end
 end
