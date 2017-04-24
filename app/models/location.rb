@@ -49,7 +49,6 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
             uk_phone_number: { allow_blank: true },
             unless: :booking_location_uid?,
             if: :online_booking_enabled?
-  validates :guiders, length: { is: 0 }, if: :booking_location_uid?
   validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
   validates :online_booking_enabled, inclusion: { in: [true, false] }
 
