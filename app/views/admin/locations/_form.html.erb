@@ -4,7 +4,7 @@
       <div class="error-summary t-errors ">
         <h2 class="error-summary__heading">There's a problem</h2>
         <ul class="error-summary__list">
-          <% error_messages_for(location, location.address).each do |attribute, attribute_errors| %>
+          <% error_messages_for(location).each do |attribute, attribute_errors| %>
             <% attribute_errors.each do |attribute_error| %>
               <li class="error-summary__list-item t-error-message">
                 <a class="error-summary__link" href="#<%= attribute %>"><%= sanitize(attribute_error, :tags => []) %></a>
@@ -32,39 +32,36 @@
       <%= render 'error', error_messages: location.errors[:title] %>
       <%= f.text_field :title, class: 'form-control t-location-title' %>
     </div>
-
-    <%= f.fields_for(:address, location.address) do |a| %>
-      <div class="<%= 'form-group--error' if a.object.errors[:address_line_1].any? %>">
-        <div class="form-group" id="address_line_1">
-          <%= a.label :address_line_1, 'Address' %>
-          <%= render 'error', error_messages: a.object.errors[:address_line_1] %>
-          <%= a.text_field :address_line_1, class: 'form-control t-address-line-1' %>
-        </div>
-        <div class="form-group <%= 'form-group--error' if a.object.errors[:address_line_2].any? %>" id="address_line_2">
-          <%= render 'error', error_messages: location.address.errors[:address_line_2] %>
-          <%= a.text_field :address_line_2, class: 'form-control t-address-line-2' %>
-        </div>
-        <div class="form-group <%= 'form-group--error' if a.object.errors[:address_line_3].any? %>" id="address_line_3">
-          <%= render 'error', error_messages: location.address.errors[:address_line_3] %>
-          <%= a.text_field :address_line_3, class: 'form-control t-address-line-3' %>
-        </div>
+    <div class="<%= 'form-group--error' if f.object.errors[:address_line_1].any? %>">
+      <div class="form-group" id="address_line_1">
+        <%= f.label :address_line_1, 'Address' %>
+        <%= render 'error', error_messages: f.object.errors[:address_line_1] %>
+        <%= f.text_field :address_line_1, class: 'form-control t-address-line-1' %>
       </div>
-      <div class="form-group <%= 'form-group--error' if a.object.errors[:town].any? %>" id="town">
-        <%= a.label :town %>
-        <%= render 'error', error_messages: location.address.errors[:town] %>
-        <%= a.text_field :town, class: 'form-control t-town' %>
+      <div class="form-group <%= 'form-group--error' if f.object.errors[:address_line_2].any? %>" id="address_line_2">
+        <%= render 'error', error_messages: f.object.errors[:address_line_2] %>
+        <%= f.text_field :address_line_2, class: 'form-control t-address-line-2' %>
       </div>
-      <div class="form-group <%= 'form-group--error' if a.object.errors[:county].any? %>" id="county">
-        <%= a.label :county %>
-        <%= render 'error', error_messages: location.address.errors[:county] %>
-        <%= a.text_field :county, class: 'form-control t-county' %>
+      <div class="form-group <%= 'form-group--error' if f.object.errors[:address_line_3].any? %>" id="address_line_3">
+        <%= render 'error', error_messages: f.object.errors[:address_line_3] %>
+        <%= f.text_field :address_line_3, class: 'form-control t-address-line-3' %>
       </div>
-      <div class="form-group <%= 'form-group--error' if a.object.errors[:postcode].any? %>" id="postcode">
-        <%= a.label :postcode %>
-        <%= render 'error', error_messages: location.address.errors[:postcode] %>
-        <%= a.text_field :postcode, class: 'input-md-3 form-control t-postcode' %>
-      </div>
-    <% end %>
+    </div>
+    <div class="form-group <%= 'form-group--error' if f.object.errors[:town].any? %>" id="town">
+      <%= f.label :town %>
+      <%= render 'error', error_messages: f.object.errors[:town] %>
+      <%= f.text_field :town, class: 'form-control t-town' %>
+    </div>
+    <div class="form-group <%= 'form-group--error' if f.object.errors[:county].any? %>" id="county">
+      <%= f.label :county %>
+      <%= render 'error', error_messages: f.object.errors[:county] %>
+      <%= f.text_field :county, class: 'form-control t-county' %>
+    </div>
+    <div class="form-group <%= 'form-group--error' if f.object.errors[:postcode].any? %>" id="postcode">
+      <%= f.label :postcode %>
+      <%= render 'error', error_messages: f.object.errors[:postcode] %>
+      <%= f.text_field :postcode, class: 'input-md-3 form-control t-postcode' %>
+    </div>
   </div>
   <div class="col-md-6">
     <div class="form-group <%= 'form-group--error' if f.object.errors[:booking_location].any? %>" id="booking_location">

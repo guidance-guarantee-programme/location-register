@@ -1,11 +1,8 @@
 FactoryGirl.define do
   factory :location do
     uid { SecureRandom.uuid }
-    state 'current'
-    version 1
     cas
     sequence(:title) { |n| "Alpha location #{n}" }
-    address
     sequence(:phone) { |n| "+44100000#{1000 + n}" }
     sequence(:twilio_number) { |n| "+44111111#{1000 + n}" }
     extension nil
@@ -14,6 +11,18 @@ FactoryGirl.define do
     editor { build(:user) }
     online_booking_enabled false
     online_booking_reply_to 'dave@example.com'
+    sequence(:address_line_1) { |n| "Test flat #{n}" }
+    address_line_2 'Testing centre'
+    address_line_3 'Test Avenue'
+    town 'Test Vile'
+    county 'Testy'
+    postcode 'UB9 4LH'
+    point do
+      {
+        type: 'Point',
+        coordinates: [12.12, 45.45]
+      }
+    end
 
     before(:create) do |location|
       if location.booking_location.present?

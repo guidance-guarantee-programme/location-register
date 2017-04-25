@@ -15,9 +15,9 @@ RSpec.describe 'api/v1/twilio_numbers/index.json.jbuilder' do
     expect(subject[booking_location.twilio_number]).to eq(
       'uid' => booking_location.uid,
       'location' => booking_location.title,
-      'location_postcode' => booking_location.address.postcode,
+      'location_postcode' => booking_location.postcode,
       'booking_location' => booking_location.title,
-      'booking_location_postcode' => booking_location.address.postcode,
+      'booking_location_postcode' => booking_location.postcode,
       'delivery_partner' => booking_location.organisation,
       'hours' => booking_location.hours
     )
@@ -27,9 +27,9 @@ RSpec.describe 'api/v1/twilio_numbers/index.json.jbuilder' do
     expect(subject[location.twilio_number]).to eq(
       'uid' => location.uid,
       'location' => location.title,
-      'location_postcode' => location.address.postcode,
+      'location_postcode' => location.postcode,
       'booking_location' => booking_location.title,
-      'booking_location_postcode' => booking_location.address.postcode,
+      'booking_location_postcode' => booking_location.postcode,
       'delivery_partner' => booking_location.organisation,
       'hours' => booking_location.hours
     )

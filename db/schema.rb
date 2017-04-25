@@ -10,25 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420123641) do
+ActiveRecord::Schema.define(version: 20170424095022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "addresses", force: :cascade do |t|
-    t.string   "uid"
-    t.string   "name"
-    t.string   "address"
-    t.jsonb    "point"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "address_line_1"
-    t.string   "address_line_2"
-    t.string   "address_line_3"
-    t.string   "town"
-    t.string   "county"
-    t.string   "postcode"
-  end
 
   create_table "call_centres", force: :cascade do |t|
     t.string   "uid"
@@ -62,12 +47,10 @@ ActiveRecord::Schema.define(version: 20170420123641) do
     t.string   "title"
     t.string   "phone"
     t.string   "hours",                        limit: 500
-    t.string   "state",                                    default: "pending"
     t.datetime "closed_at"
-    t.integer  "version"
     t.jsonb    "raw"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.boolean  "hidden",                                   default: false
     t.integer  "address_id"
     t.string   "booking_location_uid"
@@ -77,8 +60,15 @@ ActiveRecord::Schema.define(version: 20170420123641) do
     t.string   "online_booking_twilio_number",             default: ""
     t.boolean  "online_booking_enabled",                   default: false
     t.date     "cut_off_from"
-    t.string   "online_booking_reply_to",                  default: "",        null: false
+    t.string   "online_booking_reply_to",                  default: "",    null: false
     t.date     "cut_off_to"
+    t.jsonb    "point"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "address_line_3"
+    t.string   "town"
+    t.string   "county"
+    t.string   "postcode"
     t.index ["booking_location_uid"], name: "index_locations_on_booking_location_uid", using: :btree
   end
 

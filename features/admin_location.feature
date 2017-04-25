@@ -8,11 +8,11 @@ Feature: Admin - Location Directory
     When I visit the locations admin page
     Then I can see the locations details
 
-  Scenario Outline: Editing a locations creates a new version with the updated values
+  Scenario Outline: Editing a location updates the location with the new values
     Given a location exists called "Apples"
     When I visit the "Apples" location
     And I <method> the locations "<Field>" field to "<Value>"
-    Then the "Apples" location has a new version where "<Field>" has been set to "<Value>"
+    Then the "Apples" location has the field "<Field>" set to "<Value>"
 
     Examples:
       | method | Field                 | Value                  |
@@ -20,18 +20,18 @@ Feature: Admin - Location Directory
       | set    | booking_hours         | Mon to Fri 6am to 1pm  |
       | choose | make_location_visible | No                     |
 
-  Scenario: Editing a locations booking location creates a new version with the updated values
+  Scenario: Editing a locations booking location updates the location with the new values
     Given two locations exist called "Apples" and "Bamboo"
     When I visit the "Apples" location
     And I select the locations "booking_location" field to "Bamboo"
-    Then the "Apples" location has a new version where "booking_location" has been set to "Bamboo"
+    Then the "Apples" location has the field "booking_location" set to "Bamboo"
 
   @vcr
-  Scenario Outline: Editing a locations address creates a new version with the updated values
+  Scenario Outline: Editing a locations address updates the location with the new values
     Given a location exists called "Apples"
     When I visit the "Apples" location
     And I <method> the locations "<Field>" field to "<Value>"
-    Then the "Apples" location address has been updated to have "<Field>" set to "<Value>"
+    Then the "Apples" location has the field "<Field>" set to "<Value>"
 
     Examples:
       | method | Field            | Value                  |
@@ -42,12 +42,6 @@ Feature: Admin - Location Directory
       | set    | county           | Testland               |
       | set    | postcode         | PR1 2NJ                |
       | set    | postcode         | LA6 2BG                |
-
-  Scenario: A new location version is created when the location is edited
-    Given a location exists called "Apples"
-    When I visit the "Apples" location
-    And I set the locations "location_title" field to "Green delicious"
-    Then I see that the location has a newer version
 
   Scenario: When an update fails
     Given a location exists called "Apples"

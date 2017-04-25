@@ -39,11 +39,11 @@ When(/^I create a new booking location$/) do
 end
 
 Then(/^the location is created$/) do
-  expect(Location.current.last.title).to eq('Fun Land')
+  expect(Location.last.title).to eq('Fun Land')
 end
 
 Then(/^the location is hidden$/) do
-  expect(Location.current.last).to be_hidden
+  expect(Location.last).to be_hidden
 end
 
 Given(/^a hidden location exists with a twilio number$/) do
@@ -61,7 +61,7 @@ When(/^I toggle the location's visibility$/) do
 end
 
 Then(/^the location is visible$/) do
-  expect(Location.current.last).not_to be_hidden
+  expect(Location.last).not_to be_hidden
 end
 
 Given(/^a hidden location exists without a twilio number$/) do
