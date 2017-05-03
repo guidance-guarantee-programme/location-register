@@ -7,7 +7,10 @@ module Admin
       @locations_directory = LocationsDirectory.new(current_user, params)
       respond_to do |format|
         format.html { @locations, @sorting_params = @locations_directory.paginated_locations }
-        format.csv { render csv: LocationsCsv.new(@locations_directory.locations) }
+        format.csv do
+          expires_now
+          render csv: LocationsCsv.new(@locations_directory.locations)
+        end
       end
     end
 
