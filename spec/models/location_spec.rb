@@ -1,6 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Location do
+  describe '.booking_locations' do
+    before do
+      @booking_locations = [
+        create(:location, booking_location_uid: nil),
+        create(:location, booking_location_uid: '')
+      ]
+
+      @location = create(:location, booking_location_uid: SecureRandom.uuid)
+    end
+
+    it 'lists the correct locations' do
+      expect(described_class.booking_locations).to eq(@booking_locations)
+    end
+  end
+
   describe '#can_take_online_bookings?' do
     context 'when the location has passed the cut-off period' do
       subject do

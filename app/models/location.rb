@@ -71,7 +71,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     end
 
     def booking_locations
-      current.active.where(booking_location_uid: nil)
+      current.active.where(booking_location_uid: [nil, ''])
     end
 
     def externally_visible(include_hidden_locations:)
