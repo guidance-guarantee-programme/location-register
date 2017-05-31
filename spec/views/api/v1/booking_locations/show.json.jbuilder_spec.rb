@@ -30,18 +30,7 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'online_booking_twilio_number' => '',
       'online_booking_reply_to' => 'dave@example.com',
       'hidden' => booking_location.locations.first.hidden,
-      'locations' => [],
-      'slots' => a_hash_including(
-        'date' => '2016-06-09',
-        'start' => '0900',
-        'end' => '1300'
-      )
-    )
-
-    expect(subject['slots'].first).to eq(
-      'date' => '2016-06-09',
-      'start' => '0900',
-      'end' => '1300'
+      'locations' => []
     )
 
     expect(subject['guiders'].first).to eq(
