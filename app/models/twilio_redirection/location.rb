@@ -7,15 +7,25 @@ module TwilioRedirection
     end
 
     def phone
-      return ::Location::TP_CALL_CENTRE_NUMBER if @location.hidden?
+      return ::Location::TP_CALL_CENTRE_NUMBER if redirect_to_call_center?
 
-      @location.phone
+      recipient_location.phone
     end
 
     def phone_options
-      return {} if @location.extension.blank?
+      return {} if recipient_location.extension.blank?
 
-      { sendDigits: @location.extension }
+      { sendDigits: recipient_location.extension }
+    end
+
+    private
+
+    def redirect_to_call_center?
+      [@location.booking_location, @location].compact.all?(&:hidden?)
+    end
+
+    def recipient_location
+      @location.phone.present? ? @location : @location.booking_location
     end
   end
 end

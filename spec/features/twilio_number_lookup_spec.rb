@@ -8,6 +8,20 @@ RSpec.describe 'Twilio number lookup', type: :request do
       then_xml_containing_the_location_number_is_returned
     end
 
+    context 'and the location has booking location' do
+      it 'will forward to the location phones if a number exists' do
+        given_a_location_exists_with_a_booking_location_and_own_phone
+        when_twilio_requests_a_forwarding_number
+        then_xml_containing_the_location_number_is_returned
+      end
+
+      it 'will forward to the booking location phones if no number of its own exists' do
+        given_a_location_exists_with_a_booking_location
+        when_twilio_requests_a_forwarding_number
+        then_xml_containing_the_booking_location_number_is_returned
+      end
+    end
+
     it 'will include the locations extension is one exists' do
       given_a_location_exists_that_requires_an_extension
       when_twilio_requests_a_forwarding_number
@@ -68,6 +82,15 @@ RSpec.describe 'Twilio number lookup', type: :request do
   def given_a_location_exists_with_a_booking_location
     @booking_location = create(:location)
     @redirection = create(:location, phone: nil, booking_location: @booking_location)
+  end
+
+  def given_a_location_exists_with_a_booking_location_and_own_phone
+    @booking_location = create(:location)
+    @redirection = create(:location)
+
+    # Associate after creation, as factory clears the phone (and hours)
+    # on creation if a booking location is present.
+    @redirection.update_attribute(:booking_location, @booking_location)
   end
 
   def given_a_hidden_location_exists_with_a_booking_location

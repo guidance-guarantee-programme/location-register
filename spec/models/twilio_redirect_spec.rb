@@ -12,6 +12,26 @@ RSpec.describe TwilioRedirection do
         it 'redirects to the locations phone number' do
           expect(described_class.for(twilio_number).phone).to eq(location.phone)
         end
+
+        context 'and it has a booking location' do
+          let(:booking_location) { create(:location) }
+
+          before do
+            location.update_attribute(:booking_location, booking_location)
+          end
+
+          it 'still redirects to the locations phone number' do
+            expect(described_class.for(twilio_number).phone).to eq(location.phone)
+          end
+
+          context 'and the location has no phone number' do
+            before { location.update_attribute(:phone, nil) }
+
+            it 'redirects to the booking locations phone number' do
+              expect(described_class.for(twilio_number).phone).to eq(booking_location.phone)
+            end
+          end
+        end
       end
 
       context 'and the location is hidden' do
