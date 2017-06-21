@@ -93,17 +93,27 @@
       '<p>', l['address'].replace(/(?:\r\n|\r|\n)/g, '<br />'), '</p>'
     ];
 
-    if (l['booking_centre'] && l['booking_centre'] !== l['title']) {
-      elements.push(
-        '<p><b>Booking Centre Details</b></p>',
-        '<p>', l['booking_centre'] + ' Citizens Advice', '</p>'
-      );
-    }
+    if (l['booking_location'] && l['phone'].length === 0) {
+      var bl = l['booking_location'];
 
-    elements.push(
-      '<p>', l['hours'].replace(/(?:\r\n|\r|\n)/g, '<br />'), '</p>',
-      l['phone']
-    );
+      elements.push(
+        '<p>', l['phone'], '</p>',
+        '<p><b>Booking Centre Details</b></p>',
+        '<p>', bl['title'] + ' Citizens Advice', '</p>',
+        '<p>', bl['hours'].replace(/(?:\r\n|\r|\n)/g, '<br />'), '</p>',
+        bl['phone']
+      );
+    } else {
+      // If this is a child location with a phone number,
+      // opening hours might not be present.
+      if (l['hours'].length > 0) {
+        elements.push(
+          '<p>', l['hours'].replace(/(?:\r\n|\r|\n)/g, '<br />'), '</p>'
+        );
+      }
+
+      elements.push(l['phone']);
+    }
 
     return elements.join('\n');
   }
@@ -152,12 +162,11 @@
       if (bookingLocationId && bookingLocationId !== '') {
         var bookingLocation = findLocationProperties(features, bookingLocationId);
         if (bookingLocation) {
-          location['hours'] = bookingLocation['hours'];
-          location['booking_centre'] = bookingLocation['title'];
-
-          if (location['phone'] === '') {
-            location['phone'] = bookingLocation['phone'];
-          }
+          location['booking_location'] = {
+            hours: bookingLocation['hours'],
+            title: bookingLocation['title'],
+            phone: bookingLocation['phone']
+          };
         }
       }
 
