@@ -14,85 +14,86 @@ ActiveRecord::Schema.define(version: 20170502122543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
-  create_table "addresses", force: :cascade do |t|
-    t.string   "uid"
-    t.string   "name"
-    t.string   "address"
-    t.jsonb    "point"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "address_line_1"
-    t.string   "address_line_2"
-    t.string   "address_line_3"
-    t.string   "town"
-    t.string   "county"
-    t.string   "postcode"
+  create_table "addresses", id: :serial, force: :cascade do |t|
+    t.string "uid"
+    t.string "name"
+    t.string "address"
+    t.jsonb "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "address_line_1"
+    t.string "address_line_2"
+    t.string "address_line_3"
+    t.string "town"
+    t.string "county"
+    t.string "postcode"
   end
 
-  create_table "call_centres", force: :cascade do |t|
-    t.string   "uid"
-    t.string   "purpose"
-    t.string   "twilio_number"
-    t.string   "phone"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "call_centres", id: :serial, force: :cascade do |t|
+    t.string "uid"
+    t.string "purpose"
+    t.string "twilio_number"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "guider_assignments", force: :cascade do |t|
-    t.integer  "guider_id",   null: false
-    t.integer  "location_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["guider_id", "location_id"], name: "index_guider_assignments_on_guider_id_and_location_id", unique: true, using: :btree
-    t.index ["guider_id"], name: "index_guider_assignments_on_guider_id", using: :btree
-    t.index ["location_id"], name: "index_guider_assignments_on_location_id", using: :btree
+  create_table "guider_assignments", id: :serial, force: :cascade do |t|
+    t.integer "guider_id", null: false
+    t.integer "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guider_id", "location_id"], name: "index_guider_assignments_on_guider_id_and_location_id", unique: true
+    t.index ["guider_id"], name: "index_guider_assignments_on_guider_id"
+    t.index ["location_id"], name: "index_guider_assignments_on_location_id"
   end
 
-  create_table "guiders", force: :cascade do |t|
-    t.string   "name",       default: "", null: false
-    t.string   "email",      default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+  create_table "guiders", id: :serial, force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "locations", force: :cascade do |t|
-    t.string   "uid"
-    t.string   "organisation"
-    t.string   "title"
-    t.string   "phone"
-    t.string   "hours",                        limit: 500
-    t.string   "state",                                    default: "pending"
+  create_table "locations", id: :serial, force: :cascade do |t|
+    t.string "uid"
+    t.string "organisation"
+    t.string "title"
+    t.string "phone"
+    t.string "hours", limit: 500
+    t.string "state", default: "pending"
     t.datetime "closed_at"
-    t.integer  "version"
-    t.jsonb    "raw"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
-    t.boolean  "hidden",                                   default: false
-    t.integer  "address_id"
-    t.string   "booking_location_uid"
-    t.integer  "editor_id"
-    t.string   "twilio_number"
-    t.string   "extension"
-    t.string   "online_booking_twilio_number",             default: ""
-    t.boolean  "online_booking_enabled",                   default: false
-    t.date     "cut_off_from"
-    t.string   "online_booking_reply_to",                  default: "",        null: false
-    t.date     "cut_off_to"
-    t.index ["booking_location_uid"], name: "index_locations_on_booking_location_uid", using: :btree
+    t.integer "version"
+    t.jsonb "raw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "hidden", default: false
+    t.integer "address_id"
+    t.string "booking_location_uid"
+    t.integer "editor_id"
+    t.string "twilio_number"
+    t.string "extension"
+    t.string "online_booking_twilio_number", default: ""
+    t.boolean "online_booking_enabled", default: false
+    t.date "cut_off_from"
+    t.string "online_booking_reply_to", default: "", null: false
+    t.date "cut_off_to"
+    t.index ["booking_location_uid"], name: "index_locations_on_booking_location_uid"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "uid"
-    t.string   "organisation_slug"
-    t.string   "organisation_content_id"
-    t.string   "permissions"
-    t.boolean  "remotely_signed_out",     default: false
-    t.boolean  "disabled",                default: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "uid"
+    t.string "organisation_slug"
+    t.string "organisation_content_id"
+    t.string "permissions"
+    t.boolean "remotely_signed_out", default: false
+    t.boolean "disabled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
