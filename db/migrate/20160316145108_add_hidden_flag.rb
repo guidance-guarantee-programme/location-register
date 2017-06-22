@@ -1,4 +1,4 @@
-class AddHiddenFlag < ActiveRecord::Migration
+class AddHiddenFlag < ActiveRecord::Migration[4.2]
   def change
     add_column :locations, :hidden, :boolean, default: false
 

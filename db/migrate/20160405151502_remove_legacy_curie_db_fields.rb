@@ -1,4 +1,4 @@
-class RemoveLegacyCurieDbFields < ActiveRecord::Migration
+class RemoveLegacyCurieDbFields < ActiveRecord::Migration[4.2]
   def up
     remove_column :locations, :address
     remove_column :locations, :booking_location

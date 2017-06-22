@@ -1,6 +1,6 @@
 require 'yaml'
 
-class AddTwilioNumberToLocation < ActiveRecord::Migration
+class AddTwilioNumberToLocation < ActiveRecord::Migration[4.2]
   def up
     add_column :locations, :twilio_number, :string
     add_column :locations, :extension, :string

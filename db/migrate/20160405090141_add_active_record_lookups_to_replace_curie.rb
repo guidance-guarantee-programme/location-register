@@ -1,4 +1,4 @@
-class AddActiveRecordLookupsToReplaceCurie < ActiveRecord::Migration
+class AddActiveRecordLookupsToReplaceCurie < ActiveRecord::Migration[4.2]
   def up
     add_reference :locations, :address
     add_column :locations, :booking_location_uid, :string
