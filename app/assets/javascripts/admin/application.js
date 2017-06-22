@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require ./locations-directory
 //= require select2
 //= require ./search
