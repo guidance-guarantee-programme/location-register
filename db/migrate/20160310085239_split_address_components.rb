@@ -1,4 +1,4 @@
-class SplitAddressComponents < ActiveRecord::Migration
+class SplitAddressComponents < ActiveRecord::Migration[4.2]
   def change
     add_column :addresses, "address_line_1",  :string
     add_column :addresses, "address_line_2",  :string

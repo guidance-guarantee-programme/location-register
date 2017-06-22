@@ -1,4 +1,4 @@
-class RemovePhoneWhenBookingLocation < ActiveRecord::Migration
+class RemovePhoneWhenBookingLocation < ActiveRecord::Migration[4.2]
   def change
     execute %(
       UPDATE locations

@@ -1,4 +1,4 @@
-class CreateCallCentres < ActiveRecord::Migration
+class CreateCallCentres < ActiveRecord::Migration[4.2]
   def up
     create_table :call_centres do |t|
       t.string :uid

@@ -1,4 +1,4 @@
-class CreateGuiders < ActiveRecord::Migration
+class CreateGuiders < ActiveRecord::Migration[4.2]
   def change
     create_table :guiders do |t|
       t.string :name, null: false, default: ''
