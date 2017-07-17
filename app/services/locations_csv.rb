@@ -18,6 +18,7 @@ class LocationsCsv < CsvGenerator
       hours
       hidden
       booking_location_uid
+      organisation
     ).freeze
   end
 
