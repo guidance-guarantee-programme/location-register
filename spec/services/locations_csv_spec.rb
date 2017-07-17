@@ -22,6 +22,7 @@ RSpec.describe LocationsCsv do
           hours
           hidden
           booking_location_uid
+          organisation
         )
       )
     end
@@ -32,7 +33,7 @@ RSpec.describe LocationsCsv do
       subject { described_class.new(location).call.lines }
 
       it 'generates correctly mapped rows' do
-        expect(subject.last.chomp.split(separator)).to match_array(
+        expect(subject.last.chomp.split(separator).reject(&:empty?)).to match_array(
           [
             location.uid,
             location.title,
@@ -44,7 +45,8 @@ RSpec.describe LocationsCsv do
             location.address.town,
             location.address.county,
             location.address.postcode,
-            'Active'
+            'Active',
+            'cas'
           ]
         )
       end
