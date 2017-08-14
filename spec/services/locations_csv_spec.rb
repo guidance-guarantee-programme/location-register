@@ -23,6 +23,7 @@ RSpec.describe LocationsCsv do
           hidden
           booking_location_uid
           organisation
+          online_booking_enabled
         )
       )
     end
@@ -46,7 +47,8 @@ RSpec.describe LocationsCsv do
             location.address.county,
             location.address.postcode,
             'Active',
-            'cas'
+            'cas',
+            'false'
           ]
         )
       end
