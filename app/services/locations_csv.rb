@@ -4,7 +4,7 @@ class LocationsCsv < CsvGenerator
     @records = Array(record_or_records).map { |record| LocationWithAddress.new(record) }
   end
 
-  def attributes
+  def attributes # rubocop:disable Metrics/MethodLength
     %w(
       uid
       title
@@ -19,6 +19,7 @@ class LocationsCsv < CsvGenerator
       hidden
       booking_location_uid
       organisation
+      online_booking_enabled
     ).freeze
   end
 
