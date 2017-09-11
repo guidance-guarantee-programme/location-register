@@ -41,7 +41,6 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
             uk_phone_number: { if: :current_with_phone_number? }
   validates :hours, absence: { if: ->(l) { l.booking_location.present? } }
   validates :twilio_number,
-            uniqueness: { conditions: -> { current } },
             uk_phone_number: true,
             if: :current_with_twilio_number?
   validates :online_booking_twilio_number,
