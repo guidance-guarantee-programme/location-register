@@ -165,6 +165,35 @@ RSpec.describe Location do
     expect(location).to be_valid
   end
 
+  describe '#canonical_online_booking_twilio_number' do
+    let(:location) do
+      build :location do |location|
+        location.booking_location = booking_location
+        location.online_booking_enabled = true
+        location.online_booking_twilio_number = '+4480012345678'
+      end
+    end
+    let(:booking_location) { create(:location, online_booking_twilio_number: '+44800321321') }
+
+    context 'when the child has an #online_booking_twilio_number' do
+      it 'returns the child number' do
+        expect(location.canonical_online_booking_twilio_number).to eq(
+          location.online_booking_twilio_number
+        )
+      end
+    end
+
+    context 'when the child does not have an #online_booking_twilio_number' do
+      it 'returns the parent number' do
+        location.online_booking_twilio_number = ''
+
+        expect(booking_location.canonical_online_booking_twilio_number).to eq(
+          booking_location.online_booking_twilio_number
+        )
+      end
+    end
+  end
+
   describe '#online_booking_twilio_number' do
     let(:location) do
       build :location do |location|

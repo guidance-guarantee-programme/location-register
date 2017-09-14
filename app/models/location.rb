@@ -142,4 +142,14 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   def operational?
     !cut_off?
   end
+
+  def canonical_online_booking_twilio_number
+    if online_booking_twilio_number.present?
+      online_booking_twilio_number
+    elsif booking_location_uid?
+      booking_location.online_booking_twilio_number
+    else
+      ''
+    end
+  end
 end
