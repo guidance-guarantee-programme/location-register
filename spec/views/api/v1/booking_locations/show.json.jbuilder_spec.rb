@@ -27,7 +27,7 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'uid' => booking_location.locations.first.uid,
       'name' => booking_location.locations.first.title,
       'address' => booking_location.locations.first.address_line,
-      'online_booking_twilio_number' => '',
+      'online_booking_twilio_number' => booking_location.online_booking_twilio_number,
       'online_booking_reply_to' => 'dave@example.com',
       'hidden' => booking_location.locations.first.hidden,
       'locations' => []
