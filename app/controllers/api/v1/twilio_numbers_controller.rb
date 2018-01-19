@@ -3,7 +3,7 @@ module Api
     class TwilioNumbersController < ActionController::Base
       include GDS::SSO::ControllerMethods
 
-      before_action :require_signin_permission!
+      before_action :authenticate_user!
 
       def index
         @locations = Location.latest_for_twilio_number

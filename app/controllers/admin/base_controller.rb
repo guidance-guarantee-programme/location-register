@@ -5,6 +5,6 @@ module Admin
     include Pundit
     include GDS::SSO::ControllerMethods
 
-    before_action :require_signin_permission!
+    before_action :authenticate_user!
   end
 end
