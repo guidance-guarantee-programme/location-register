@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :call_centre do
     uid { SecureRandom.uuid }
     sequence(:purpose) { |n| "Promotion #{n}" }

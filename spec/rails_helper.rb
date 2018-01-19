@@ -9,7 +9,7 @@ require 'webmock/rspec'
 WebMock.disable_net_connect!
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
