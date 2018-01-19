@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :address do
     uid { SecureRandom.uuid }
     sequence(:address_line_1) { |n| "Test flat #{n}" }

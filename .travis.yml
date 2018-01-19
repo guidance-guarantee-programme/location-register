@@ -18,5 +18,7 @@ branches:
 addons:
   postgresql: 9.4
 before_script:
+- gem update --system
+- gem update bundler
 - "./bin/rake db:setup RAILS_ENV=test"
 - npm install

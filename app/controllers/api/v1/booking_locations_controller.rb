@@ -3,7 +3,7 @@ module Api
     class BookingLocationsController < ActionController::Base
       include GDS::SSO::ControllerMethods
 
-      before_action :require_signin_permission!
+      before_action :authenticate_user!
 
       def show
         @location = Location.booking_location_for(params[:uid])
