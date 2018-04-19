@@ -55,6 +55,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   scope :current, -> { where(state: 'current') }
   scope :active, -> { where(hidden: false) }
   scope :current_by_visibility, -> { current.reorder(:hidden, :title) }
+  scope :online_booking_enabled, -> { where(online_booking_enabled: true) }
 
   class << self
     def booking_location_for(uid)

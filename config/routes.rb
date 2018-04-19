@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/booking_locations/:uid', to: 'booking_locations#show', as: :booking_location
       get '/twilio_numbers', to: 'twilio_numbers#index', as: :twilio_numbers
+
+      resources :booking_locations, only: :index
     end
   end
 

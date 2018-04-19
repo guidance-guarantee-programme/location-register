@@ -10,6 +10,10 @@ module Api
 
         head :not_found unless @location
       end
+
+      def index
+        @locations = Location.current.active.online_booking_enabled
+      end
     end
   end
 end
