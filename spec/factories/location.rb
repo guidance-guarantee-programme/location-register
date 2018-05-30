@@ -40,10 +40,12 @@ FactoryBot.define do
 
     trait :allows_online_booking do
       online_booking_enabled true
+      online_booking_weekends true
       online_booking_twilio_number '+441442800110'
     end
 
     factory :booking_location do
+      online_booking_weekends true
       online_booking_twilio_number '+441442800110'
 
       after(:create) do |parent|

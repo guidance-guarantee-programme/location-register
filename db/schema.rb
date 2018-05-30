@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006095026) do
+ActiveRecord::Schema.define(version: 20180530090652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20171006095026) do
     t.date "cut_off_from"
     t.string "online_booking_reply_to", default: "", null: false
     t.date "cut_off_to"
+    t.boolean "online_booking_weekends", default: false, null: false
     t.index ["booking_location_uid"], name: "index_locations_on_booking_location_uid"
   end
 
