@@ -6,5 +6,5 @@
 
 
 <% content_for :body_end do %>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?region=GB&libraries=geometry"></script>
+  <%= javascript_include_tag google_maps_api_source_url %>
 <% end %>
