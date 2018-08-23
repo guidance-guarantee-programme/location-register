@@ -10,7 +10,7 @@ Manage [Pension Wise] locations.
 * [Bundler]
 * [Git]
 * [PostgreSQL]
-* [Ruby 2.3.1][Ruby]
+* [Ruby 2.5.1][Ruby]
 * [Signon]
 
 
