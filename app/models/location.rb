@@ -14,6 +14,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     online_booking_twilio_number
     online_booking_enabled
     online_booking_reply_to
+    realtime
   ).freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
   ORGANISATIONS = %w(cas cita nicab).freeze
@@ -50,6 +51,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
             if: :online_booking_enabled?
   validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
   validates :online_booking_enabled, inclusion: { in: [true, false] }
+  validates :realtime, inclusion: { in: [true, false] }
 
   default_scope -> { order(:title) }
   scope :current, -> { where(state: 'current') }

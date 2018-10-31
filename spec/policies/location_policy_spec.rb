@@ -120,7 +120,8 @@ RSpec.describe LocationPolicy do
             :twilio_number,
             :online_booking_twilio_number,
             :online_booking_enabled,
-            :online_booking_reply_to
+            :online_booking_reply_to,
+            :realtime
           ]
         )
       end

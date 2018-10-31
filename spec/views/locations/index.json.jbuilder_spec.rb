@@ -25,7 +25,8 @@ RSpec.describe 'locations/index' do
             'phone' => location.phone,
             'hours' => 'MON-FRI 9am-5pm',
             'twilio_number' => location.twilio_number,
-            'online_booking_enabled' => false
+            'online_booking_enabled' => false,
+            'realtime' => false
           }
         }
       ]

@@ -12,6 +12,7 @@ FactoryBot.define do
     hours 'MON-FRI 9am-5pm'
     booking_location nil
     editor { build(:user) }
+    realtime false
     online_booking_enabled false
     online_booking_reply_to 'dave@example.com'
 
@@ -42,6 +43,7 @@ FactoryBot.define do
       online_booking_enabled true
       online_booking_weekends true
       online_booking_twilio_number '+441442800110'
+      realtime true
     end
 
     factory :booking_location do
