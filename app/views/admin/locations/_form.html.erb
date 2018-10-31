@@ -128,6 +128,14 @@
         <%= f.radio_button :online_booking_enabled, false, class: 'l-location-status__checkbox', id: "location_online_booking_enabled_false_#{location.id}" %>
         <%= f.label "online_booking_enabled_false_#{location.id}", 'Disabled', class: 'l-location-status__label' %>
       </div>
+      <div class="form-group <%= 'form-group--error' if f.object.errors[:realtime].any? %>" id="realtime">
+        <%= f.label :realtime, 'Realtime booking?', class: 'block' %><br/>
+        <%= render 'error', error_messages: location.errors[:realtime] %>
+        <%= f.radio_button :realtime, true, class: 'l-location-status__checkbox', id: "location_realtime_true_#{location.id}" %>
+        <%= f.label "realtime_true_#{location.id}", 'Enabled', class: 'l-location-status__label' %>
+        <%= f.radio_button :realtime, false, class: 'l-location-status__checkbox', id: "location_realtime_false_#{location.id}" %>
+        <%= f.label "realtime_false_#{location.id}", 'Disabled', class: 'l-location-status__label' %>
+      </div>
     <% end %>
   </div>
 </div>

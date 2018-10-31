@@ -5,6 +5,7 @@ class LocationPolicy < ApplicationPolicy
     online_booking_twilio_number
     online_booking_enabled
     online_booking_reply_to
+    realtime
   ).freeze
 
   class Scope < ApplicationPolicy::Scope

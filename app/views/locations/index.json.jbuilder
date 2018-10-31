@@ -11,5 +11,6 @@ json.features @locations do |location|
     json.hours location.hours.to_s
     json.twilio_number location.twilio_number
     json.online_booking_enabled location.can_take_online_bookings?
+    json.realtime location.realtime
   end
 end

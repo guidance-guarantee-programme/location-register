@@ -21,7 +21,8 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'online_booking_twilio_number' => booking_location.online_booking_twilio_number,
       'online_booking_reply_to' => 'dave@example.com',
       'online_booking_weekends' => true,
-      'hidden' => booking_location.hidden
+      'hidden' => booking_location.hidden,
+      'realtime' => false
     )
 
     expect(subject['locations'].first).to include(
@@ -32,7 +33,8 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'online_booking_reply_to' => 'dave@example.com',
       'online_booking_weekends' => true,
       'hidden' => booking_location.locations.first.hidden,
-      'locations' => []
+      'locations' => [],
+      'realtime' => true
     )
 
     expect(subject['guiders'].first).to eq(
