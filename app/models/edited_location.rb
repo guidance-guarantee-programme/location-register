@@ -10,7 +10,8 @@ class EditedLocation
     twilio_number: EditedField,
     booking_location: EditedField::BookingLocationField,
     online_booking_twilio_number: EditedField,
-    online_booking_enabled: EditedField
+    online_booking_enabled: EditedField,
+    realtime: EditedField
   }.freeze
 
   class << self
