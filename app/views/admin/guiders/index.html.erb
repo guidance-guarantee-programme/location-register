@@ -33,13 +33,15 @@
         <tr class="table-header">
           <th>Name</th>
           <th>Email</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <% @location.guiders.each do |guider| %>
+        <% @location.guiders.order(:name).each do |guider| %>
           <tr class="t-guider">
             <td class="t-guider-name"><%= guider.name %></td>
             <td class="t-guider-email"><%= guider.email %></td>
+            <td><%= toggle_guider_button(guider) %></td>
           </tr>
         <% end %>
       </tbody>

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :locations, except: %i(destroy show) do
       get 'online_booking', on: :member
 
-      resources :guiders, only: %i(index create)
+      resources :guiders, only: %i(index create update)
     end
 
     resources :edited_locations, only: [:index]
