@@ -4,13 +4,20 @@ module Admin
     before_action :set_guider, except: :create
 
     def index
-      @guiders = @location.guiders
     end
 
     def create
       @location.guiders.create!(guider_params)
 
       redirect_to admin_location_guiders_path(@location.uid)
+    end
+
+    def update
+      @guider = @location.guiders.find(params[:id])
+      @guider.toggle_hidden!
+
+      redirect_back fallback_location: admin_location_guiders_path(@location.uid),
+                    notice: 'The guider was hidden/unhidden'
     end
 
     private

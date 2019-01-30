@@ -72,13 +72,28 @@ When(/^I add a guider$/) do
 end
 
 Then(/^the guider is added$/) do
-  AdminGuiderPage.new.tap do |guider_page|
-    expect(guider_page).to be_displayed
-    expect(guider_page).to have_guiders(count: 1)
+  @guider_page = AdminGuiderPage.new
 
-    expect(guider_page.guiders.first.name.text).to eq('Ben Lovell')
-    expect(guider_page.guiders.first.email.text).to eq('ben@example.com')
-  end
+  expect(@guider_page).to be_displayed
+  expect(@guider_page).to have_guiders(count: 1)
+  expect(@guider_page.guiders.first.name.text).to eq('Ben Lovell')
+  expect(@guider_page.guiders.first.email.text).to eq('ben@example.com')
+end
+
+When('I hide the guider') do
+  @guider_page.guiders.first.toggle.click
+end
+
+Then('the guider is hidden') do
+  expect(@guider_page.guiders.first.name).to have_text('HIDDEN')
+end
+
+When('I unhide the guider') do
+  @guider_page.guiders.first.toggle.click
+end
+
+Then('the guider is visible') do
+  expect(@guider_page.guiders.first.name).to have_no_text('HIDDEN')
 end
 
 module LocationTestHelper
