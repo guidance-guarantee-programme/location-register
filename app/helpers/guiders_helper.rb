@@ -1,6 +1,6 @@
 module GuidersHelper
   def toggle_guider_button(guider)
-    title = guider.hidden? ? 'Unhide' : 'Hide'
+    title = guider.inactive? ? 'Activate' : 'Deactivate'
 
     button_to(
       title,

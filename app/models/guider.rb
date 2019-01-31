@@ -1,18 +1,18 @@
 class Guider < ApplicationRecord
-  HIDDEN = '[HIDDEN] '.freeze
+  INACTIVE = '[INACTIVE] '.freeze
 
   has_many :guider_assignments
   has_many :locations, through: :guider_assignments
 
-  def hidden?
-    name.to_s.starts_with?(HIDDEN)
+  def inactive?
+    name.to_s.starts_with?(INACTIVE)
   end
 
   def toggle_hidden!
-    self.name = if hidden?
-                  name.sub(HIDDEN, '')
+    self.name = if inactive?
+                  name.sub(INACTIVE, '')
                 else
-                  "#{HIDDEN}#{name}"
+                  "#{INACTIVE}#{name}"
                 end
 
     save!
