@@ -80,20 +80,20 @@ Then(/^the guider is added$/) do
   expect(@guider_page.guiders.first.email.text).to eq('ben@example.com')
 end
 
-When('I hide the guider') do
+When('I deactivate the guider') do
   @guider_page.guiders.first.toggle.click
 end
 
-Then('the guider is hidden') do
-  expect(@guider_page.guiders.first.name).to have_text('HIDDEN')
+Then('the guider is deactivated') do
+  expect(@guider_page.guiders.first.name).to have_text('INACTIVE')
 end
 
-When('I unhide the guider') do
+When('I activate the guider') do
   @guider_page.guiders.first.toggle.click
 end
 
-Then('the guider is visible') do
-  expect(@guider_page.guiders.first.name).to have_no_text('HIDDEN')
+Then('the guider is activated') do
+  expect(@guider_page.guiders.first.name).to have_no_text('INACTIVE')
 end
 
 module LocationTestHelper

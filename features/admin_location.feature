@@ -71,7 +71,7 @@ Feature: Admin - Location Directory
     When I visit the "London" location
     And I add a guider
     Then the guider is added
-    When I hide the guider
-    Then the guider is hidden
-    When I unhide the guider
-    Then the guider is visible
+    When I deactivate the guider
+    Then the guider is deactivated
+    When I activate the guider
+    Then the guider is activated
