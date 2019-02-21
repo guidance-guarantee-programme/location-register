@@ -24,11 +24,12 @@ RSpec.describe LocationsCsv do
           booking_location_uid
           organisation
           online_booking_enabled
+          realtime
         )
       )
     end
 
-    context 'data row are correct generated' do
+    context 'data rows are correct generated' do
       let(:location) { create(:location) }
 
       subject { described_class.new(location).call.lines }
@@ -48,6 +49,7 @@ RSpec.describe LocationsCsv do
             location.address.postcode,
             'Active',
             'cas',
+            'false',
             'false'
           ]
         )
