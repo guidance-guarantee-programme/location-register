@@ -20,6 +20,7 @@ class LocationsCsv < CsvGenerator
       booking_location_uid
       organisation
       online_booking_enabled
+      realtime
     ).freeze
   end
 
