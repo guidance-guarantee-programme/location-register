@@ -6,6 +6,7 @@ json.online_booking_twilio_number location.canonical_online_booking_twilio_numbe
 json.online_booking_weekends location.online_booking_weekends
 json.hidden location.hidden
 json.realtime location.realtime
+json.organisation location.organisation
 
 json.locations location.locations.current do |child|
   json.partial! 'booking_location', location: child
