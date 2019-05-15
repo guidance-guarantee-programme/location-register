@@ -14,7 +14,7 @@ When(/^I create a new booking location with a twilio number$/) do
   @page.phone.set '+442712345678'
   @page.twilio.set '+442712345678'
   @page.postcode.set 'RH1 6EW'
-  @page.organisation.select 'cita'
+  @page.organisation.select 'cita_e'
   @page.visibility.set true
 
   @page.save_button.click

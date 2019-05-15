@@ -27,8 +27,8 @@ FactoryBot.define do
       organisation { 'cas' }
     end
 
-    trait :cita do
-      organisation { 'cita' }
+    trait :cita_e do
+      organisation { 'cita_e' }
     end
 
     trait :one_line_address do
