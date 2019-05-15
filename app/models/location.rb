@@ -17,7 +17,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     realtime
   ).freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
-  ORGANISATIONS = %w(cas cita nicab).freeze
+  ORGANISATIONS = %w(cas cita_e cita_w nicab).freeze
 
   belongs_to :address, validate: true
   belongs_to :booking_location, -> { current },

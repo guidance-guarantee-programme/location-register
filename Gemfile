@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
-gem 'rails', '~> 5.1.0'
-gem 'pg', '~> 0.15'
+gem 'rails', '~> 5.2.0'
+gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 
 gem 'foreman'
 gem 'puma'
