@@ -2,6 +2,7 @@ sudo: false
 language: ruby
 services:
   - redis-server
+  - postgresql
 cache:
   bundler: true
   directories:
