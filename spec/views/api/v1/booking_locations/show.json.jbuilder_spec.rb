@@ -23,7 +23,11 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'online_booking_weekends' => true,
       'hidden' => booking_location.hidden,
       'realtime' => false,
-      'organisation' => 'cas'
+      'organisation' => 'cas',
+      'geometry' => {
+        'type' => 'Point',
+        'coordinates' => [12.12, 45.45]
+      }
     )
 
     expect(subject['locations'].first).to include(
@@ -36,7 +40,11 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'hidden' => booking_location.locations.first.hidden,
       'locations' => [],
       'realtime' => true,
-      'organisation' => 'cas'
+      'organisation' => 'cas',
+      'geometry' => {
+        'type' => 'Point',
+        'coordinates' => [12.12, 45.45]
+      }
     )
 
     expect(subject['guiders'].first).to eq(
