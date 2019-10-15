@@ -8,6 +8,7 @@ json.cache! @location, expires_in: 30.minutes do # rubocop:disable BlockLength
   json.hidden @location.hidden
   json.realtime @location.realtime
   json.organisation @location.organisation
+  json.geometry @location.address.point
 
   json.locations @location.locations.current do |child|
     json.uid child.uid
@@ -19,6 +20,7 @@ json.cache! @location, expires_in: 30.minutes do # rubocop:disable BlockLength
     json.hidden child.hidden
     json.realtime child.realtime
     json.organisation child.organisation
+    json.geometry child.address.point
     json.locations []
   end
 
