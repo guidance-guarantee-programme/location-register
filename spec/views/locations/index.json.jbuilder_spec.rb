@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'locations/index' do
-  let(:location) { build(:location, uid: '25de9301-50b5-49ba-a5da-7f40a2fcfe29', title: 'Test location') }
+  let(:location) do
+    build(
+      :location,
+      uid: '25de9301-50b5-49ba-a5da-7f40a2fcfe29',
+      title: 'Test location',
+      accessibility_information: 'Lift is temporarily broken'
+    )
+  end
 
   it 'renders the locations as json' do
     @locations =  [location]
@@ -26,7 +33,8 @@ RSpec.describe 'locations/index' do
             'hours' => 'MON-FRI 9am-5pm',
             'twilio_number' => location.twilio_number,
             'online_booking_enabled' => false,
-            'realtime' => false
+            'realtime' => false,
+            'accessibility_information' => 'Lift is temporarily broken'
           }
         }
       ]
