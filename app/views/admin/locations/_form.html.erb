@@ -65,6 +65,12 @@
         <%= a.text_field :postcode, class: 'input-md-3 form-control t-postcode' %>
       </div>
     <% end %>
+
+    <div class="form-group <%= 'form-group--error' if f.object.errors[:accessibility_information].any? %>" id="accessibility_information">
+      <%= f.label :accessibility_information %>
+      <%= render 'error', error_messages: location.errors[:accessibility_information] %>
+      <%= f.text_field :accessibility_information, class: 'form-control t-accessibility-information', maxlength: 200 %>
+    </div>
   </div>
   <div class="col-md-6">
     <div class="form-group <%= 'form-group--error' if f.object.errors[:booking_location].any? %>" id="booking_location">
