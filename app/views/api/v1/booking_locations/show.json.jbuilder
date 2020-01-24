@@ -2,6 +2,7 @@ json.cache! @location, expires_in: 30.minutes do # rubocop:disable BlockLength
   json.uid @location.uid
   json.name @location.title
   json.address @location.address_line
+  json.accessibility_information @location.accessibility_information
   json.online_booking_reply_to @location.online_booking_reply_to
   json.online_booking_twilio_number @location.canonical_online_booking_twilio_number
   json.online_booking_weekends @location.online_booking_weekends
@@ -14,6 +15,7 @@ json.cache! @location, expires_in: 30.minutes do # rubocop:disable BlockLength
     json.uid child.uid
     json.name child.title
     json.address child.address_line
+    json.accessibility_information child.accessibility_information
     json.online_booking_reply_to child.online_booking_reply_to
     json.online_booking_twilio_number child.canonical_online_booking_twilio_number
     json.online_booking_weekends child.online_booking_weekends

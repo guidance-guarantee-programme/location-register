@@ -6,6 +6,7 @@ FactoryBot.define do
     cas
     sequence(:title) { |n| "Alpha location #{n}" }
     address
+    accessibility_information { '' }
     sequence(:phone) { |n| "+44100000#{1000 + n}" }
     sequence(:twilio_number) { |n| "+44111111#{1000 + n}" }
     extension { nil }

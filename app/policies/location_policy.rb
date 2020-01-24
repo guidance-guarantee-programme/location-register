@@ -58,6 +58,7 @@ class LocationPolicy < ApplicationPolicy
       :hidden,
       :title,
       :hours,
+      :accessibility_information,
       address: [:address_line_1, :address_line_2, :address_line_3, :town, :county, :postcode]
     ]
 

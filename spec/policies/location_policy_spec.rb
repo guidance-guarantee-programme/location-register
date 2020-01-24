@@ -78,6 +78,7 @@ RSpec.describe LocationPolicy do
             :hidden,
             :title,
             :hours,
+            :accessibility_information,
             {
               address: [
                 :address_line_1,
@@ -105,6 +106,7 @@ RSpec.describe LocationPolicy do
             :hidden,
             :title,
             :hours,
+            :accessibility_information,
             {
               address: [
                 :address_line_1,
@@ -138,6 +140,7 @@ RSpec.describe LocationPolicy do
             :hidden,
             :title,
             :hours,
+            :accessibility_information,
             address: [
               :address_line_1,
               :address_line_2,
