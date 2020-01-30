@@ -33,6 +33,7 @@ gem 'sinatra', require: false
 group :development, :test do
   gem 'dotenv-rails'
   gem 'pry-byebug'
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'scss-lint'
 end

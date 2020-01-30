@@ -19,6 +19,12 @@ Then(/^I can see the locations details$/) do
   expect(@page).to have_hidden_true
 end
 
+Given(/^the "([^"]*)" location has no organisation$/) do |location_title|
+  @location = Location.find_by(title: location_title)
+  # avoid validation to get into the needed state
+  @location.update_attribute(:organisation, '')
+end
+
 Given(/^a location exist for another organisations$/) do
   create(:user, :project_manager, :nicab)
   @location = create(:location, :cas)

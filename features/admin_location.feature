@@ -3,6 +3,14 @@ Feature: Admin - Location Directory
   I want to be able to view and edit my CAB locations
   So that I can manage the location setup
 
+  Scenario: Assigning an organisation to an existing location
+    Given I am a pensionwise admin
+    And a location exists called "Apples"
+    And the "Apples" location has no organisation
+    When I visit the "Apples" location
+    And I select the locations "organisation" field to "nicab"
+    Then the "Apples" location has a new version where "organisation" has been set to "nicab"
+
   Scenario: Viewing a locations details for my organisation as a project manager
     Given a location exists for my organisation
     When I visit the locations admin page

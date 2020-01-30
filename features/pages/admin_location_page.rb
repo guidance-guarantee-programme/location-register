@@ -5,6 +5,7 @@ class AdminLocationPage < SitePrism::Page
   element :booking_hours, '.t-booking-hours'
   element :make_location_visible, '.t-visibility'
   element :booking_location, '.t-booking-location'
+  element :organisation, '.t-organisation'
 
   element :address_line_1, '.t-address-line-1'
   element :address_line_2, '.t-address-line-2'

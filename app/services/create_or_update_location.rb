@@ -28,7 +28,7 @@ class CreateOrUpdateLocation
 
     Location.transaction do
       begin
-        location.update_attributes!(state: 'old')
+        location.update_attribute(:state, 'old')
         create_new_version(params)
       rescue ActiveRecord::RecordInvalid
         raise ActiveRecord::Rollback
