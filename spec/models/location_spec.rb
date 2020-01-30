@@ -316,4 +316,12 @@ RSpec.describe Location do
       end
     end
   end
+
+  describe 'Organisation validations' do
+    it 'permits allowed organisations' do
+      expect(build(:location, organisation: '')).to be_invalid
+
+      expect(build(:location, :cas)).to be_valid
+    end
+  end
 end
