@@ -49,6 +49,17 @@ GEM
     ast (2.4.0)
     autoprefixer-rails (9.5.1.1)
       execjs
+    azure-core (0.1.15)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.10)
+      nokogiri (~> 1.6)
+    azure-storage-blob (1.1.0)
+      azure-core (~> 0.1.13)
+      azure-storage-common (~> 1.0)
+      nokogiri (~> 1.6, >= 1.6.8)
+    azure-storage-common (1.1.0)
+      azure-core (~> 0.1.13)
+      nokogiri (~> 1.6, >= 1.6.8)
     backports (3.14.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
@@ -200,6 +211,10 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    postgres-copy (1.4.1)
+      activerecord (>= 5.1)
+      pg (>= 0.17)
+      responders
     powerpack (0.1.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -250,6 +265,9 @@ GEM
     rake (13.0.1)
     redis (4.1.1)
     regexp_parser (1.4.0)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.3)
@@ -344,6 +362,7 @@ PLATFORMS
 
 DEPENDENCIES
   alphabetical_paginate
+  azure-storage-blob
   bugsnag
   cucumber-rails
   database_cleaner
@@ -365,6 +384,7 @@ DEPENDENCIES
   phantomjs
   plek
   poltergeist
+  postgres-copy
   pry-byebug
   puma
   pundit
@@ -385,7 +405,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.6.2p47
+   ruby 2.6.6p146
 
 BUNDLED WITH
    1.17.3
