@@ -3,10 +3,10 @@ class LocationPolicy < ApplicationPolicy
     organisation
     twilio_number
     online_booking_twilio_number
-    online_booking_enabled
     online_booking_reply_to
-    realtime
   ).freeze
+
+  ONLINE_BOOKING_PARAMS = %i(online_booking_enabled realtime).freeze
 
   class Scope < ApplicationPolicy::Scope
     def resolve
@@ -22,6 +22,10 @@ class LocationPolicy < ApplicationPolicy
 
   def admin?
     user.pensionwise_admin?
+  end
+
+  def online_booking?
+    user.pensionwise_admin? || user.project_manager?
   end
 
   def phone?
@@ -48,10 +52,6 @@ class LocationPolicy < ApplicationPolicy
     admin_or_organisations_project_manager?
   end
 
-  def online_booking?
-    admin?
-  end
-
   def permitted_attributes
     base_params = [
       :booking_location_uid,
@@ -64,6 +64,7 @@ class LocationPolicy < ApplicationPolicy
 
     base_params += [:phone] if creating_new_record? || admin?
     base_params += ADMIN_PARAMS if admin?
+    base_params += ONLINE_BOOKING_PARAMS if online_booking?
     base_params
   end
 

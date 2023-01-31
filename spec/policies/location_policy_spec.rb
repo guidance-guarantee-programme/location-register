@@ -121,8 +121,8 @@ RSpec.describe LocationPolicy do
             :organisation,
             :twilio_number,
             :online_booking_twilio_number,
-            :online_booking_enabled,
             :online_booking_reply_to,
+            :online_booking_enabled,
             :realtime
           ]
         )
@@ -151,6 +151,15 @@ RSpec.describe LocationPolicy do
             ]
           ]
         )
+      end
+    end
+
+    context 'when it is an existing record for a project manager' do
+      let(:record) { create(:location) }
+      let(:user) { create(:user, :project_manager) }
+
+      it do
+        expect(subject.permitted_attributes).to include(:online_booking_enabled, :realtime)
       end
     end
   end
