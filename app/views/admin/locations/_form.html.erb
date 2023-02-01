@@ -125,7 +125,7 @@
       <%= f.radio_button :hidden, true, class: 'l-location-status__checkbox t-hidden-true', id: "location_hidden_true_#{location.id}" %>
       <%= f.label "hidden_true_#{location.id}", 'No', class: 'l-location-status__label' %>
     </div>
-    <% if policy(location).admin? %>
+    <% if policy(location).online_booking? %>
       <div class="form-group <%= 'form-group--error' if f.object.errors[:online_booking_enabled].any? %>" id="online_booking_enabled">
         <%= f.label :online_booking_enabled, 'Online bookings?', class: 'block' %><br/>
         <%= render 'error', error_messages: location.errors[:online_booking_enabled] %>
