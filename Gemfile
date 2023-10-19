@@ -41,7 +41,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', '0.45.0', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'web-console', '~> 2.0'
 end
 
