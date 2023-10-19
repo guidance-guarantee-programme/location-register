@@ -21,7 +21,7 @@ RSpec.describe NotifyPensionGuidanceJob, '#perform' do
         'http://localhost:3000/locations_cache'
       ).to_return(status: 500)
 
-      expect { subject }.to raise_error(Faraday::ClientError)
+      expect { subject }.to raise_error(Faraday::ServerError)
     end
   end
 end

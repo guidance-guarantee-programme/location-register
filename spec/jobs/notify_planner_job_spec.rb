@@ -28,7 +28,7 @@ RSpec.describe NotifyPlannerJob, '#perform' do
         'http://localhost:3002/api/v1/booking_requests/batch_reassign'
       ).to_return(status: 500)
 
-      expect { subject }.to raise_error(Faraday::ClientError)
+      expect { subject }.to raise_error(Faraday::ServerError)
     end
   end
 end

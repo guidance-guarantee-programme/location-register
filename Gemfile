@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -13,8 +13,8 @@ gem 'jbuilder'
 gem 'foreman'
 gem 'puma'
 
-gem 'alphabetical_paginate'
-gem 'azure-storage-blob'
+gem 'alphabetical_paginate', github: 'benlovell/alphabetical_paginate'
+gem 'azure-storage-blob', '~> 2'
 gem 'bugsnag'
 gem 'deprecated_columns'
 gem 'faraday'
@@ -24,12 +24,12 @@ gem 'gds-sso'
 gem 'geocoder'
 gem 'govuk_admin_template'
 gem 'oj'
-gem 'plek'
+gem 'plek', '~> 2.1'
 gem 'postgres-copy'
 gem 'pundit'
 gem 'uk_postcode'
 gem 'select2-rails'
-gem 'sidekiq'
+gem 'sidekiq', '< 7'
 gem 'sinatra', require: false
 
 group :development, :test do
@@ -41,7 +41,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', '0.45.0', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'web-console', '~> 2.0'
 end
 

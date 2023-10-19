@@ -1,4 +1,4 @@
-json.cache! @location, expires_in: 30.minutes do # rubocop:disable BlockLength
+json.cache! @location, expires_in: 30.minutes do
   json.uid @location.uid
   json.name @location.title
   json.address @location.address_line
