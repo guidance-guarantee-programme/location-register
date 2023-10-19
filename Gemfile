@@ -14,7 +14,7 @@ gem 'foreman'
 gem 'puma'
 
 gem 'alphabetical_paginate'
-gem 'azure-storage-blob'
+gem 'azure-storage-blob', '~> 2'
 gem 'bugsnag'
 gem 'deprecated_columns'
 gem 'faraday'
