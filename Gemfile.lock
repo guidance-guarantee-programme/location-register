@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/benlovell/alphabetical_paginate.git
+  revision: a2fec0354b6a4d78cdb83f59e89af5f23da8fb1c
+  specs:
+    alphabetical_paginate (2.3.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,7 +68,6 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
-    alphabetical_paginate (2.3.3)
     ast (2.4.0)
     autoprefixer-rails (9.5.1.1)
       execjs
@@ -75,7 +80,7 @@ GEM
       net-http-persistent (~> 4.0)
       nokogiri (~> 1, >= 1.10.8)
     backports (3.24.1)
-    binding_of_caller (0.8.0)
+    binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
@@ -124,7 +129,7 @@ GEM
     cucumber-wire (0.0.1)
     database_cleaner (1.7.0)
     date (3.3.3)
-    debug_inspector (0.0.3)
+    debug_inspector (1.1.0)
     deprecated_columns (0.1.1)
       rails (>= 4.0)
     diff-lcs (1.5.0)
@@ -255,7 +260,7 @@ GEM
       omniauth (~> 1.2)
     parser (2.6.3.0)
       ast (~> 2.4.0)
-    pg (1.1.4)
+    pg (1.5.4)
     phantomjs (2.1.1.0)
     plek (2.1.1)
     poltergeist (1.18.1)
@@ -420,7 +425,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  alphabetical_paginate
+  alphabetical_paginate!
   azure-storage-blob (~> 2)
   bugsnag
   cucumber-rails
@@ -464,7 +469,7 @@ DEPENDENCIES
   webmock
 
 RUBY VERSION
-   ruby 2.7.7p221
+   ruby 3.0.6p216
 
 BUNDLED WITH
    2.4.21

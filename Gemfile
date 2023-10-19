@@ -13,7 +13,7 @@ gem 'jbuilder'
 gem 'foreman'
 gem 'puma'
 
-gem 'alphabetical_paginate'
+gem 'alphabetical_paginate', github: 'benlovell/alphabetical_paginate'
 gem 'azure-storage-blob', '~> 2'
 gem 'bugsnag'
 gem 'deprecated_columns'
