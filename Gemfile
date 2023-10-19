@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -24,7 +24,7 @@ gem 'gds-sso'
 gem 'geocoder'
 gem 'govuk_admin_template'
 gem 'oj'
-gem 'plek'
+gem 'plek', '~> 2.1'
 gem 'postgres-copy'
 gem 'pundit'
 gem 'uk_postcode'
