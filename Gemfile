@@ -29,7 +29,7 @@ gem 'postgres-copy'
 gem 'pundit'
 gem 'uk_postcode'
 gem 'select2-rails'
-gem 'sidekiq'
+gem 'sidekiq', '< 7'
 gem 'sinatra', require: false
 
 group :development, :test do
