@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def project_manager?
     permissions.include?('project_manager')
   end
+
+  def cita_england_and_wales?
+    organisation_slug == 'cita'.freeze
+  end
 end

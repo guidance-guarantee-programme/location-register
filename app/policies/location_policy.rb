@@ -13,7 +13,11 @@ class LocationPolicy < ApplicationPolicy
       if user.pensionwise_admin?
         scope.all
       elsif user.project_manager?
-        scope.where(organisation: user.organisation_slug)
+        if user.cita_england_and_wales?
+          scope.where(organisation: %w(cita_e cita_w nicab))
+        else
+          scope.where(organisation: user.organisation_slug)
+        end
       else
         scope.none
       end

@@ -32,6 +32,10 @@ FactoryBot.define do
       organisation { 'cita_e' }
     end
 
+    trait :cita_w do
+      organisation { 'cita_w' }
+    end
+
     trait :one_line_address do
       address { build(:one_line_address) }
     end

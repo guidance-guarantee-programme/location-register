@@ -189,6 +189,17 @@ RSpec.describe LocationPolicy::Scope do
     it 'users can not see locations for alternative organisations' do
       expect(subject.resolve).not_to include(nicab_location)
     end
+
+    context 'when the user is a CITA E & W project manager' do
+      let(:user) { create(:user, :cita_e_w, :project_manager) }
+
+      it 'can see locations for CITA E & W and NI' do
+        cita_england = create(:location, :cita_e)
+        cita_wales   = create(:location, :cita_w)
+
+        expect(subject.resolve).to include(cita_england, cita_wales, nicab_location)
+      end
+    end
   end
 
   context 'when user does not have any specified permissions/roles' do
