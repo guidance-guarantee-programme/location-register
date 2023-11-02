@@ -17,6 +17,10 @@ FactoryBot.define do
       organisation_slug { 'nicab' }
     end
 
+    trait :cita_e_w do
+      organisation_slug { 'cita' }
+    end
+
     trait :pensionwise_admin do
       permissions { %w(signin pensionwise_admin) }
     end
