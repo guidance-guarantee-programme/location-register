@@ -52,6 +52,15 @@ RSpec.describe LocationPolicy do
       it 'deny access if location organisation does not match users organisation_slug' do
         expect(subject).not_to permit(user, nicab_location)
       end
+
+      context 'when the user is CITA E&W' do
+        let(:user) { build(:user, :cita_e_w, :project_manager) }
+
+        it 'permits for the correct locations' do
+          expect(subject).to permit(user, nicab_location)
+          expect(subject).not_to permit(user, cas_location)
+        end
+      end
     end
 
     context 'when user does not have any specified permissions/roles' do
