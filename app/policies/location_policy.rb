@@ -1,4 +1,6 @@
 class LocationPolicy < ApplicationPolicy
+  CITA_ENGLAND_AND_WALES_ORGANISATIONS = %w(cita_e cita_w nicab).freeze
+
   ADMIN_PARAMS = %i(
     organisation
     twilio_number
@@ -14,7 +16,7 @@ class LocationPolicy < ApplicationPolicy
         scope.all
       elsif user.project_manager?
         if user.cita_england_and_wales?
-          scope.where(organisation: %w(cita_e cita_w nicab))
+          scope.where(organisation: CITA_ENGLAND_AND_WALES_ORGANISATIONS)
         else
           scope.where(organisation: user.organisation_slug)
         end
@@ -79,6 +81,13 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def admin_or_organisations_project_manager?
-    admin? || (user.project_manager? && user.organisation_slug == record.organisation)
+    return true if admin?
+    return false unless user.project_manager?
+
+    if user.cita_england_and_wales?
+      CITA_ENGLAND_AND_WALES_ORGANISATIONS.include?(record.organisation)
+    else
+      user.organisation_slug == record.organisation
+    end
   end
 end
