@@ -33,7 +33,7 @@ module ApplicationHelper
       [
         location.title,
         "#{location.uid}/edit",
-        'data-hidden' => location.hidden?
+        { 'data-hidden' => location.hidden? }
       ]
     end
   end

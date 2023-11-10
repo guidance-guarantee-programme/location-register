@@ -65,7 +65,7 @@ class LocationPolicy < ApplicationPolicy
       :title,
       :hours,
       :accessibility_information,
-      address: %i[address_line_1 address_line_2 address_line_3 town county postcode]
+      { address: %i[address_line_1 address_line_2 address_line_3 town county postcode] }
     ]
 
     base_params += [:phone] if creating_new_record? || admin?

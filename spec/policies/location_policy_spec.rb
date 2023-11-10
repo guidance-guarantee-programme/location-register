@@ -150,14 +150,14 @@ RSpec.describe LocationPolicy do
             :title,
             :hours,
             :accessibility_information,
-            address: %i[
+            { address: %i[
               address_line_1
               address_line_2
               address_line_3
               town
               county
               postcode
-            ]
+            ] }
           ]
         )
       end
