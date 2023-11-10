@@ -89,13 +89,13 @@ RSpec.describe LocationPolicy do
             :hours,
             :accessibility_information,
             {
-              address: [
-                :address_line_1,
-                :address_line_2,
-                :address_line_3,
-                :town,
-                :county,
-                :postcode
+              address: %i[
+                address_line_1
+                address_line_2
+                address_line_3
+                town
+                county
+                postcode
               ]
             },
             :phone
@@ -117,13 +117,13 @@ RSpec.describe LocationPolicy do
             :hours,
             :accessibility_information,
             {
-              address: [
-                :address_line_1,
-                :address_line_2,
-                :address_line_3,
-                :town,
-                :county,
-                :postcode
+              address: %i[
+                address_line_1
+                address_line_2
+                address_line_3
+                town
+                county
+                postcode
               ]
             },
             :phone,
@@ -150,13 +150,13 @@ RSpec.describe LocationPolicy do
             :title,
             :hours,
             :accessibility_information,
-            address: [
-              :address_line_1,
-              :address_line_2,
-              :address_line_3,
-              :town,
-              :county,
-              :postcode
+            address: %i[
+              address_line_1
+              address_line_2
+              address_line_3
+              town
+              county
+              postcode
             ]
           ]
         )

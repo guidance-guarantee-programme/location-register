@@ -1,6 +1,6 @@
 module Admin
   class LocationsController < Admin::BaseController
-    before_action :set_authorised_location, only: [:update, :show, :edit, :online_booking]
+    before_action :set_authorised_location, only: %i[update show edit online_booking]
 
     def index
       authorize Location

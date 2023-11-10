@@ -307,20 +307,13 @@ Style/RedundantSort:
   Exclude:
     - 'app/models/edited_location.rb'
 
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  Exclude:
-    - 'app/controllers/admin/locations_controller.rb'
-    - 'app/policies/location_policy.rb'
-    - 'config/initializers/filter_parameter_logging.rb'
-    - 'spec/policies/location_policy_spec.rb'
 
+
+# Removing this doesnt give cop warning
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
 # URISchemes: http, https
 Layout/LineLength:
   Max: 150
+
