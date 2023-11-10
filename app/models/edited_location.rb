@@ -48,7 +48,7 @@ class EditedLocation
   private
 
   def current
-    @current ||= @versions.sort_by(&:version).last
+    @current ||= @versions.max_by(&:version)
   end
 
   def edited_fields(location)

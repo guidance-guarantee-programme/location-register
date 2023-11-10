@@ -292,22 +292,7 @@ Style/PercentLiteralDelimiters:
     - 'spec/models/edited_location_spec.rb'
     - 'spec/services/locations_csv_spec.rb'
 
-# Offense count: 6
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: SafeForConstants.
-Style/RedundantFetchBlock:
-  Exclude:
-    - 'app/services/pension_guidance_api.rb'
-    - 'app/services/planner_api.rb'
-    - 'config/puma.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/RedundantSort:
-  Exclude:
-    - 'app/models/edited_location.rb'
-
-
+# --------
 
 # Removing this doesnt give cop warning
 # Offense count: 1
