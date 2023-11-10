@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
+# rubocop: disable Metrics/ClassLength
+class Location < ApplicationRecord
   EDIT_FIELDS = %w[
     address_id
     booking_location_uid
@@ -158,3 +159,4 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     end
   end
 end
+# rubocop: enable Metrics/ClassLength
