@@ -231,12 +231,6 @@ Style/EmptyMethod:
     - 'app/controllers/admin/guiders_controller.rb'
     - 'app/controllers/admin/locations_controller.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExpandPathArguments:
-  Exclude:
-    - 'Rakefile'
-    - 'config.ru'
 
 
 # --------

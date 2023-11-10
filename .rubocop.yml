@@ -37,3 +37,8 @@ Lint/AssignmentInCondition:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/ExpandPathArguments:
+  Exclude:
+    - 'Rakefile'
+    - 'config.ru'
