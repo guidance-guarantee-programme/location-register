@@ -42,3 +42,7 @@ Style/ExpandPathArguments:
   Exclude:
     - 'Rakefile'
     - 'config.ru'
+
+Rails/UnknownEnv:
+  Exclude:
+    - 'config/initializers/govuk_admin_template.rb'

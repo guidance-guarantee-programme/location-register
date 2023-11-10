@@ -209,13 +209,6 @@ Rails/UniqueValidationWithoutIndex:
   Exclude:
     - 'app/models/call_centre.rb'
 
-# Offense count: 1
-# Configuration parameters: Severity, Environments.
-# Environments: development, test, production
-Rails/UnknownEnv:
-  Exclude:
-    - 'config/initializers/govuk_admin_template.rb'
-
 # --------
 
 # Removing this doesnt give cop warning
