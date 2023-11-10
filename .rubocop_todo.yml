@@ -260,13 +260,6 @@ Style/HashAsLastArrayItem:
     - 'app/policies/location_policy.rb'
     - 'spec/policies/location_policy_spec.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/KeywordParametersOrder:
-  Exclude:
-    - 'app/services/create_or_update_location.rb'
-
-
 
 # --------
 
