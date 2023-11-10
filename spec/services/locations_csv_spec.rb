@@ -9,7 +9,7 @@ RSpec.describe LocationsCsv do
 
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
-        %w(
+        %w[
           uid
           title
           address_line_1
@@ -25,7 +25,7 @@ RSpec.describe LocationsCsv do
           organisation
           online_booking_enabled
           realtime
-        )
+        ]
       )
     end
 

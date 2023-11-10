@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
-  EDIT_FIELDS = %w(
+  EDIT_FIELDS = %w[
     address_id
     booking_location_uid
     hidden
@@ -16,9 +16,9 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
     online_booking_reply_to
     realtime
     accessibility_information
-  ).freeze
+  ].freeze
   TP_CALL_CENTRE_NUMBER = '+442037333495'
-  ORGANISATIONS = %w(cas cita_e cita_w nicab).freeze
+  ORGANISATIONS = %w[cas cita_e cita_w nicab].freeze
 
   belongs_to :address, validate: true
   belongs_to :booking_location, -> { current },
@@ -37,7 +37,7 @@ class Location < ApplicationRecord # rubocop: disable Metrics/ClassLength
   validates :address, presence: true
   validates :booking_location, presence: { if: ->(l) { l.phone.blank? } }
   validates :version, presence: true
-  validates :state, presence: true, inclusion: %w(old current)
+  validates :state, presence: true, inclusion: %w[old current]
   validates :phone,
             presence: { if: ->(l) { l.booking_location.blank? } },
             uk_phone_number: { if: :current_with_phone_number? }

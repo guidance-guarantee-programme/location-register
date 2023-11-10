@@ -22,11 +22,11 @@ FactoryBot.define do
     end
 
     trait :pensionwise_admin do
-      permissions { %w(signin pensionwise_admin) }
+      permissions { %w[signin pensionwise_admin] }
     end
 
     trait :project_manager do
-      permissions { %w(signin project_manager) }
+      permissions { %w[signin project_manager] }
     end
   end
 end

@@ -5,7 +5,7 @@ class LocationsCsv < CsvGenerator
   end
 
   def attributes # rubocop:disable Metrics/MethodLength
-    %w(
+    %w[
       uid
       title
       address_line_1
@@ -21,7 +21,7 @@ class LocationsCsv < CsvGenerator
       organisation
       online_booking_enabled
       realtime
-    ).freeze
+    ].freeze
   end
 
   def hidden_formatter(value)

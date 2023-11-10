@@ -36,4 +36,4 @@ begin
 rescue LoadError
 end
 
-task default: %i(analyse_javascript)
+task default: %i[analyse_javascript]

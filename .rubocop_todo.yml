@@ -274,23 +274,6 @@ Style/MutableConstant:
   Exclude:
     - 'app/validators/uk_phone_number_validator.rb'
 
-# Offense count: 17
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'Rakefile'
-    - 'app/forms/locations_directory.rb'
-    - 'app/models/location.rb'
-    - 'app/policies/location_policy.rb'
-    - 'app/services/locations_csv.rb'
-    - 'config/environments/production.rb'
-    - 'config/initializers/assets.rb'
-    - 'config/routes.rb'
-    - 'spec/controllers/twilios_controller_spec.rb'
-    - 'spec/factories/user.rb'
-    - 'spec/models/edited_location_spec.rb'
-    - 'spec/services/locations_csv_spec.rb'
 
 # --------
 

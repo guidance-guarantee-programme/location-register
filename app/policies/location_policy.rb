@@ -1,14 +1,14 @@
 class LocationPolicy < ApplicationPolicy
-  CITA_ENGLAND_AND_WALES_ORGANISATIONS = %w(cita_e cita_w nicab).freeze
+  CITA_ENGLAND_AND_WALES_ORGANISATIONS = %w[cita_e cita_w nicab].freeze
 
-  ADMIN_PARAMS = %i(
+  ADMIN_PARAMS = %i[
     organisation
     twilio_number
     online_booking_twilio_number
     online_booking_reply_to
-  ).freeze
+  ].freeze
 
-  ONLINE_BOOKING_PARAMS = %i(online_booking_enabled realtime).freeze
+  ONLINE_BOOKING_PARAMS = %i[online_booking_enabled realtime].freeze
 
   class Scope < ApplicationPolicy::Scope
     def resolve
