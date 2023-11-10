@@ -244,12 +244,6 @@ Style/ExplicitBlockArgument:
   Exclude:
     - 'lib/tasks/data_migration.rake'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/GlobalStdStream:
-  Exclude:
-    - 'config/environments/production.rb'
-
 
 
 # --------
