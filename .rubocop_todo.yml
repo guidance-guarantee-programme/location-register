@@ -222,16 +222,6 @@ Style/CommentedKeyword:
   Exclude:
     - 'app/models/location.rb'
 
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/admin/guiders_controller.rb'
-    - 'app/controllers/admin/locations_controller.rb'
-
-
 
 # --------
 

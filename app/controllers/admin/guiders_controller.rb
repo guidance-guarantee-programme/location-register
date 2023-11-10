@@ -3,8 +3,7 @@ module Admin
     before_action :set_authorised_location
     before_action :set_guider, except: :create
 
-    def index
-    end
+    def index; end
 
     def create
       @location.guiders.create!(guider_params)

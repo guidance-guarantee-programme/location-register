@@ -47,8 +47,7 @@ module Admin
       end
     end
 
-    def online_booking
-    end
+    def online_booking; end
 
     private
 
