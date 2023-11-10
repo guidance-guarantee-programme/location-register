@@ -238,13 +238,6 @@ Style/ExpandPathArguments:
     - 'Rakefile'
     - 'config.ru'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExplicitBlockArgument:
-  Exclude:
-    - 'lib/tasks/data_migration.rake'
-
-
 
 # --------
 

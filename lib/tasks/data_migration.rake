@@ -29,10 +29,8 @@ namespace :data_migration do
       end
     end
 
-    def csv_data
-      CSV.parse(File.read(Rails.root.join(@path)), headers: true).each do |csv|
-        yield(csv)
-      end
+    def csv_data(&block)
+      CSV.parse(File.read(Rails.root.join(@path)), headers: true).each(&block)
     end
 
     def new_record!(location)
