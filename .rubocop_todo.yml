@@ -144,14 +144,6 @@ Rails/Blank:
   Exclude:
     - 'app/models/address.rb'
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: slashes, arguments
-Rails/FilePath:
-  Exclude:
-    - 'spec/rails_helper.rb'
-
 
 # --------
 
