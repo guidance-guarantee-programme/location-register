@@ -55,3 +55,19 @@ Rails/HasManyOrHasOneDependent:
   Exclude:
     - 'app/models/guider.rb'
     - 'app/models/location.rb'
+
+Naming/VariableNumber:
+  Exclude:
+    - 'app/models/address.rb'
+    - 'app/policies/location_policy.rb'
+    - 'features/pages/admin_location_page.rb'
+    - 'features/pages/admin_new_location_page.rb'
+    - 'features/step_definitions/admin/edited_locations_steps.rb'
+    - 'lib/tasks/data_migration.rake'
+    - 'spec/factories/address.rb'
+    - 'spec/features/booking_locations_api_spec.rb'
+    - 'spec/models/address_spec.rb'
+    - 'spec/models/edited_location_spec.rb'
+    - 'spec/models/location_spec.rb'
+    - 'spec/policies/location_policy_spec.rb'
+    - 'spec/services/update_location_spec.rb'
