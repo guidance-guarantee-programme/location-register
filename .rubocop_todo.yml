@@ -82,23 +82,21 @@ Lint/ConstantDefinitionInBlock:
     - 'lib/tasks/data_migration.rake'
 
 # Offense count: 1
-Lint/DuplicateMethods:
-  Exclude:
-    - 'app/models/edited_location.rb'
-
-# Offense count: 1
 # Configuration parameters: AllowedParentClasses.
 Lint/MissingSuper:
   Exclude:
     - 'app/services/locations_csv.rb'
 
+
+# --------
+
+# Script file puma.rb doesn't have execute permission.
+#!/usr/bin/env puma
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 Lint/ScriptPermission:
   Exclude:
     - 'config/puma.rb'
-
-# --------
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).

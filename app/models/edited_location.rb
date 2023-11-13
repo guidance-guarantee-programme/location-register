@@ -30,7 +30,6 @@ class EditedLocation
     end
   end
 
-  attr_reader :edits
   delegate :uid, :title, :booking_location, to: :current
 
   def initialize(versions, sort: :asc)
