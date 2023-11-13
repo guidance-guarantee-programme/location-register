@@ -50,3 +50,8 @@ Rails/UnknownEnv:
 Rails/InverseOf:
   Exclude:
     - 'app/models/location.rb'
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/guider.rb'
+    - 'app/models/location.rb'
