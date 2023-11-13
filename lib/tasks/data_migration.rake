@@ -36,6 +36,7 @@ namespace :data_migration do
 
     def new_record!(location)
       return unless location.new_record?
+
       puts "Error updating address for: #{location.uid} - #{location.errors.full_messages}"
     end
 

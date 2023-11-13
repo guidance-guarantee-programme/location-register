@@ -96,6 +96,7 @@ class Location < ApplicationRecord
       reorder(:hidden, 'updated_at DESC', 'created_at DESC')
         .each_with_object({}) do |location, hash|
           next if location.twilio_number.blank?
+
           hash[location.twilio_number] ||= location
           hash[location.online_booking_twilio_number] ||= location if location.online_booking_twilio_number.present?
         end

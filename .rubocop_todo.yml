@@ -14,15 +14,6 @@ Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLineAfterGuardClause:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/models/location.rb'
-    - 'features/step_definitions/admin/location_steps.rb'
-    - 'lib/tasks/data_migration.rake'
-
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLineAfterMagicComment:

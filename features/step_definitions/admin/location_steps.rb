@@ -122,6 +122,7 @@ module LocationTestHelper
 
   def field_value(field, value)
     return value unless field == 'make_location_visible'
+
     value == 'No' ? 'Hidden' : 'Active'
   end
 end
