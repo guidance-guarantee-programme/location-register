@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 ruby IO.read('.ruby-version').strip
 
-gem 'rails', '~> 6.1'
 gem 'pg'
+gem 'rails', '~> 6.1'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-rails'
 gem 'jbuilder'
+gem 'jquery-rails'
 
 gem 'foreman'
 gem 'puma'
@@ -27,15 +27,15 @@ gem 'oj'
 gem 'plek', '~> 2.1'
 gem 'postgres-copy'
 gem 'pundit'
-gem 'uk_postcode'
 gem 'select2-rails'
 gem 'sidekiq', '< 7'
 gem 'sinatra', require: false
+gem 'uk_postcode'
 
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'pry-byebug'
   gem 'launchy'
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'scss-lint'
 end
@@ -50,8 +50,8 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'poltergeist'
   gem 'phantomjs'
+  gem 'poltergeist'
   gem 'site_prism'
   gem 'vcr'
   gem 'webmock'
