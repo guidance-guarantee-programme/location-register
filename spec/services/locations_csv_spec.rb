@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe LocationsCsv do
   let(:separator) { ',' }
 
@@ -69,3 +70,4 @@ RSpec.describe LocationsCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

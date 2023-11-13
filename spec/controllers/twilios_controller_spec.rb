@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe TwiliosController do
   describe '#handle_status' do
     before do
@@ -75,3 +76,4 @@ RSpec.describe TwiliosController do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

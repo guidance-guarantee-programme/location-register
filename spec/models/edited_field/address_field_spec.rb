@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe EditedField::AddressField do
   shared_examples_for 'an address display field' do
     context 'when blank' do
@@ -45,3 +46,4 @@ RSpec.describe EditedField::AddressField do
     it_behaves_like 'an address display field'
   end
 end
+# rubocop:enable Metrics/BlockLength

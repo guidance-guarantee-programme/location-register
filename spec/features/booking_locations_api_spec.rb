@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.feature 'Booking Locations API' do
   scenario 'Requesting all locations' do
     given_a_permitted_gds_sso_user
@@ -66,3 +67,4 @@ RSpec.feature 'Booking Locations API' do
     expect(JSON.parse(page.body)).to include('uid' => @booking_location.uid)
   end
 end
+# rubocop:enable Metrics/BlockLength

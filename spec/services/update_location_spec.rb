@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CreateOrUpdateLocation do
   let(:user) { create(:user) }
   subject { described_class.new(location: location, user: user) }
@@ -219,3 +220,4 @@ RSpec.describe CreateOrUpdateLocation do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

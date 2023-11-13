@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Address do
   describe '#initialization' do
     before do
@@ -105,3 +106,4 @@ RSpec.describe Address do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

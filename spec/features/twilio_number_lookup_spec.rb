@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'Twilio number lookup', type: :request do
   context 'when location exists for the uid' do
     it 'will forward to the location phones' do
@@ -158,3 +159,4 @@ RSpec.describe 'Twilio number lookup', type: :request do
     XML_END
   end
 end
+# rubocop:enable Metrics/BlockLength

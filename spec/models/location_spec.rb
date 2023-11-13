@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Location do
   describe '.booking_locations' do
     before do
@@ -325,3 +326,4 @@ RSpec.describe Location do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

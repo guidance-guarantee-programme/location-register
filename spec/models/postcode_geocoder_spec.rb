@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe PostcodeGeocoder do
   subject { described_class.new('SE1 9HS') }
   let(:valid_geocode) do
@@ -85,3 +86,4 @@ RSpec.describe PostcodeGeocoder do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

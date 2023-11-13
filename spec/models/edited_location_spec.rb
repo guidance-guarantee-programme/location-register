@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe EditedLocation do
   subject { described_class }
   let(:uid) { SecureRandom.uuid }
@@ -135,3 +136,4 @@ RSpec.describe EditedLocation do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

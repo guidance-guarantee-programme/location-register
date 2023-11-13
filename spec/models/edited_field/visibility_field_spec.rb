@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe EditedField::VisibilityField do
   shared_examples_for 'a visibility display field' do
     context 'when blank' do
@@ -49,3 +50,4 @@ RSpec.describe EditedField::VisibilityField do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

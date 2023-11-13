@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
   let(:booking_location) { create(:booking_location) }
 
@@ -56,3 +57,4 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe LocationPolicy do
   subject { described_class }
 
@@ -219,3 +220,4 @@ RSpec.describe LocationPolicy::Scope do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

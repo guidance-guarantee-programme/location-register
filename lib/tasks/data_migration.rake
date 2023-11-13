@@ -1,5 +1,6 @@
 require 'csv'
 
+# rubocop:disable Metrics/BlockLength
 namespace :data_migration do
   desc 'Update locations so that words are sensibly cased'
   task update_locations_with_caps: :environment do
@@ -67,3 +68,4 @@ namespace :data_migration do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
