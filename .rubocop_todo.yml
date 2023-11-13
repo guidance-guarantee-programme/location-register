@@ -7,12 +7,6 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Layout/EmptyLinesAroundExceptionHandlingKeywords:
-  Exclude:
-    - 'Rakefile'
-
-# Offense count: 1
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: enums
 Lint/ConstantDefinitionInBlock:
@@ -24,9 +18,6 @@ Lint/ConstantDefinitionInBlock:
 Lint/MissingSuper:
   Exclude:
     - 'app/services/locations_csv.rb'
-
-
-# --------
 
 # Script file puma.rb doesn't have execute permission.
 #!/usr/bin/env puma

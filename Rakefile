@@ -20,7 +20,6 @@ begin
   end
 
   task default: 'cucumber:javascript_disabled'
-
 rescue LoadError
 end
 
