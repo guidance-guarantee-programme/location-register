@@ -137,12 +137,6 @@ Rails/ApplicationController:
     - 'app/controllers/api/v1/booking_locations_controller.rb'
     - 'app/controllers/api/v1/twilio_numbers_controller.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: NilOrEmpty, NotPresent, UnlessPresent.
-Rails/Blank:
-  Exclude:
-    - 'app/models/address.rb'
 
 
 # --------
