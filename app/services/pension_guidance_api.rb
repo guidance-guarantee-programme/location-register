@@ -21,7 +21,7 @@ class PensionGuidanceApi
     {
       url: "#{uri}/locations_cache",
       request: {
-        timeout:      ENV.fetch('PENSION_GUIDANCE_TIMEOUT', 2).to_i,
+        timeout: ENV.fetch('PENSION_GUIDANCE_TIMEOUT', 2).to_i,
         open_timeout: ENV.fetch('PENSION_GUIDANCE_OPEN_TIMEOUT', 2).to_i
       }
     }

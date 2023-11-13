@@ -27,7 +27,7 @@ class PlannerApi
     {
       url: "#{uri}/api/v1/booking_requests/batch_reassign",
       request: {
-        timeout:      ENV.fetch('PLANNER_TIMEOUT', 2).to_i,
+        timeout: ENV.fetch('PLANNER_TIMEOUT', 2).to_i,
         open_timeout: ENV.fetch('PLANNER_OPEN_TIMEOUT', 2).to_i
       }
     }

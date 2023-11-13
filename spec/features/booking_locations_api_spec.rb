@@ -33,7 +33,7 @@ RSpec.feature 'Booking Locations API' do
 
     expect(@locations.count).to eq(3)
     expect(@locations.first).to include(
-      'uid'   => @booking_location.uid,
+      'uid' => @booking_location.uid,
       'title' => @booking_location.title
     )
   end
