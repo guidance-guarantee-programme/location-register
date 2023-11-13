@@ -104,14 +104,6 @@ Lint/ScriptPermission:
 Metrics/BlockLength:
   Max: 259
 
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Migration/DepartmentName:
-  Exclude:
-    - 'app/views/api/v1/booking_locations/show.json.jbuilder'
-
-
-
 
 # --------
 
@@ -167,12 +159,3 @@ Rails/SkipsModelValidations:
 Rails/UniqueValidationWithoutIndex:
   Exclude:
     - 'app/models/call_centre.rb'
-
-# Removing this doesnt give cop warning
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 150
-
