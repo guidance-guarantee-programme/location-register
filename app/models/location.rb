@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # rubocop: disable Metrics/ClassLength
 class Location < ApplicationRecord
   EDIT_FIELDS = %w[

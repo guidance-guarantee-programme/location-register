@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class LocationsCsv < CsvGenerator
   def initialize(record_or_records)
     @records = Array(record_or_records).map { |record| LocationWithAddress.new(record) }
