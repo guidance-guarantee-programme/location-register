@@ -18,12 +18,3 @@ Lint/ConstantDefinitionInBlock:
 Lint/MissingSuper:
   Exclude:
     - 'app/services/locations_csv.rb'
-
-# Script file puma.rb doesn't have execute permission.
-#!/usr/bin/env puma
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Lint/ScriptPermission:
-  Exclude:
-    - 'config/puma.rb'
-
