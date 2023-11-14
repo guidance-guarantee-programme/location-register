@@ -34,11 +34,4 @@ Rails/ApplicationController:
     - 'app/controllers/api/v1/booking_locations_controller.rb'
     - 'app/controllers/api/v1/twilio_numbers_controller.rb'
 
-# Created separate method, failed cucumber test
-# Offense count: 1
-# Configuration parameters: Include.
-# Include: app/helpers/**/*.rb
-Rails/HelperInstanceVariable:
-  Exclude:
-    - 'app/helpers/guiders_helper.rb'
 

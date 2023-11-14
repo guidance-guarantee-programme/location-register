@@ -41,7 +41,7 @@
           <tr class="t-guider">
             <td class="t-guider-name"><%= guider.name %></td>
             <td class="t-guider-email"><%= guider.email %></td>
-            <td><%= toggle_guider_button(guider) %></td>
+            <td><%= toggle_guider_button(guider, @location) %></td>
           </tr>
         <% end %>
       </tbody>
