@@ -42,9 +42,3 @@ Rails/HelperInstanceVariable:
   Exclude:
     - 'app/helpers/guiders_helper.rb'
 
-# Offense count: 1
-# Configuration parameters: Include.
-# Include: app/controllers/**/*.rb, app/mailers/**/*.rb
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - 'app/controllers/admin/locations_controller.rb'
