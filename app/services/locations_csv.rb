@@ -2,6 +2,7 @@
 
 class LocationsCsv < CsvGenerator
   def initialize(record_or_records)
+    super
     @records = Array(record_or_records).map { |record| LocationWithAddress.new(record) }
   end
 

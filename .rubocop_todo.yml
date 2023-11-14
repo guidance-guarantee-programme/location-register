@@ -12,9 +12,3 @@
 Lint/ConstantDefinitionInBlock:
   Exclude:
     - 'lib/tasks/data_migration.rake'
-
-# Offense count: 1
-# Configuration parameters: AllowedParentClasses.
-Lint/MissingSuper:
-  Exclude:
-    - 'app/services/locations_csv.rb'
