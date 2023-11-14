@@ -71,3 +71,7 @@ Naming/VariableNumber:
     - 'spec/models/location_spec.rb'
     - 'spec/policies/location_policy_spec.rb'
     - 'spec/services/update_location_spec.rb'
+
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - 'app/models/call_centre.rb'
