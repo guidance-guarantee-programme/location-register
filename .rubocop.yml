@@ -75,3 +75,13 @@ Naming/VariableNumber:
 Rails/UniqueValidationWithoutIndex:
   Exclude:
     - 'app/models/call_centre.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/services/create_or_update_location.rb'
+    - 'features/step_definitions/admin/location_steps.rb'
+    - 'lib/tasks/locations.rake'
+    - 'spec/features/twilio_number_lookup_spec.rb'
+    - 'spec/models/location_spec.rb'
+    - 'spec/models/twilio_redirect_spec.rb'
+

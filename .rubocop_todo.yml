@@ -58,16 +58,3 @@ Rails/RakeEnvironment:
   Exclude:
     - 'Rakefile'
     - 'lib/tasks/analyse_javascript.rake'
-
-# Changing to update or update_attributes fails rake
-# Offense count: 9
-# Configuration parameters: ForbiddenMethods, AllowedMethods.
-# ForbiddenMethods: decrement!, decrement_counter, increment!, increment_counter, insert, insert!, insert_all, insert_all!, toggle!, touch, touch_all, update_all, update_attribute, update_column, update_columns, update_counters, upsert, upsert_all
-Rails/SkipsModelValidations:
-  Exclude:
-    - 'app/services/create_or_update_location.rb'
-    - 'features/step_definitions/admin/location_steps.rb'
-    - 'lib/tasks/locations.rake'
-    - 'spec/features/twilio_number_lookup_spec.rb'
-    - 'spec/models/location_spec.rb'
-    - 'spec/models/twilio_redirect_spec.rb'
