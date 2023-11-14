@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 json.cache! @location, expires_in: 30.minutes do
   json.uid @location.uid
   json.name @location.title
@@ -32,3 +33,4 @@ json.cache! @location, expires_in: 30.minutes do
     json.email guider.email
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -20,7 +20,6 @@ begin
   end
 
   task default: 'cucumber:javascript_disabled'
-
 rescue LoadError
 end
 
@@ -36,4 +35,4 @@ begin
 rescue LoadError
 end
 
-task default: %i(analyse_javascript)
+task default: %i[analyse_javascript]

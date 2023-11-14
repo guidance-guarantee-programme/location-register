@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'locations/index' do
   let(:location) do
     build(
@@ -41,3 +42,4 @@ RSpec.describe 'locations/index' do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

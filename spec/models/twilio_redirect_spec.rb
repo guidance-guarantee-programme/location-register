@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe TwilioRedirection do
   describe '.for' do
     let(:twilio_number) { '+44123456789' }
@@ -66,3 +67,4 @@ RSpec.describe TwilioRedirection do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

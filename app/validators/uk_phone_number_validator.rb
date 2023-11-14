@@ -1,5 +1,5 @@
 class UkPhoneNumberValidator < ActiveModel::EachValidator
-  REGEXP = /\A\+44\d{9,10}\z/
+  REGEXP = /\A\+44\d{9,10}\z/.freeze
 
   def validate_each(record, attribute, value)
     return if value.to_s =~ REGEXP

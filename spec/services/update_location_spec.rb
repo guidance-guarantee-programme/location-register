@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe CreateOrUpdateLocation do
   let(:user) { create(:user) }
   subject { described_class.new(location: location, user: user) }
@@ -25,13 +26,13 @@ RSpec.describe CreateOrUpdateLocation do
 
     context 'when an existing location would be unchanged by the update' do
       it 'does not create new location version' do
-        expect { subject.update(params) }.not_to change { Location.count }
+        expect { subject.update(params) }.not_to(change { Location.count })
       end
 
       it 'ignores difference in versioning fields' do
         params[:created_at] = 10.days.ago
         params[:updated_at] = 10.days.ago
-        expect { subject.update(params) }.not_to change { Location.count }
+        expect { subject.update(params) }.not_to(change { Location.count })
       end
     end
 
@@ -145,7 +146,7 @@ RSpec.describe CreateOrUpdateLocation do
         end
 
         it 'does not creates a new address entry in the database' do
-          expect { subject.update(update_params) }.not_to change { Address.count }
+          expect { subject.update(update_params) }.not_to(change { Address.count })
         end
 
         it 'set the new locations state to current' do
@@ -219,3 +220,4 @@ RSpec.describe CreateOrUpdateLocation do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

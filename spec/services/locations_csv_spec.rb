@@ -1,6 +1,8 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe LocationsCsv do
   let(:separator) { ',' }
 
@@ -9,7 +11,7 @@ RSpec.describe LocationsCsv do
 
     it 'generates headings' do
       expect(subject.first.chomp.split(separator)).to match_array(
-        %w(
+        %w[
           uid
           title
           address_line_1
@@ -25,7 +27,7 @@ RSpec.describe LocationsCsv do
           organisation
           online_booking_enabled
           realtime
-        )
+        ]
       )
     end
 
@@ -69,3 +71,4 @@ RSpec.describe LocationsCsv do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

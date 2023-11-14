@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :location do
     uid { SecureRandom.uuid }
@@ -63,3 +64,4 @@ FactoryBot.define do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

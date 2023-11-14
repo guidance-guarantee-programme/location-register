@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe TwiliosController do
   describe '#handle_status' do
     before do
@@ -57,7 +58,7 @@ RSpec.describe TwiliosController do
       end
     end
 
-    %w(busy completed no-answer).each do |call_status|
+    %w[busy completed no-answer].each do |call_status|
       context "when the call status is #{call_status}" do
         let(:location) { create(:location, twilio_number: '+44123456789') }
         let(:params) { { 'DialCallStatus' => call_status, 'Called' => location.twilio_number } }
@@ -75,3 +76,4 @@ RSpec.describe TwiliosController do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

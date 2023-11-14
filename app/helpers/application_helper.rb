@@ -28,12 +28,13 @@ module ApplicationHelper
 
   def location_select_options
     return [] unless current_user
+
     locations = Pundit.policy_scope!(current_user, Location.current_by_visibility)
     locations.map do |location|
       [
         location.title,
         "#{location.uid}/edit",
-        'data-hidden' => location.hidden?
+        { 'data-hidden' => location.hidden? }
       ]
     end
   end

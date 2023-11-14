@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe EditedLocation do
   subject { described_class }
   let(:uid) { SecureRandom.uuid }
@@ -25,7 +26,7 @@ RSpec.describe EditedLocation do
     end
   end
 
-  %i(uid title booking_location).each do |field|
+  %i[uid title booking_location].each do |field|
     describe "##{field}" do
       it 'delegates to the array element with the highest version number' do
         result = subject.new([location_2, location_1])
@@ -135,3 +136,4 @@ RSpec.describe EditedLocation do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

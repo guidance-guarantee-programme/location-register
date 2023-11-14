@@ -37,3 +37,60 @@ Lint/AssignmentInCondition:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/ExpandPathArguments:
+  Exclude:
+    - 'Rakefile'
+    - 'config.ru'
+
+Rails/UnknownEnv:
+  Exclude:
+    - 'config/initializers/govuk_admin_template.rb'
+
+Rails/InverseOf:
+  Exclude:
+    - 'app/models/location.rb'
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/guider.rb'
+    - 'app/models/location.rb'
+
+Naming/VariableNumber:
+  Exclude:
+    - 'app/models/address.rb'
+    - 'app/policies/location_policy.rb'
+    - 'features/pages/admin_location_page.rb'
+    - 'features/pages/admin_new_location_page.rb'
+    - 'features/step_definitions/admin/edited_locations_steps.rb'
+    - 'lib/tasks/data_migration.rake'
+    - 'spec/factories/address.rb'
+    - 'spec/features/booking_locations_api_spec.rb'
+    - 'spec/models/address_spec.rb'
+    - 'spec/models/edited_location_spec.rb'
+    - 'spec/models/location_spec.rb'
+    - 'spec/policies/location_policy_spec.rb'
+    - 'spec/services/update_location_spec.rb'
+
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - 'app/models/call_centre.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/services/create_or_update_location.rb'
+    - 'features/step_definitions/admin/location_steps.rb'
+    - 'lib/tasks/locations.rake'
+    - 'spec/features/twilio_number_lookup_spec.rb'
+    - 'spec/models/location_spec.rb'
+    - 'spec/models/twilio_redirect_spec.rb'
+
+Rails/RakeEnvironment:
+  Exclude:
+    - 'Rakefile'
+    - 'lib/tasks/analyse_javascript.rake'
+
+Rails/ApplicationController:
+  Exclude:
+    - 'app/controllers/api/v1/booking_locations_controller.rb'
+    - 'app/controllers/api/v1/twilio_numbers_controller.rb'

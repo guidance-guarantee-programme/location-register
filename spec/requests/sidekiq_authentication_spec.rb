@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe 'Sidekiq control panel' do
   scenario 'requires authentication' do
     with_real_sso do
@@ -42,3 +43,4 @@ RSpec.describe 'Sidekiq control panel' do
     ENV['GDS_SSO_MOCK_INVALID'] = sso_env
   end
 end
+# rubocop:enable Metrics/BlockLength

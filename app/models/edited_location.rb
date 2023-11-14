@@ -30,7 +30,6 @@ class EditedLocation
     end
   end
 
-  attr_reader :edits
   delegate :uid, :title, :booking_location, to: :current
 
   def initialize(versions, sort: :asc)
@@ -48,7 +47,7 @@ class EditedLocation
   private
 
   def current
-    @current ||= @versions.sort_by(&:version).last
+    @current ||= @versions.max_by(&:version)
   end
 
   def edited_fields(location)

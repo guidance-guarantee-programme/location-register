@@ -1,7 +1,7 @@
 class CreateOrUpdateLocation
   attr_reader :location, :user
 
-  def initialize(location: nil, user:)
+  def initialize(user:, location: nil)
     @location = location
     @user = user
   end

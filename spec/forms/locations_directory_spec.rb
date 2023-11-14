@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe LocationsDirectory do
   let(:user) { instance_double('User', pensionwise_admin?: true) }
 
@@ -95,3 +96,4 @@ RSpec.describe LocationsDirectory do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

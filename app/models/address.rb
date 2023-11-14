@@ -37,7 +37,7 @@ class Address < ApplicationRecord
 
     uk_postcode = UKPostcode.parse(postcode)
     if uk_postcode.full_valid?
-      errors.add(:postcode, :geocoding_error) unless point.present?
+      errors.add(:postcode, :geocoding_error) if point.blank?
     else
       errors.add(:postcode, :non_uk)
     end

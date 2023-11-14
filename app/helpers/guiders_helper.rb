@@ -1,10 +1,10 @@
 module GuidersHelper
-  def toggle_guider_button(guider)
+  def toggle_guider_button(guider, location)
     title = guider.inactive? ? 'Activate' : 'Deactivate'
 
     button_to(
       title,
-      admin_location_guider_path(location_id: @location.uid, id: guider.id),
+      admin_location_guider_path(location_id: location.uid, id: guider.id),
       method: :patch,
       class: 'btn btn-danger t-toggle'
     )
