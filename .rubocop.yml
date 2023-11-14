@@ -89,3 +89,8 @@ Rails/RakeEnvironment:
   Exclude:
     - 'Rakefile'
     - 'lib/tasks/analyse_javascript.rake'
+
+Rails/ApplicationController:
+  Exclude:
+    - 'app/controllers/api/v1/booking_locations_controller.rb'
+    - 'app/controllers/api/v1/twilio_numbers_controller.rb'
