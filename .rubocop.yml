@@ -85,3 +85,7 @@ Rails/SkipsModelValidations:
     - 'spec/models/location_spec.rb'
     - 'spec/models/twilio_redirect_spec.rb'
 
+Rails/RakeEnvironment:
+  Exclude:
+    - 'Rakefile'
+    - 'lib/tasks/analyse_javascript.rake'

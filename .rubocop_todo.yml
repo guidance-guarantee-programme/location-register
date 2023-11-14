@@ -48,13 +48,3 @@ Rails/HelperInstanceVariable:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/admin/locations_controller.rb'
-
-# Making this change on rakefile doenst automatically run cucumber and rubocop when running rake
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Include.
-# Include: **/Rakefile, **/*.rake
-Rails/RakeEnvironment:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/tasks/analyse_javascript.rake'
