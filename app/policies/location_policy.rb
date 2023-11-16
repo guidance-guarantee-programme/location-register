@@ -74,6 +74,13 @@ class LocationPolicy < ApplicationPolicy
     base_params
   end
 
+  def admin_or_organisations_project_manager?
+    return true if admin?
+    return false unless user.project_manager?
+
+    project_manager_ok?
+  end
+
   private
 
   def creating_new_record?
@@ -86,12 +93,5 @@ class LocationPolicy < ApplicationPolicy
     else
       user.organisation_slug == record.organisation
     end
-  end
-
-  def admin_or_organisations_project_manager?
-    return true if admin?
-    return false unless user.project_manager?
-
-    project_manager_ok?
   end
 end
