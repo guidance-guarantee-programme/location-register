@@ -35,7 +35,7 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def phone?
-    record.version.nil? || (record.version == 1 && record.new_record?) || admin?
+    record.version.nil? || (record.version == 1 && record.new_record?) || admin_or_organisations_project_manager?
   end
 
   def edit?
@@ -68,10 +68,17 @@ class LocationPolicy < ApplicationPolicy
       { address: %i[address_line_1 address_line_2 address_line_3 town county postcode] }
     ]
 
-    base_params += [:phone] if creating_new_record? || admin?
+    base_params += [:phone] if creating_new_record? || admin_or_organisations_project_manager?
     base_params += ADMIN_PARAMS if admin?
     base_params += ONLINE_BOOKING_PARAMS if online_booking?
     base_params
+  end
+
+  def admin_or_organisations_project_manager?
+    return true if admin?
+    return false unless user.project_manager?
+
+    project_manager_ok?
   end
 
   private
@@ -80,10 +87,7 @@ class LocationPolicy < ApplicationPolicy
     record == Location
   end
 
-  def admin_or_organisations_project_manager?
-    return true if admin?
-    return false unless user.project_manager?
-
+  def project_manager_ok?
     if user.cita_england_and_wales?
       CITA_ENGLAND_AND_WALES_ORGANISATIONS.include?(record.organisation)
     else

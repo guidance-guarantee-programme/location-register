@@ -7,6 +7,7 @@ RSpec.describe LocationPolicy do
   permissions :phone? do
     let(:user) { build(:user) }
     let(:admin) { build(:user, :cas, :pensionwise_admin) }
+    let(:project_manager) { build(:user, :cita_e_w, :project_manager) }
 
     it 'grants access for a new location' do
       expect(subject).to permit(user, Location.new(version: nil))
@@ -20,6 +21,10 @@ RSpec.describe LocationPolicy do
 
       it 'grant access for an admin user' do
         expect(subject).to permit(admin, create(:location, version: 1))
+      end
+
+      it 'grants access for an owning project manager' do
+        expect(subject).to permit(project_manager, create(:location, :cita_e))
       end
     end
   end
