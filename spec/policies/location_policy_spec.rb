@@ -104,7 +104,8 @@ RSpec.describe LocationPolicy do
                 postcode
               ]
             },
-            :phone
+            :phone,
+            :organisation
           ]
         )
       end

@@ -19,13 +19,11 @@
 
 <div class="row">
   <div class="col-md-6">
-    <% if policy(location).admin? %>
-      <div class="form-group <%= 'form-group--error' if f.object.errors[:organisation].any? %>" id="organisation">
-        <%= f.label :organisation %>
-        <%= render 'error', error_messages: location.errors[:organisation] %>
-        <%= f.select :organisation, Location::ORGANISATIONS, { include_blank: true }, class: 'form-control t-organisation text-uppercase' %>
-      </div>
-    <% end %>
+    <div class="form-group <%= 'form-group--error' if f.object.errors[:organisation].any? %>" id="organisation">
+      <%= f.label :organisation %>
+      <%= render 'error', error_messages: location.errors[:organisation] %>
+      <%= f.select :organisation, Location::ORGANISATIONS, { include_blank: true }, class: 'form-control t-organisation text-uppercase' %>
+    </div>
 
     <div class="form-group <%= 'form-group--error' if f.object.errors[:title].any? %>" id="title">
       <%= f.label :title %>
