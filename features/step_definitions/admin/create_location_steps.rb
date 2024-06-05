@@ -26,6 +26,7 @@ When(/^I create a new booking location$/) do
   @page = AdminNewLocationPage.new
   @page.load
 
+  @page.organisation.select('nicab')
   @page.location_title.set 'Fun Land'
   @page.booking_hours.set 'Mon-Fri 9am-5pm'
   @page.address_line_1.set 'Fun Lane'

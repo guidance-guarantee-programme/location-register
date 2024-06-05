@@ -2,7 +2,6 @@ class LocationPolicy < ApplicationPolicy
   CITA_ENGLAND_AND_WALES_ORGANISATIONS = %w[cita_e cita_w nicab].freeze
 
   ADMIN_PARAMS = %i[
-    organisation
     twilio_number
     online_booking_twilio_number
     online_booking_reply_to
@@ -68,7 +67,7 @@ class LocationPolicy < ApplicationPolicy
       { address: %i[address_line_1 address_line_2 address_line_3 town county postcode] }
     ]
 
-    base_params += [:phone] if creating_new_record? || admin_or_organisations_project_manager?
+    base_params += %i[phone organisation] if creating_new_record? || admin_or_organisations_project_manager?
     base_params += ADMIN_PARAMS if admin?
     base_params += ONLINE_BOOKING_PARAMS if online_booking?
     base_params
