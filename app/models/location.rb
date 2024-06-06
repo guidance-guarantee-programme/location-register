@@ -52,7 +52,6 @@ class Location < ApplicationRecord
             uk_phone_number: { allow_blank: true },
             unless: :booking_location_uid?,
             if: :online_booking_enabled?
-  validates :hidden, inclusion: { in: [true], if: ->(l) { l.twilio_number.blank? } }
   validates :online_booking_enabled, inclusion: { in: [true, false] }
   validates :realtime, inclusion: { in: [true, false] }
   validates :accessibility_information, allow_blank: true, length: { maximum: 150 }
