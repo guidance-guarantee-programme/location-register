@@ -56,6 +56,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
+              <th>ID</th>
               <th class="location-details-table__fixed-width-column">Name</th>
               <th>Email</th>
             </tr>
@@ -63,6 +64,7 @@
           <tbody>
             <% @location.guiders.each do |guider| %>
               <tr>
+                <td><%= guider.id %></td>
                 <td><%= guider.name %></td>
                 <td><%= guider.email %></td>
               </tr>
