@@ -4,6 +4,8 @@ class Guider < ApplicationRecord
   has_many :guider_assignments
   has_many :locations, through: :guider_assignments
 
+  validates :name, presence: true
+
   def inactive?
     name.to_s.starts_with?(INACTIVE)
   end
