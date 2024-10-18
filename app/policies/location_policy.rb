@@ -1,7 +1,7 @@
 class LocationPolicy < ApplicationPolicy
   CITA_ENGLAND_AND_WALES_ORGANISATIONS = %w[cita_e cita_w nicab].freeze
 
-  ADMIN_PARAMS = %i[
+  PROJECT_MANAGER_PARAMS = %i[
     twilio_number
     online_booking_twilio_number
     online_booking_reply_to
@@ -29,8 +29,10 @@ class LocationPolicy < ApplicationPolicy
     user.pensionwise_admin?
   end
 
+  delegate :project_manager?, to: :user
+
   def online_booking?
-    user.pensionwise_admin? || user.project_manager?
+    admin? || project_manager?
   end
 
   def phone?
@@ -68,14 +70,14 @@ class LocationPolicy < ApplicationPolicy
     ]
 
     base_params += %i[phone organisation] if creating_new_record? || admin_or_organisations_project_manager?
-    base_params += ADMIN_PARAMS if admin?
+    base_params += PROJECT_MANAGER_PARAMS if project_manager? || admin?
     base_params += ONLINE_BOOKING_PARAMS if online_booking?
     base_params
   end
 
   def admin_or_organisations_project_manager?
     return true if admin?
-    return false unless user.project_manager?
+    return false unless project_manager?
 
     project_manager_ok?
   end

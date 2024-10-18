@@ -94,7 +94,7 @@
       <%= render 'error', error_messages: location.errors[:phone] %>
       <%= f.text_field :phone, class: 'form-control t-phone', disabled: !policy(location).phone? %>
     </div>
-    <% if policy(location).admin? %>
+    <% if policy(location).project_manager? || policy(location).admin? %>
       <div class="form-group <%= 'form-group--error' if f.object.errors[:twilio_number].any? %>" id="twilio-number">
         <%= f.label :twilio_number, 'Twilio number' %>
         <%= render 'error', error_messages: location.errors[:twilio_number] %>
