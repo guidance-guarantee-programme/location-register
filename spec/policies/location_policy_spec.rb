@@ -111,9 +111,9 @@ RSpec.describe LocationPolicy do
       end
     end
 
-    context 'when it is an admin user' do
+    context 'when it is a project manager' do
       let(:record) { create(:location) }
-      let(:user) { create(:user, :pensionwise_admin) }
+      let(:user) { create(:user, :project_manager) }
 
       it do
         expect(subject.permitted_attributes).to eq(
@@ -133,8 +133,6 @@ RSpec.describe LocationPolicy do
                 postcode
               ]
             },
-            :phone,
-            :organisation,
             :twilio_number,
             :online_booking_twilio_number,
             :online_booking_reply_to,
