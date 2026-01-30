@@ -166,6 +166,11 @@ RSpec.describe Location do
     expect(location).to be_valid
   end
 
+  it 'correctly runs validator for `phone`' do
+    location = build(:location, phone: '08001234567', twilio_number: nil, hidden: true)
+    expect(location).to be_invalid
+  end
+
   describe '#canonical_online_booking_twilio_number' do
     let(:location) do
       build :location do |location|
