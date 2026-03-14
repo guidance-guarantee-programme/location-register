@@ -51,6 +51,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'phantomjs'
+  gem 'phantomjs-binaries'
   gem 'poltergeist'
   gem 'site_prism'
   gem 'vcr'
