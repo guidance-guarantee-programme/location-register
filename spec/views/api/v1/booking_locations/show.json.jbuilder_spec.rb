@@ -47,7 +47,14 @@ RSpec.describe 'api/v1/booking_locations/show.json.jbuilder' do
       'geometry' => {
         'type' => 'Point',
         'coordinates' => [12.12, 45.45]
-      }
+      },
+      'guiders' => [
+        {
+          'id' => subject['locations'].first['guiders'].first['id'],
+          'name' => 'Rick Sanchez',
+          'email' => 'rick@example.com'
+        }
+      ]
     )
 
     expect(subject['guiders'].first).to eq(

@@ -25,6 +25,11 @@ json.cache! @location, expires_in: 30.minutes do
     json.organisation child.organisation
     json.geometry child.address.point
     json.locations []
+    json.guiders child.guiders do |guider|
+      json.id guider.id
+      json.name guider.name
+      json.email guider.email
+    end
   end
 
   json.guiders @location.guiders do |guider|
