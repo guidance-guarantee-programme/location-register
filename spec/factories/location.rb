@@ -59,7 +59,9 @@ FactoryBot.define do
       after(:create) do |parent|
         parent.guiders.create!(attributes_for(:guider))
 
-        create_list(:location, 2, :allows_online_booking, booking_location: parent)
+        create_list(:location, 2, :allows_online_booking, booking_location: parent) do |location|
+          location.guiders.create!(attributes_for(:guider))
+        end
       end
     end
   end
