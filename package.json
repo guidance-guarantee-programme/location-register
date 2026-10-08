@@ -5,8 +5,7 @@
   },
   "devDependencies": {
     "jscs": "latest",
-    "jshint": "latest",
-    "phantomjs-prebuilt": ">= 1.9.16"
+    "jshint": "latest"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install",
